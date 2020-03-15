@@ -6,6 +6,11 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
+    "datatables.net-dt": "^1.10.20",
+    "datatables.net-fixedheader-dt": "^3.1.6",
+    "datatables.net-responsive-dt": "^2.2.3",
+    "datatables.net-searchpanes-dt": "^1.0.1",
+    "jquery": "^3.4.1",
     "tailwindcss": "^1.2.0",
     "turbolinks": "^5.2.0"
   },
