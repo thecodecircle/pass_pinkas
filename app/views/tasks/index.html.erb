@@ -33,3 +33,7 @@
 <br>
 
 <%= link_to 'New Task', new_task_path %>
+
+<a href="whatsapp://send?text=<%= request.original_url %>?q=bacon">Share on WhatsApp</a>
+<a href="<%= request.original_url %>?q=bacon">Share not on WhatsApp</a>
+<%= current_user.username %>

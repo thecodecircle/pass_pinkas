@@ -16,11 +16,6 @@
     </div>
 
     <div class="mb-6">
-      <%= f.label :email, class:"label" %>
-      <%= f.email_field :email, autocomplete: "email", class:"input" %>
-    </div>
-
-    <div class="mb-6">
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
@@ -63,5 +58,3 @@
 <% end %>
 
 <%= render 'devise/shared/form_wrap' %>
-
-

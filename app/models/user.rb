@@ -5,18 +5,35 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many              :my_groups, inverse_of: :user
-  # validates_associated  :my_groups
-
   has_many              :groups, through: :my_groups
-  # validates_associated  :groups
-
   has_many              :my_tasks, inverse_of: :my_tasks
-  # validates_associated  :my_tasks
-
   has_many              :tasks, through: :my_tasks
-  # validates_associated  :tasks
 
   enum role:            %i[kid group branch region movement admin], _suffix: :user
   validates :role,      inclusion: { in: User.roles.keys }
+  validates :username, presence: :true, uniqueness: { case_sensitive: false }
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+
+  attr_writer :login
+
+  def login
+    @login || self.username || self.email
+  end
+
+  # def self.find_for_database_authentication(warden_conditions)
+  #     conditions = warden_conditions.dup
+  #     if login = conditions.delete(:login)
+  #       where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+  #     elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+  #       where(conditions.to_h).first
+  #     end
+  #   end
 
 end
