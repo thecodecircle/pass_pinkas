@@ -1,4 +1,18 @@
 class Task < ApplicationRecord
+  before_validation :set_score
+
+  def set_score
+    puts "****************************************"
+    score_hash = {
+        easy: 10,
+        medium: 50,
+        hard: 100,
+        impossible: 300
+    }
+    puts score_hash[self.difficulty.to_sym]
+    self.score = score_hash[self.difficulty.to_sym]
+    puts "Score: #{self.score}"
+  end
   has_many :my_tasks
   validates_associated  :my_tasks
 
@@ -10,6 +24,9 @@ class Task < ApplicationRecord
 
   enum status: %i[unapproved approved]
   validates  :status, inclusion: { in: Task.statuses.keys }
+
+  enum difficulty: %i[easy medium hard impossible]
+  validates  :difficulty, inclusion: { in: Task.difficulties.keys }
 
   validates             :name, presence: true
   validates             :description, presence: true
