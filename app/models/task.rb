@@ -8,7 +8,7 @@ class Task < ApplicationRecord
   enum publicity: %i[personal general]
   validates  :publicity, inclusion: { in: Task.publicities.keys }
 
-  enum status: %i[not_approved approved]
+  enum status: %i[unapproved approved]
   validates  :status, inclusion: { in: Task.statuses.keys }
 
   validates             :name, presence: true
