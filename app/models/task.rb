@@ -1,4 +1,18 @@
 class Task < ApplicationRecord
+  before_validation :set_score
+
+  def set_score
+    puts "****************************************"
+    score_hash = {
+        easy: 10,
+        medium: 50,
+        hard: 100,
+        impossible: 300
+    }
+    puts score_hash[self.difficulty.to_sym]
+    self.score = score_hash[self.difficulty.to_sym]
+    puts "Score: #{self.score}"
+  end
   has_many :my_tasks
   validates_associated  :my_tasks
 
