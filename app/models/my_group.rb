@@ -6,6 +6,6 @@ class MyGroup < ApplicationRecord
   validates  :group, presence: true
 
   enum role: %i[kid guide]
-  validates :role, inclusion: { in: MyGroup.roles.keys }
-  
+  # validates :role, inclusion: { in: MyGroup.roles.keys }
+
 end
