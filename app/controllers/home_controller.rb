@@ -8,6 +8,8 @@ class HomeController < ApplicationController
 		@my_score = current_user.score
 		if current_user.group_user?
 			@groups = current_user.groups
+			@tasks_to_approve = current_user.tasks.all
+			@general_tasks = Task.where(publicity: 1, status: 1).limit(10).order("RANDOM()")
 		end
 
   end

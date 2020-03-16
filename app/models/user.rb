@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   has_many              :my_groups, inverse_of: :user
   has_many              :groups, through: :my_groups
-  has_many              :my_tasks, inverse_of: :my_tasks
+  has_many              :my_tasks
+  # has_many              :my_tasks, inverse_of: :my_tasks
   has_many              :tasks, through: :my_tasks
 
   enum role:            %i[kid group branch region movement admin], _suffix: :user
