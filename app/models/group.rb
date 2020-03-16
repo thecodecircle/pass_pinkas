@@ -14,4 +14,8 @@ class Group < ApplicationRecord
   delegate :region, to: :branch
   delegate :movement, to: :region
 
+
+	def kids
+	  users.where("my_groups.role = ? ", 0)
+	end
 end
