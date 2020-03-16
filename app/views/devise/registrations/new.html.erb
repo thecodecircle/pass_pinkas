@@ -16,9 +16,14 @@
     </div>
 
     <div class="mb-6">
-      <%= f.label :email, class:"label" %>
-      <%= f.email_field :email, autocomplete: "email", class:"input" %>
+      <%= f.label :role, class:"label" %>
+      <%= f.select :role, User.roles.keys.to_a, :prompt => 'Select', class:"input" %>
     </div>
+
+    <!-- <div class="mb-6"> -->
+      <%# f.label :email, class:"label" %>
+      <%# f.email_field :email, autocomplete: "email", class:"input" %>
+    <!-- </div> -->
 
     <div class="mb-6">
       <div class="flex">
