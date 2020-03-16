@@ -1,10 +1,23 @@
-<%= @my_tasks.first.name %>
-<% @random_tasks.each do |task| %>
-	<%= task.name %>
+<h1 class="text-xl">המשימות שלי</h1>
+<% @my_tasks.each do |task| %>
+	<%= render "task", { task: task} %>
 <% end %>
-<h1 class="semibold text-2xl">Welcome to Kickoff!</h1>
-<p class="lead">Use this starting point as a way to quickly set up a new project by generating files, installing gems, and more.</p>
+<hr>
+<h1 class="text-xl">משימות תנועתיות</h1>
+<% @random_tasks.each do |task| %>
+	<%= render "task", { task: task} %>
+<% end %>
 
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
 <div class="">
   המשימות שלי
 </div>
