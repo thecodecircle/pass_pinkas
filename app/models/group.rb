@@ -10,5 +10,8 @@ class Group < ApplicationRecord
 
   validates             :name, presence: true
   validates             :score, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  
+
+  delegate :region, to: :branch
+  delegate :movement, to: :region
+
 end
