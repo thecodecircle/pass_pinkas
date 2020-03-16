@@ -11,6 +11,9 @@ class Task < ApplicationRecord
   enum status: %i[unapproved approved]
   validates  :status, inclusion: { in: Task.statuses.keys }
 
+  enum difficulty: %i[easy medium hard impossible]
+  validates  :difficulty, inclusion: { in: Task.difficulties.keys }
+
   validates             :name, presence: true
   validates             :description, presence: true
   validates             :score, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
