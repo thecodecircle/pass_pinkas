@@ -7,8 +7,9 @@
     <%= f.input :name %>
     <%= f.input :score %>
     <%= f.input :description %>
-    <%= f.input :privacy %>
-    <%= f.input :approved %>
+    <%= f.input :publicity, collection: Task.publicities.keys %>
+    <%= f.input :status, collection: Task.statuses.keys %>
+    <!-- תראה את זה אם זה לא חניך -->
   </div>
 
   <div class="form-actions">

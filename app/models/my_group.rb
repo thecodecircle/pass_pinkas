@@ -1,5 +1,11 @@
 class MyGroup < ApplicationRecord
   belongs_to :user
+  validates  :user, presence: true
+
   belongs_to :group
-  enum role: [ :kid, :guide ]
+  validates  :group, presence: true
+
+  enum role: %i[kid guide]
+  validates :role, inclusion: { in: MyGroup.roles.keys }
+  
 end

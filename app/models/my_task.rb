@@ -1,5 +1,11 @@
 class MyTask < ApplicationRecord
   belongs_to :user
+  validates  :user, presence: true
+
   belongs_to :task
-  enum progress: [ :in_progress, :done, :approved ]
+  validates  :task, presence: true
+
+  enum       progress: %i[in_progress done approved]
+  validates  :progress, inclusion: { in: MyTask.progress.keys }
+  
 end

@@ -5,7 +5,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :score %>
+    <%= f.input :score, input_html: {value: 0}, as: :hidden %>
     <%= f.association :region %>
   </div>
 
