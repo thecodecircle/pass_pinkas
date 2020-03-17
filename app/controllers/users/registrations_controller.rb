@@ -28,23 +28,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:new] == "y"
       case roles.key(params[:type])
       when :movement
-        m = Movement.create!(name: params[:groupable_name])
-        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: m.id, my_groupable_type: "Movement")
+        m = Movement.create(name: params[:groupable_name])
+        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: m.id, my_groupable_type: "Movement")
       when :region
-        r = Region.create!(name: params[:groupable_name], score: 0, movement_id: params[:groupable_id])
-        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: r.id, my_groupable_type: "Region")
+        r = Region.create(name: params[:groupable_name], score: 0, movement_id: params[:groupable_id])
+        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: r.id, my_groupable_type: "Region")
       when :branch
-        b = Branch.create!(name: params[:groupable_name], score: 0, region_id: params[:groupable_id])
-        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: b.id, my_groupable_type: "Branch")
+        b = Branch.create(name: params[:groupable_name], score: 0, region_id: params[:groupable_id])
+        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: b.id, my_groupable_type: "Branch")
       when :group
-        g = Group.create!(name: params[:groupable_name], score: 0, branch_id: params[:groupable_id])
-        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: g.id, my_groupable_type: "Group")
+        g = Group.create(name: params[:groupable_name], score: 0, branch_id: params[:groupable_id])
+        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: g.id, my_groupable_type: "Group")
       end
     else
       if roles.key(params[:type]) == :kid
-        MyGroup.create!(user_id: @user.id, role: "kid", my_groupable_id: params[:groupable_id], my_groupable_type: "Group")
+        MyGroup.create(user_id: @user.id, role: "kid", my_groupable_id: params[:groupable_id], my_groupable_type: "Group")
       else
-        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]).to_s.capitalize())
+        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]).to_s.capitalize())
       end
     end
 
