@@ -1,46 +1,65 @@
-<nav class="flex items-center justify-between flex-wrap bg-gray-100 py-3 lg:px-10 px-3 text-gray-700 border-b border-gray-400">
-  <div class="flex items-center flex-no-shrink mr-6a w-1/2 lg:w-1/12">
-    <%= link_to "פנקסי", root_path, class:"link text-xl tracking-tight font-semibold" %>
-  </div>
-  <div class="button block lg:hidden w-1/2 flex justify-end">
-    <button class="flex items-center px-3 py-2 border rounded text-grey border-gray-500 hover:text-gray-600 hover:border-gray-600">
-      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-    </button>
-  </div>
-	<div class="menu w-full block lg:flex-1 lg:flex items-center text-center lg:text-left hidden">
-		<% if current_user.role_before_type_cast > 4 %>
-			<div class="lg:flex-grow">
-				<%= link_to "תנועות", movements_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
-			</div>
-		<% end %>
-			<div class="lg:flex-grow">
-				<%= link_to "אזורים", regions_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
-			</div>
-			<div class="lg:flex-grow">
-				<%= link_to "קנים", branches_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
-			</div>
-			<div class="lg:flex-grow">
-				<%= link_to "קבוצות", groups_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
-			</div>
-		<!-- <div class="lg:flex-grow">
-		<%# link_to "משתמשים", users_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
-	</div> -->
-	<div class="lg:flex-grow">
-		<%= link_to "משימות", tasks_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
+<nav class="flex items-start h-32 justify-between flex-wrap bg-blue-500 py-3 lg:px-10 px-3 text-gray-700 border-b border-gray-400">
+	  <div class="flex items-center flex-no-shrink mr-6a w-1/2 lg:w-1/12">
+	    <%= link_to "פנקסי", root_path, class:"link text-2xl tracking-tight font-semibold text-white" %>
+	  </div>
+	  <div class="button block lg:hidden w-1/2 flex justify-end">
+	    <button class="flex items-center px-3 py-2 aborder rounded text-grey sborder-gray-500 hover:text-gray-600 ahover:border-gray-600">
+				<i class="gg-more-alt"></i>
+			</button>
+	  </div>
+
+		<div class="menu w-1/2 block lg:flex-1 lg:flex items-end text-center lg:text-left hidden">
+			<%# if current_user.role_before_type_cast > 4 %>
+				<div class="lg:flex-grow">
+					<%= link_to "תנועות", movements_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
+				</div>
+			<%# end %>
+				<div class="lg:flex-grow">
+					<%= link_to "אזורים", regions_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
+				</div>
+				<div class="lg:flex-grow">
+					<%= link_to "קנים", branches_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
+				</div>
+				<div class="lg:flex-grow">
+					<%= link_to "קבוצות", groups_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
+				</div>
+			<!-- <div class="lg:flex-grow">
+			<%# link_to "משתמשים", users_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
+		</div> -->
+		<div class="lg:flex-grow">
+			<%= link_to "משימות", tasks_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
+		</div>
+		<div class="w-full block lg:flex lg:flex-row lg:flex-1 mt-2 lg:mt-0 text-center lg:text-left lg:justify-end items-center">
+			<% if user_signed_in? %>
+			<%= link_to "Log out", destroy_user_session_path, method: :delete, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
+			<% else %>
+			<%= link_to "Login", new_user_session_path, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
+			<%= link_to "Sign Up", new_user_registration_path, class:"btn btn-default block" %>
+			<% end %>
+		</div>
 	</div>
-	<div class="w-full block lg:flex lg:flex-row lg:flex-1 mt-2 lg:mt-0 text-center lg:text-left lg:justify-end items-center">
-		<% if user_signed_in? %>
-		<%= link_to "Log out", destroy_user_session_path, method: :delete, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
-		<% else %>
-		<%= link_to "Login", new_user_session_path, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
-		<%= link_to "Sign Up", new_user_registration_path, class:"btn btn-default block" %>
-		<% end %>
+	<div class="flex justify-between w-full">
+		<div class="text-white self-end text-xl mt-10">
+			שלום <%= current_user.name %>!
+		</div>
+		<div class="text-white self-end text-xl mt-10 ml-10">
+			<% if current_user.role == "Kid" %>
+				<%= current_user.score %>
+			<% elsif  current_user.role == "Group" %>
+				<%= current_user.groups.pluck(:score).max %>
+			<% elsif  current_user.role == "Branch" %>
+				<%= current_user.branches.pluck(:score).max %>
+			<% elsif  current_user.role == "Region" %>
+				<%= current_user.regions.pluck(:score).max %>
+			<% end %>
+		</div>
 	</div>
-</div>
+
 </nav>
 
 <script type="text/javascript">
 	$(".button").click(function(event) {
-		$(".menu").toggle("slow")
+		$(".menu").toggle("fast")
+		$("nav").toggleClass('h-32');
 	});
 </script>

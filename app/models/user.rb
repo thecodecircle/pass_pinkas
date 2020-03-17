@@ -15,8 +15,6 @@ class User < ApplicationRecord
   # has_many              :my_tasks, inverse_of: :my_tasks
   has_many              :tasks, through: :my_tasks
 
-  enum role:            %i[kid group branch region movement admin], _suffix: :user
-  validates :role,      inclusion: { in: User.roles.keys }
   validates :username, presence: :true, uniqueness: { case_sensitive: false }
 
   def email_required?
@@ -42,4 +40,19 @@ class User < ApplicationRecord
       end
     end
 
+	def is_guide(groupable)
+	  if my_groups.find_by(my_groupable_id: groupable.id, my_groupable_type: groupable.class.name).role == "guide"
+			return true
+		else
+			return false
+		end
+	end
+
+	def role
+		return "Movement" if my_groups.pluck(:my_groupable_type).uniq.include?("Movement")
+		return "Region" if my_groups.pluck(:my_groupable_type).uniq.include?("Region")
+		return "Branch" if my_groups.pluck(:my_groupable_type).uniq.include?("Branch")
+		return "Group" if my_groups.pluck(:my_groupable_type).uniq.include?("Group")
+		return "Kid"
+	end
 end
