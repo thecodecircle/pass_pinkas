@@ -4,8 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
 
-  has_many              :my_groups, inverse_of: :user
-  has_many              :groups, through: :my_groups
+  # has_many              :groups, through: :my_groups
+  has_many              :my_groups
+  has_many              :my_groupables, through: :my_groups
+  has_many              :groups, through: :my_groups, source: :my_groupable, source_type: "Group"
+  has_many              :branches, through: :my_groups, source: :my_groupable, source_type: "Branch"
+  has_many              :regions, through: :my_groups, source: :my_groupable, source_type: "Region"
+  has_many              :movements, through: :my_groups, source: :my_groupable, source_type: "Movement"
   has_many              :my_tasks
   # has_many              :my_tasks, inverse_of: :my_tasks
   has_many              :tasks, through: :my_tasks

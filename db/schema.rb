@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_16_171744) do
+ActiveRecord::Schema.define(version: 2020_03_17_100140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 2020_03_16_171744) do
 
   create_table "my_groups", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
     t.integer "role"
-    t.index ["group_id"], name: "index_my_groups_on_group_id"
+    t.bigint "my_groupable_id"
+    t.string "my_groupable_type"
     t.index ["user_id"], name: "index_my_groups_on_user_id"
   end
 
@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 2020_03_16_171744) do
 
   add_foreign_key "branches", "regions"
   add_foreign_key "groups", "branches"
-  add_foreign_key "my_groups", "groups"
   add_foreign_key "my_groups", "users"
   add_foreign_key "my_tasks", "tasks"
   add_foreign_key "my_tasks", "users"
