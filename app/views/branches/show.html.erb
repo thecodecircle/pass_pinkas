@@ -17,3 +17,9 @@
 
 <%= link_to 'Edit', edit_branch_path(@branch) %> |
 <%= link_to 'Back', branches_path %>
+
+<!-- <a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=ei&i=<%= @branch.id %>">קישור להרשמה וואטסאפ</a>
+<a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=ecumv&i=<%= @branch.id %>&n=y">קישור לשליחה למדריכות שיפתחו קבוצות וואטסאפ</a> -->
+
+<a href="<%= root_url %>users/sign_up?t=ei&i=<%= @branch.id %>">קישור להרשמה</a>
+<a href="<%= root_url %>users/sign_up?t=ecumv&i=<%= @branch.id %>&n=y">קישור לשליחה למדריכות שיפתחו קבוצות</a>

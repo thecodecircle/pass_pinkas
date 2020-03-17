@@ -17,3 +17,9 @@
 
 <%= link_to 'Edit', edit_region_path(@region) %> |
 <%= link_to 'Back', regions_path %>
+
+<!-- <a href="https://api.whatsapp.com/send?text=<%= root_url %>users/sign_up?t=tzur&i=<%= @region.id %>">קישור להרשמה וואטסאפ</a>
+<a href="https://api.whatsapp.com/send?text=<%= root_url %>users/sign_up?t=ei&i=<%= @region.id %>&n=y">קישור לשליחה לרכזי קנים שיפתחו קנים וואטסאפ</a> -->
+
+<a href="<%= root_url %>users/sign_up?t=tzur&i=<%= @region.id %>">קישור להרשמה</a>
+<a href="<%= root_url %>users/sign_up?t=ei&i=<%= @region.id %>&n=y">קישור לשליחה לרכזי קנים שיפתחו קנים</a>

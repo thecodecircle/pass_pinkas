@@ -1,10 +1,4 @@
-<% roles = {
-           kid: "jbhl",
-           group: "ecumv",
-           branch: "ei",
-           region: "tzur",
-           movement: "bugv"
-  } %>
+
 <% content_for :devise_form do %>
   <h2 class="heading text-4xl font-bold pt-4 mb-8">Sign up</h2>
 
@@ -21,16 +15,19 @@
       <%= f.text_field :name, class:"input" %>
     </div>
 
-    <div class="mb-6">
-      <%= f.label :role, class:"label" %>
-      <%= f.select :role, User.roles.keys.to_a, :prompt => 'Select', class:"input", selected: roles.key(params[:t]) %>
-    </div>
+    <%# if params[:t] %>
+      <%# f.hidden_field :role, value: roles.key(params[:t]) %>
+    <%# else %>
+      <!-- <div class="mb-6"> -->
+        <%# f.label :role, class:"label" %>
+        <%# f.select :role, User.roles.keys.to_a, :prompt => 'Select', class:"input", selected: roles.key(params[:t]) %>
+      <!-- </div> -->
+    <%# end %>
 
     <!-- <div class="mb-6"> -->
       <%# f.label :email, class:"label" %>
       <%# f.email_field :email, autocomplete: "email", class:"input" %>
     <!-- </div> -->
-
     <div class="mb-6">
       <div class="flex">
         <%= f.label :password, class: "label" %>
@@ -44,6 +41,16 @@
     <div class="mb-6">
       <%= f.label :password_confirmation, class:"label" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
+    </div>
+
+    <%= hidden_field_tag(:type, params[:t]) %>
+    <%= hidden_field_tag(:groupable_id, params[:i]) %>
+    <%= hidden_field_tag(:role, params[:r]) %>
+    <%= hidden_field_tag(:new, params[:n]) %>
+
+    <div class="mb-6">
+      <%= f.label :groupable_name, class:"label" %>
+      <%= text_field_tag(:groupable_name, nil, class:"input") %>
     </div>
 
     <div class="mb-6">
