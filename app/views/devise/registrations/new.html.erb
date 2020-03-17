@@ -21,10 +21,14 @@
       <%= f.text_field :name, class:"input" %>
     </div>
 
-    <div class="mb-6">
-      <%= f.label :role, class:"label" %>
-      <%= f.select :role, User.roles.keys.to_a, :prompt => 'Select', class:"input", selected: roles.key(params[:t]) %>
-    </div>
+    <%# if params[:t] %>
+      <%# f.hidden_field :role, value: roles.key(params[:t]) %>
+    <%# else %>
+      <!-- <div class="mb-6"> -->
+        <%# f.label :role, class:"label" %>
+        <%# f.select :role, User.roles.keys.to_a, :prompt => 'Select', class:"input", selected: roles.key(params[:t]) %>
+      <!-- </div> -->
+    <%# end %>
 
     <!-- <div class="mb-6"> -->
       <%# f.label :email, class:"label" %>
