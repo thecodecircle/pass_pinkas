@@ -25,10 +25,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }
 
     if roles.key(params[:type]) == :kid
-      MyGroup.create(user_id: @user.id, role: "kid", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]))
+      MyGroup.create!(user_id: @user.id, role: "kid", my_groupable_id: params[:groupable_id], my_groupable_type: "Group")
     else
-      MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]))
+      MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]).to_s.capitalize())
     end
+    puts "Created MyGroup!"
   end
 
   # GET /resource/edit
