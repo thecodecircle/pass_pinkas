@@ -1,11 +1,15 @@
-<div class="container w-full py-1 shadow my-2 rounded-lg" id="con<%= task.id %>">
+<div class="container w-full py-1 shadow my-2 rounded-lg" id="con<%= task.id %><%= kid %>">
 	<div class="w-full flex justify-between">
-		<span class="name mx-3 text-lg" id="name<%= task.id %>"><%= task.name %></span>
-		<i class="gg-info open-description"></i>
+
+		<span class="name mx-3 text-lg" id="name<% task.id %>kid"><%= task.name %></span>
+		<!-- <i class="gg-info open-description"></i> -->
 		<% if status == "to_approve" %>
-			<span class="mx-3 text-lg">שם הילד</span>
+			<span class="mx-3 w-1/3 flex justify-end"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+		<% elsif status == "done" %>
+			<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+		<% else %>
+			<span class="mx-3 w-1/3 flex justify-end"><i class="gg-push-chevron-down" id="open<%= task.id %><%= kid %>"></i></span>
 		<% end %>
-		<span class="mx-3 w-1/3 flex justify-end"><i class="" id="i<%= task.id %>"></i></span>
 		<%# case status %>
 			<%# when "in_progress", "random" %>
 			<%# when "done" %>
@@ -16,31 +20,39 @@
 				<!-- <span class="mx-3 w-1/3 flex justify-end"><i class="gg-check-o"></i></span> -->
 		<%# end %>
 	</div>
+	<% if status == "to_approve" %>
+		<span class="mx-3 text-md"><%= User.find(kid).name %></span>
+	<% end %>
 	<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
-	<div class="description mx-3 hidden">
-		<%= task.description %>
+	<div style="display: flex" class="description mx-3 hidden justify-between w-full" >
+		<span><%= task.description %></span>
+		<% unless status == "to_approve" %>
+			<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+		<% end %>
 	</div>
 </div>
 
 <script type="text/javascript">
 	<% case status %>
 	<% when "in_progress", "random", "to_approve" %>
-		$("#i<%= task.id %>").addClass('gg-check-o')
-		$("#con<%= task.id %>").addClass('bg-blue-100')
+		$("#i<%= task.id %><%= kid %>").addClass('gg-check-o')
+		$("#con<%= task.id %><%= kid %>").addClass('bg-blue-100')
 	<% when "done" %>
-		$("#i<%= task.id %>").addClass('gg-time')
-		$("#con<%= task.id %>").addClass('bg-gray-200')
-		$("name<%= task.id %>").addClass('line-through')
+		$("#i<%= task.id %><%= kid %>").addClass('gg-time')
+		$("#con<%= task.id %><%= kid %>").addClass('bg-gray-200 text-gray-700')
+		$("#name<%= task.id %><%= kid %>").addClass('line-through')
 	<% when "approved" %>
-		$("#con<%= task.id %>").addClass('bg-gray-200')
-		$("name<%= task.id %>").addClass('line-through')
+		$("#con<%= task.id %><%= kid %>").addClass('bg-gray-200 text-gray-700')
+		$("#name<%= task.id %><%= kid %>").addClass('line-through')
 	<% when "general" %>
-		$("#i<%= task.id %>").addClass('gg-add')
-		$("#con<%= task.id %>").addClass('bg-blue-100')
+		$("#i<%= task.id %><%= kid %>").addClass('gg-push-chevron-down-o')
+		$("#con<%= task.id %><%= kid %>").addClass('bg-blue-100')
 	<% end %>
 	$(document).ready(function() {
-		$(".open-description").click(function(event) {
-			$(this).parents(".container").children('.description').toggle()
+		$('.description').hide();
+		$("#open<%= task.id %><%= kid %>").click(function(event) {
+			console.log(22);
+			$(this).parents(".container").children('.description').toggle();
 		});
 	});
 

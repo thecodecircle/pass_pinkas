@@ -1,4 +1,4 @@
-<nav class="flex items-start h-32 justify-between flex-wrap bg-blue-500 py-3 lg:px-10 px-3 text-gray-700 border-b border-gray-400">
+<nav class="flex items-start mb-3 ah-32 justify-between flex-wrap bg-blue-500 py-3 lg:px-10 px-3 text-gray-700 border-b border-gray-400">
 	  <div class="flex items-center flex-no-shrink mr-6a w-1/2 lg:w-1/12">
 	    <%= link_to "פנקסי", root_path, class:"link text-2xl tracking-tight font-semibold text-white" %>
 	  </div>
@@ -42,15 +42,13 @@
 		<div class="text-white self-end text-xl mt-10">
 			שלום <%= current_user.name %>!
 		</div>
-		<div class="text-white self-end text-xl mt-10 ml-10">
+		<div class="text-white flex text-xl mt-10 ml-10a w-1/2">
 			<% if current_user.role == "Kid" %>
-				<%= current_user.score %>
-			<% elsif  current_user.role == "Group" %>
-				<%= current_user.groups.pluck(:score).max %>
-			<% elsif  current_user.role == "Branch" %>
-				<%= current_user.branches.pluck(:score).max %>
-			<% elsif  current_user.role == "Region" %>
-				<%= current_user.regions.pluck(:score).max %>
+				<strong><%= current_user.score %> נק'</strong>
+			<% else %>
+				<!-- <div class="w-full flex justify-end ml-6">
+					<button class="toggle-modal w-12 h-12 rounded-full bg-red-400 self-end move-down flex justify-center" type="button" name="button"><i class="gg-add-task"></i></button>
+				</div> -->
 			<% end %>
 		</div>
 	</div>

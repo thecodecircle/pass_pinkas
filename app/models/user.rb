@@ -52,7 +52,10 @@ class User < ApplicationRecord
 		return "Movement" if my_groups.pluck(:my_groupable_type).uniq.include?("Movement")
 		return "Region" if my_groups.pluck(:my_groupable_type).uniq.include?("Region")
 		return "Branch" if my_groups.pluck(:my_groupable_type).uniq.include?("Branch")
-		return "Group" if my_groups.pluck(:my_groupable_type).uniq.include?("Group")
-		return "Kid"
+		if groups.map {|g| is_guide(g)}.include?(true)
+			return "Group" if my_groups.pluck(:my_groupable_type).uniq.include?("Group")
+		else
+			return "Kid"
+		end
 	end
 end
