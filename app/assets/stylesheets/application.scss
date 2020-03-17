@@ -14,7 +14,7 @@
 
 $green: #68d391;
 $yellow: #ffda00;
-
+$gray: #4a5568;
 .gg-check-o {
 		color: $green;
     box-sizing: border-box;
@@ -128,6 +128,7 @@ $yellow: #ffda00;
     transform: rotate(-45deg)
 }
 .gg-info {
+		color: $gray;
     box-sizing: border-box;
     position: relative;
     display: block;
@@ -143,16 +144,18 @@ $yellow: #ffda00;
     display: block;
     box-sizing: border-box;
     position: absolute;
+
     border-radius: 3px;
     width: 2px;
     background: currentColor;
-    left: 7px
+    left: 7px;
+		border-color: $gray;
 }
 .gg-info::after {
     bottom: 2px;
-    height: 8px
+    height: 8px;
 }
 .gg-info::before {
     height: 2px;
-    top: 2px
+    top: 2px;
 }

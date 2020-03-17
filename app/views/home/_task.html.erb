@@ -1,11 +1,11 @@
-<div class="container w-full py-1 shadow my-2 rounded-lg">
+<div class="container w-full py-1 shadow my-2 rounded-lg" id="con<%= task.id %>">
 	<div class="w-full flex justify-between">
-		<span class="name mx-3 text-lg"><%= task.name %></span>
+		<span class="name mx-3 text-lg" id="name<%= task.id %>"><%= task.name %></span>
 		<i class="gg-info open-description"></i>
 		<% if status == "to_approve" %>
-			<span class="name mx-3 text-lg"><%= task.name %></span>
+			<span class="mx-3 text-lg">שם הילד</span>
 		<% end %>
-		<span class="mx-3 w-1/3 flex justify-end"><i class=""></i></span>
+		<span class="mx-3 w-1/3 flex justify-end"><i class="" id="i<%= task.id %>"></i></span>
 		<%# case status %>
 			<%# when "in_progress", "random" %>
 			<%# when "done" %>
@@ -23,24 +23,25 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	$(".open-description").click(function(event) {
-		$(this).parents(".container").children('.description').toggle()
-	});
-});
 	<% case status %>
 	<% when "in_progress", "random", "to_approve" %>
-		$("i").last().addClass('gg-check-o')
-		$(".container").last().addClass('bg-blue-100')
+		$("#i<%= task.id %>").addClass('gg-check-o')
+		$("#con<%= task.id %>").addClass('bg-blue-100')
 	<% when "done" %>
-		$("i").last().addClass('gg-time')
-		$(".container")last().addClass('bg-gray-200')
-		$(".name").last().addClass('line-through')
+		$("#i<%= task.id %>").addClass('gg-time')
+		$("#con<%= task.id %>").addClass('bg-gray-200')
+		$("name<%= task.id %>").addClass('line-through')
 	<% when "approved" %>
-		$(".container").last().addClass('bg-gray-200')
-		$(".name").last().addClass('line-through')
+		$("#con<%= task.id %>").addClass('bg-gray-200')
+		$("name<%= task.id %>").addClass('line-through')
 	<% when "general" %>
-		$("i").last().addClass('gg-add')
-		$(".container").last().addClass('bg-blue-100')
+		$("#i<%= task.id %>").addClass('gg-add')
+		$("#con<%= task.id %>").addClass('bg-blue-100')
 	<% end %>
+	$(document).ready(function() {
+		$(".open-description").click(function(event) {
+			$(this).parents(".container").children('.description').toggle()
+		});
+	});
+
 </script>
