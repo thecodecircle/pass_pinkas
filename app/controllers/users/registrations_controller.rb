@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts "username: #{@user.username}"
     puts "type: #{params[:type]}"
     puts "groupable_id: #{params[:groupable_id]}"
+    puts "groupable_name: #{params[:groupable_name]}" if params[:groupable_id] == "w8"
     roles = {
        kid: "jbhl",
        group: "ecumv",
@@ -24,11 +25,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
        movement: "bugv"
       }
 
-    if roles.key(params[:type]) == :kid
-      MyGroup.create!(user_id: @user.id, role: "kid", my_groupable_id: params[:groupable_id], my_groupable_type: "Group")
+    if params[:new] == "y"
+      case roles.key(params[:type])
+      when :movement
+        m = Movement.create!(name: params[:groupable_name])
+        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: m.id, my_groupable_type: "Movement")
+      when :region
+        r = Region.create!(name: params[:groupable_name], score: 0, movement_id: params[:groupable_id])
+        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: r.id, my_groupable_type: "Region")
+      when :branch
+        b = Branch.create!(name: params[:groupable_name], score: 0, region_id: params[:groupable_id])
+        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: b.id, my_groupable_type: "Branch")
+      when :group
+        g = Group.create!(name: params[:groupable_name], score: 0, branch_id: params[:groupable_id])
+        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: g.id, my_groupable_type: "Group")
+      end
     else
-      MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]).to_s.capitalize())
+      if roles.key(params[:type]) == :kid
+        MyGroup.create!(user_id: @user.id, role: "kid", my_groupable_id: params[:groupable_id], my_groupable_type: "Group")
+      else
+        MyGroup.create!(user_id: @user.id, role: "guide", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]).to_s.capitalize())
+      end
     end
+
     puts "Created MyGroup!"
   end
 

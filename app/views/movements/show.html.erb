@@ -8,4 +8,8 @@
 <%= link_to 'Edit', edit_movement_path(@movement) %> |
 <%= link_to 'Back', movements_path %>
 
+<a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=bugv&i=<%= @movement.id %>">קישור להרשמה וואטסאפ</a>
+<a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=tzur&i=<%= @movement.id %>&n=y">קישור לשליחה לרכזות אזור שיפתחו אזורים וואטסאפ</a>
+
 <a href="<%= root_url %>users/sign_up?t=bugv&i=<%= @movement.id %>">קישור להרשמה</a>
+<a href="<%= root_url %>users/sign_up?t=tzur&i=<%= @movement.id %>&n=y">קישור לשליחה לרכזות אזור שיפתחו אזורים</a>
