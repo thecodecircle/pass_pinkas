@@ -29,7 +29,7 @@
   <% end %> -->
 
     <header class="pb-4 bg-gray-200">
-      <%= render 'layouts/navbar' %>
+      <%= render 'layouts/navbar' unless controller_name == "registrations" || controller_name == "sessions" %>
     </header>
 
     <main class="lg:px-10 px-2 bg-gray-200">

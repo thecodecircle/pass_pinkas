@@ -1,10 +1,4 @@
-<% roles = {
-           kid: "jbhl",
-           group: "ecumv",
-           branch: "ei",
-           region: "tzur",
-           movement: "bugv"
-  } %>
+
 <% content_for :devise_form do %>
   <h2 class="heading text-4xl font-bold pt-4 mb-8">Sign up</h2>
 
@@ -34,7 +28,6 @@
       <%# f.label :email, class:"label" %>
       <%# f.email_field :email, autocomplete: "email", class:"input" %>
     <!-- </div> -->
-
     <div class="mb-6">
       <div class="flex">
         <%= f.label :password, class: "label" %>
@@ -49,6 +42,10 @@
       <%= f.label :password_confirmation, class:"label" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
     </div>
+
+    <%= hidden_field_tag(:type, params[:t]) %>
+    <%= hidden_field_tag(:groupable_id, params[:i]) %>
+    <%= hidden_field_tag(:role, params[:r]) %>
 
     <div class="mb-6">
       <%= f.submit "Sign up", class: "btn btn-default" %>

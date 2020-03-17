@@ -11,10 +11,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    puts "****************************************"
     super
+    puts "****************************************"
     puts "username: #{@user.username}"
-    # @user.groups << 
+    puts "type: #{params[:type]}"
+    puts "groupable_id: #{params[:groupable_id]}"
+    roles = {
+       kid: "jbhl",
+       group: "ecumv",
+       branch: "ei",
+       region: "tzur",
+       movement: "bugv"
+      }
+
+    if roles.key(params[:type]) == :kid
+      MyGroup.create(user_id: @user.id, role: "kid", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]))
+    else
+      MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]))
+    end
   end
 
   # GET /resource/edit
