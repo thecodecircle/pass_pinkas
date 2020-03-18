@@ -18,7 +18,7 @@
 
   </head>
 
- <body class="bg-white">
+ <body class="bg-gray-200">
 
   <!-- <% flash.each do |type, message| %>
     <% if type == "alert" %>
@@ -40,7 +40,7 @@
     <main class="lg:px-10 px-2 bg-gray-200">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
-		<footer class="bg-gray-200 w-full h-16">
+		<footer class="w-full h-16">
 			<%= render 'layouts/footer' unless controller_name == "registrations" || controller_name == "sessions" %>
 		</footer>
   </body>

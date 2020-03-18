@@ -1,15 +1,15 @@
 
-<%= simple_form_for(@task) do |f| %>
+<%= simple_form_for(@task, defaults: { input_html: {class: ""}}) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
+<%= @difficulties %>
   <div class="form-inputs">
-    <%= f.input :name %>
+    <%= f.input :name, label: "שם המשימה",input_html: { class: "border block"} %>
     <%# f.input :score %>
-    <%= f.input :description %>
-    <%= f.input :publicity, collection: Task.publicities.keys %>
-    <%= f.input :status, collection: Task.statuses.keys %>
-    <%= f.input :difficulty, collection: Task.difficulties.keys %>
+    <%= f.input :description,	label: "תיאור", input_html: {class: "border block"} %>
+    <%= f.input :difficulty, 	label: "רמת קושי", as: :radio_buttons ,collection: Task.difficulties.keys, input_html: {class: "m-2"}%>
+		<%= f.input :publicity, 	label: "כולם יוכלו לעשות לתת את המשימה לחניכים שלהן?", as: :radio_buttons ,collection: Task.publicities.keys, input_html: {class: "m-2"} %>
+		<%= f.input :status, 	label: false, as: :radio_buttons, collection: Task.statuses.keys, input_html: { class: "m-2 block"} %>
     <!-- תראה את זה אם זה לא חניך -->
   </div>
 
