@@ -8,7 +8,7 @@
 		<button class="ml-10a text-white toggle-modal w-12 h-12 rounded-full bg-red-400 self-end move-down flex justify-center" type="button" name="button"><i class="gg-add-task"></i></button>
 	</div>
 </h1>
-<div class="rounded-lg bg-gray-100 shadow px-4 py-4 mb-3">
+<div class="rounded-lg bg-gray-100 shadow px-4 py-4 mb-5">
 		<h1 class="text-xl">משימות לאישור</h1>
 		<% @kids_with_unapproved_tasks.each do |task| %>
 			<% task[1].each do |kid_id| %>
@@ -44,7 +44,6 @@
 		</div>
 	</div> -->
 </div>
-<hr>
 <% end %>
 
 <div class="modal-bg hidden w-screen absolute bg-gray-900 top-0 left-0 mt-24">
