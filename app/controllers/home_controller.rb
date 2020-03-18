@@ -22,8 +22,8 @@ class HomeController < ApplicationController
   end
 
 	def leaders
-		@regions = Region.all
-	  @branches = Branch.all
-		@groups = Group.all
+		@regions = Region.all.order("score DESC")
+	  @branches = current_user.groups.map{|g| g.branch}.uniq.sort_by(&:score)
+		@groups = current_user.groups.map{|g| g.branch}.uniq.map{|b| b.groups}.flatten.sort_by(&:score).reverse
 	end
 end
