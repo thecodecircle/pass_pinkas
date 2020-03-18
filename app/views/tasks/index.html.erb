@@ -2,45 +2,59 @@
 
 <h1>Tasks</h1>
 
-<table id="tasks_table">
-  <thead>
+
+<!-- class="nowrap table table-hover" -->
+<table id="tasks_table"  data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead class="thead-dark">
     <tr>
-      <th>Name</th>
+      <th data-data="name">שם</th>
+      <th data-data="score">ניקוד</th>
+      <th data-data="description">פירוט</th>
+      <th data-data="publicity">פרטיות</th>
+      <th data-data="status">סטטוס</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+      <!-- <th>Name</th>
       <th>Score</th>
       <th>Description</th>
       <th>Publicity</th>
       <th>Status</th>
       <th>show</th>
       <th>edit</th>
-      <th>delete</th>
+      <th>delete</th> -->
     </tr>
   </thead>
 
-  <tbody>
-    <% @tasks.each do |task| %>
+  <!-- <tbody>
+    <%# @tasks.each do |task| %>
       <tr>
-        <td><%= task.name %></td>
-        <td><%= task.score %></td>
-        <td><%= task.description %></td>
-        <td><%= task.publicity %></td>
-        <td><%= task.status %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%# task.name %></td>
+        <td><%# task.score %></td>
+        <td><%# task.description %></td>
+        <td><%# task.publicity %></td>
+        <td><%# task.status %></td>
+        <td><%# link_to 'Show', task %></td>
+        <td><%# link_to 'Edit', edit_task_path(task) %></td>
+        <td><%# link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
-  </tbody>
+    <%# end %>
+  </tbody> -->
 </table>
+
+<!-- <div class="table-responsive">
+
+</div> -->
 
 <br>
 
 <%= link_to 'New Task', new_task_path %>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/b-html5-1.6.1/fh-3.1.6/r-2.2.3/sp-1.0.1/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/b-html5-1.6.1/fh-3.1.6/r-2.2.3/sp-1.0.1/datatables.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready( function () {
-  $('#tasks_table').DataTable();
+  $('#tasks_table').DataTable({
+    responsive: true
+  });
 } );
 </script>
