@@ -48,10 +48,12 @@
     <%= hidden_field_tag(:role, params[:r]) %>
     <%= hidden_field_tag(:new, params[:n]) %>
 
-    <div class="mb-6">
-      <%= f.label :groupable_name, class:"label" %>
-      <%= text_field_tag(:groupable_name, nil, class:"input") %>
-    </div>
+    <% unless params[:t] == "jbhl" %>
+      <div class="mb-6">
+        <%= f.label :groupable_name, class:"label" %>
+        <%= text_field_tag(:groupable_name, nil, class:"input") %>
+      </div>
+    <% end %>
 
     <div class="mb-6">
       <%= f.submit "Sign up", class: "btn btn-default" %>

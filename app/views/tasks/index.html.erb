@@ -2,7 +2,7 @@
 
 <h1>Tasks</h1>
 
-<table>
+<table id="tasks_table">
   <thead>
     <tr>
       <th>Name</th>
@@ -10,7 +10,9 @@
       <th>Description</th>
       <th>Publicity</th>
       <th>Status</th>
-      <th colspan="3"></th>
+      <th>show</th>
+      <th>edit</th>
+      <th>delete</th>
     </tr>
   </thead>
 
@@ -33,3 +35,12 @@
 <br>
 
 <%= link_to 'New Task', new_task_path %>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+$(document).ready( function () {
+  $('#tasks_table').DataTable();
+} );
+</script>

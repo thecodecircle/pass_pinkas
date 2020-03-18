@@ -8,4 +8,12 @@ environment.plugins.prepend('Provide',
   })
 )
 
+var config = Encore.getWebpackConfig();
+
+config.module.rules.unshift({
+  parser: {
+    amd: false,
+  }
+});
+
 module.exports = environment

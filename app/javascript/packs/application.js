@@ -8,10 +8,11 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-require( 'datatables.net-dt' );
-require( 'datatables.net-fixedheader-dt' );
+// require( 'datatables.net-dt' );
+// require( 'datatables.net-fixedheader-dt' );
 require( 'datatables.net-responsive-dt' );
 // require( 'datatables.net-searchpanes-dt' );
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

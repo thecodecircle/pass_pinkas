@@ -27,7 +27,14 @@
 	<div style="display: flex" class="description mx-3 hidden justify-between w-full" >
 		<span><%= task.description %></span>
 		<% unless status == "to_approve" %>
-			<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+			<% if %w(general random).include?(status) %>
+			<!-- צריך לסדר פה את שיוך הקבוצה -->
+				<%= link_to assign_task_path(group: "1", task: task.id) do %>
+					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+				<% end %>
+			<% else %>
+				<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+			<% end %>
 		<% end %>
 	</div>
 </div>

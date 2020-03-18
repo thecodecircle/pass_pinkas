@@ -26,4 +26,17 @@ class HomeController < ApplicationController
 	  @branches = current_user.groups.map{|g| g.branch}.uniq.sort_by(&:score)
 		@groups = current_user.groups.map{|g| g.branch}.uniq.map{|b| b.groups}.flatten.sort_by(&:score).reverse
 	end
+
+  def assign_task
+    @group = Group.find(params[:group])
+    @task = Task.find(params[:task])
+    if current_user.is_guide(@group)
+      @group.kids.each do |k|
+        k.tasks << @task
+      end
+    else
+      current_user.tasks << @task
+    end
+    redirect_to root_path
+  end
 end

@@ -2,14 +2,29 @@
 <%= simple_form_for(@task, defaults: { input_html: {class: ""}}) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-<%= @difficulties %>
+  <% difficulties = {
+      easy: "קל",
+      medium: "בינוני",
+      hard: "קשה",
+      impossible: "כמעט בלתי אפשרי"
+  }%>
+  <% publicities = {
+    personal: "פרטית",
+    general: "ציבורית"
+    } %>
   <div class="form-inputs">
-    <%= f.input :name, label: "שם המשימה",input_html: { class: "border block"} %>
+    <%= f.input :name, label: "שם המשימה", input_html: { class: "border block m-2"} %>
     <%# f.input :score %>
-    <%= f.input :description,	label: "תיאור", input_html: {class: "border block"} %>
-    <%= f.input :difficulty, 	label: "רמת קושי", as: :radio_buttons ,collection: Task.difficulties.keys, input_html: {class: "m-2"}%>
-		<%= f.input :publicity, 	label: "כולם יוכלו לעשות לתת את המשימה לחניכים שלהן?", as: :radio_buttons ,collection: Task.publicities.keys, input_html: {class: "m-2"} %>
-		<%= f.input :status, 	label: false, as: :radio_buttons, collection: Task.statuses.keys, input_html: { class: "m-2 block"} %>
+    <%= f.input :description,	label: "תיאור", input_html: {class: "border block m-2"} %>
+    <%= f.input :difficulty, 	label: "רמת קושי", as: :radio_buttons,
+                collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
+		<%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
+                collection: publicities, label_method: :second, value_method: :first, input_html: {class: "m-2"} %>
+    <% if current_user.my_groups.pluck(:my_groupable_type).include?("Movement") %>
+      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "approved", as: :hidden %>
+    <% else %>
+    <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "unapproved", as: :hidden %>
+    <% end %>
     <!-- תראה את זה אם זה לא חניך -->
   </div>
 

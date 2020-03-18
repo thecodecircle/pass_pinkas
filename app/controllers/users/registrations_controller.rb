@@ -17,6 +17,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts "type: #{params[:type]}"
     puts "groupable_id: #{params[:groupable_id]}"
     puts "groupable_name: #{params[:groupable_name]}" if params[:groupable_id] == "w8"
+    @user.score = 0
+    @user.save 
     roles = {
        kid: "jbhl",
        group: "ecumv",
