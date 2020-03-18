@@ -34,7 +34,7 @@
 
 <script type="text/javascript">
 	<% case status %>
-	<% when "in_progress", "random", "to_approve" %>
+	<% when "in_progress", "to_approve" %>
 		$("#i<%= task.id %><%= kid %>").addClass('gg-check-o')
 		$("#con<%= task.id %><%= kid %>").addClass('bg-blue-100')
 	<% when "done" %>
@@ -44,14 +44,13 @@
 	<% when "approved" %>
 		$("#con<%= task.id %><%= kid %>").addClass('bg-gray-200 text-gray-700')
 		$("#name<%= task.id %><%= kid %>").addClass('line-through')
-	<% when "general" %>
+	<% when "general", "random" %>
 		$("#i<%= task.id %><%= kid %>").addClass('gg-push-chevron-down-o')
 		$("#con<%= task.id %><%= kid %>").addClass('bg-blue-100')
 	<% end %>
 	$(document).ready(function() {
 		$('.description').hide();
 		$("#open<%= task.id %><%= kid %>").click(function(event) {
-			console.log(22);
 			$(this).parents(".container").children('.description').toggle();
 		});
 	});

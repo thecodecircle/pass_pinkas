@@ -40,5 +40,8 @@
     <main class="lg:px-10 px-2 bg-gray-200">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+		<footer class="fixed bottom-0 w-full">
+			<%= render 'layouts/footer' unless controller_name == "registrations" || controller_name == "sessions" %>
+		</footer>
   </body>
 </html>

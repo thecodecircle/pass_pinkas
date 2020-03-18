@@ -1,0 +1,20 @@
+<% groupables.each_with_index do |groupable, index| %>
+	<div class="flex justify-between border" id="groupable<%= groupable.class %><%= groupable.id %>">
+		<% if index == 0 %>
+			<span class="mx-5 text-2xl font-bold"><%= index + 1 %></span>
+			<span class="mx-5 text-2xl font-bold"><%= groupable.name %></span>
+			<span class="mx-5 text-2xl font-bold"><%= groupable.score %></span>
+		<% else %>
+			<span class="mx-5 text-xl"><%= index + 1 %></span>
+			<span class="mx-5 text-xl"><%= groupable.name %></span>
+			<span class="mx-5 text-xl"><%= groupable.score %></span>
+		<% end %>
+	</div>
+	<% if groupable.class.name == "Group" %>
+		<% if current_user.groups.include?(groupable) %>
+		  <script type="text/javascript">
+				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-yellow-400')
+		  </script>
+		<% end %>
+	<% end %>
+<% end %>
