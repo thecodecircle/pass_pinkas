@@ -18,23 +18,25 @@
       <th>Description</th>
       <th>Publicity</th>
       <th>Status</th>
-      <th>show</th>
-      <th>edit</th>
-      <th>delete</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>Assign</th>
     </tr>
   </thead>
 
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.name %></td>
+        <td><%= link_to task.name, task %></td>
         <td><%= task.score %></td>
         <td><%= task.description %></td>
         <td><%= task.publicity %></td>
         <td><%= task.status %></td>
-        <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to assign_task_path(group: current_user.groups.last, task: task.id) do %>
+					Assign Task
+				<% end %></td>
       </tr>
     <% end %>
   </tbody>
