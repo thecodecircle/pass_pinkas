@@ -39,4 +39,22 @@ class HomeController < ApplicationController
     end
     redirect_to root_path
   end
+
+  def change_progress
+    puts "****************************************"
+    puts "Change Progress"
+    if params[:kid_id].present?
+      my_task = User.find(params[:kid_id]).my_tasks.find_by(task_id: params[:task_id])
+      puts "kid: #{my_task.user.name}"
+      puts "task: #{my_task.task.name} from #{my_task.progress}"
+      my_task.progress = "approved"
+    else
+      my_task = current_user.my_tasks.find_by(task_id: params[:task_id])
+      puts "task: #{my_task.task.name} from #{my_task.progress}"
+      my_task.progress = "done"
+    end
+    my_task.save
+    puts "to #{my_task.progress}"
+    redirect_to root_path
+  end
 end

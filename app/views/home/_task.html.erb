@@ -4,8 +4,11 @@
 		<span class="name mx-3 text-lg" id="name<% task.id %>kid"><%= task.name %></span>
 		<!-- <i class="gg-info open-description"></i> -->
 		<% if status == "to_approve" %>
-			<span class="mx-3 w-1/3 flex justify-end"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+			<%= link_to change_progress_path(task_id: task.id, kid_id: kid) do %>
+				<span class="mx-3 w-1/3 flex justify-end"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+			<% end %>
 		<% elsif status == "done" %>
+			<!-- לא הבנתי מה קורה פה, אז לא שמתי כפתור -->
 			<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 		<% else %>
 			<span class="mx-3 w-1/3 flex justify-end"><i class="gg-push-chevron-down" id="open<%= task.id %><%= kid %>"></i></span>
@@ -33,7 +36,9 @@
 					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 				<% end %>
 			<% else %>
-				<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+				<%= link_to change_progress_path(task_id: task.id) do %>
+					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+				<% end %>
 			<% end %>
 		<% end %>
 	</div>
