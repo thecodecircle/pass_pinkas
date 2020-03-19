@@ -50,7 +50,18 @@
 
     <% unless params[:t] == "jbhl" %>
       <div class="mb-6">
-        <%= f.label :groupable_name, class:"label" %>
+        <%= f.label :groupable_name, class:"label" do %>
+          <% case params[:t] %>
+          <% when "bugv" %>
+            <%= I18n.t("user.new.movement") %>
+          <% when "tzur" %>
+            <%= I18n.t("user.new.region") %>
+          <% when "ei" %>
+            <%= I18n.t("user.new.branch") %>
+          <% when "ecumv" %>
+            <%= I18n.t("user.new.group") %>
+          <% end %>
+        <% end%>
         <%= text_field_tag(:groupable_name, nil, class:"input") %>
       </div>
     <% end %>

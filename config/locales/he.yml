@@ -1,6 +1,12 @@
 ---
 he:
 
+  user:
+    new:
+      movement: "שם התנועה"
+      region: "שם האזור"
+      branch: "שם הקן"
+      group: "שם הקבוצה"
   helpers:
     select:
       prompt: נא לבחור
@@ -8,6 +14,13 @@ he:
       create: יצירת %{model}
       submit: שמור %{model}
       update: עדכון %{model}
+    label:
+      user:
+        username: "שם משתמש"
+        name: "שם מלא"
+        password: "סיסמה"
+        password_confirmation: "אימות סיסמה"
+        sign up: "הרשמה"
   activerecord:
     models:
       user: משתמש
