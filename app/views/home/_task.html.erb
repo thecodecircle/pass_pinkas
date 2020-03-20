@@ -23,9 +23,15 @@
 		<% unless status == "to_approve" %>
 			<% if %w(general random).include?(status) %>
 			<!-- צריך לסדר פה את שיוך הקבוצה -->
-				<%= link_to assign_task_path(group: group, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+			<% if current_user.role != "Kid" %>
+				<%= link_to assign_task_path(group: group.id, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
 					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 				<% end %>
+			<% else %>
+				<%= link_to assign_task_path( task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+				<% end %>
+			<% end %>
 			<% else %>
 				<%= link_to change_progress_path(task_id: task.id), data: {confirm: "הראת למדריכים שסיימת את המשימה?"} do %>
 					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
