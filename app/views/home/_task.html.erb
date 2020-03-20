@@ -22,7 +22,7 @@
 		<% unless status == "to_approve" %>
 			<% if %w(general random).include?(status) %>
 			<!-- צריך לסדר פה את שיוך הקבוצה -->
-				<%= link_to assign_task_path(group: "1", task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+				<%= link_to assign_task_path(group: "5", task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
 					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 				<% end %>
 			<% else %>

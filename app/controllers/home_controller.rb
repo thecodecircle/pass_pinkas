@@ -58,10 +58,18 @@ class HomeController < ApplicationController
     puts "****************************************"
     puts "Change Progress"
     if params[:kid_id].present?
-      my_task = User.find(params[:kid_id]).my_tasks.find_by(task_id: params[:task_id])
+      kid = User.find(params[:kid_id])
+      my_task = kid.my_tasks.find_by(task_id: params[:task_id])
       puts "kid: #{my_task.user.name}"
       puts "task: #{my_task.task.name} from #{my_task.progress}"
       my_task.progress = "approved"
+      kid.update(score: kid.score + my_task.task.score)
+      kid.groups.where("my_groups.role = 0").each do |g|
+        g.update(score: g.score + my_task.task.score)
+        g.branch.update(score: g.branch.score + my_task.task.score)
+        g.branch.region.update(score: g.branch.region.score + my_task.task.score)
+        # g.branch.region.movement.update(score: g.branch.region.movement.score + my_task.task.score)
+      end
     else
       my_task = current_user.my_tasks.find_by(task_id: params[:task_id])
       puts "task: #{my_task.task.name} from #{my_task.progress}"
