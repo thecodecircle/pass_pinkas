@@ -1,0 +1,52 @@
+<% case current_user.role %>
+<% when "Branch" %>
+	<% @branches.each do |branch| %>
+		<button  class="text-md sign_up_group" value="<%= branch.id %>">
+			קישור להרשמת מדריכות מ<%= branch.name %></button>
+	<% end %>
+<% when "Region" %>
+	<% @branches.each do |branch| %>
+		<button  class="text-md sign_up_group" value="<%= branch.id %>">
+			קישור להרשמת מדריכות מ<%= branch.name %></button>
+	<% end %>
+	<% @regions.each do |region| %>
+		<button  class="text-md sign_up_branch" value="<%= region.id %>">
+			קישור להרשמת רכזות קנים מ<%= region.name %>
+		</button>
+	<% end %>
+<% when "Movement" %>
+	<% @branches.each do |branch| %>
+		<button  class="text-md sign_up_group" value="<%= branch.id %>">
+			קישור להרשמת מדריכות מ<%= branch.name %>
+		</button>
+	<% end %>
+	<% @regions.each do |region| %>
+		<button  class="text-md sign_up_branch" value="<%= region.id %>">
+			קישור להרשמת רכזות קנים מ<%= region.name %>
+		</button>
+	<% end %>
+	<% @movements.each do |movement| %>
+		<button  class="text-md sign_up_region" value="<%= movement.id %>">
+			קישור להרשמת רכזות אזורים מ<%= movement.name %>
+		</button>
+	<% end %>
+<% when "Admin" %>
+	<% @branches.each do |branch| %>
+		<button  class="text-md sign_up_group" value="<%= branch.id %>">
+			קישור להרשמת מדריכות מ<%= branch.name %>
+		</button>
+	<% end %>
+	<% @regions.each do |region| %>
+		<button  class="text-md sign_up_branch" value="<%= region.id %>">
+			קישור להרשמת רכזות קנים מ<%=ד region.name %>
+		</button>
+	<% end %>
+	<% @movements.each do |movement| %>
+		<button  class="text-md sign_up_region" value="<%= movement.id %>">
+			קישור להרשמת רכזות אזורים מ<%= movement.name %>
+		</button>
+	<% end %>
+		<button  class="text-md sign_up_movement" value="<%= movement.id %>">
+			ליצירת תנועה חדשה
+		</button>
+<% end %>

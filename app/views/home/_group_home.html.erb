@@ -1,8 +1,4 @@
-<% if current_user.role == "Branch" %>
-	<% @branches.each do |branch| %>
-		<button  class="text-md sign_up_branch" type="button" name="button">קישור להרשמת מדריכות מ<%= branch.name %></button>
-	<% end %>
-<% end %>
+<%= render "sign_up_links" %>
 <% @groups.each_with_index do |group, index|%>
 	<h1 class="text-2xl flex justify-between">
 		<span class="mx-3"><%= group.name %></span>
@@ -41,7 +37,7 @@
 				</div>
 			</div>
 		<% end %>
-		<button  class="text-md sign_up_group" id="sign_up_<%= group.id %>" value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button>
+		<button  class="text-md sign_up_kid" id="sign_up_<%= group.id %>" value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button>
 	</div>
 
 	<div id="modal-<%= group.id %>" class="modal-bg hidden w-screen absolute bg-gray-900 top-0 left-0 mt-24 z-40">
@@ -86,10 +82,28 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$(".sign_up_group").click(function(event) {
+	$(".sign_up_kid").click(function(event) {
 		var url = "<%= root_url %>users/sign_up?t=jbhl&i=" + $(this).val()
 		share_sign_up(url)
 	});
+	$(".sign_up_group").click(function(event) {
+		var url = "<%= root_url %>users/sign_up?t=ecumv&i=" + $(this).val() + "&n=y"
+		share_sign_up(url)
+	});
+	$(".sign_up_branch").click(function(event) {
+		var url = "<%= root_url %>users/sign_up?t=ei&i=" + $(this).val() + "&n=y"
+		share_sign_up(url)
+	});
+	$(".sign_up_region").click(function(event) {
+		var url = "<%= root_url %>users/sign_up?t=tzur&i=" + $(this).val() + "&n=y"
+		share_sign_up(url)
+	});
+	$(".sign_up_movement").click(function(event) {
+		var url = "<%= root_url %>users/sign_up?t=bugv&i=" + $(this).val() + "&n=y"
+		share_sign_up(url)
+	});
+
+
 	function share_sign_up(url) {
 		/* Get the text field */
 		$("body").append("<input id='temp' value='" + url + "'>")

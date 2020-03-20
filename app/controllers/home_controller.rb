@@ -15,12 +15,18 @@ class HomeController < ApplicationController
 				@groups = @branches.map { |b| b.groups }.flatten
 			when "Region"
 				@regions = current_user.regions
-				@groups = @regions.map { |r| r.branches.map { |b| b.groups }.flatten }.flatten
+				@branches = @regions.map { |r| r.branches}.flatten
+				@groups = @branches.map { |b| b.groups }.flatten
 			when "Movement"
 				@movements = current_user.movements
-				@groups = @movements.map { |m| m.regions.map { |r| r.branches.map { |b| b.groups }.flatten }.flatten }.flatten
+				@regions = @movements.map { |m| m.regions }.flatten
+				@branches = @regions.map { |r| r.branches}.flatten
+				@groups = @branches.map { |b| b.groups }.flatten
       when "Admin"
         @groups = Group.all
+				@movements = Movement.all
+				@regions = Region.all
+				@branches = Branch.all
 			end
 			@tasks_to_approve = []
 			@kids_with_unapproved_tasks = []
