@@ -1,0 +1,23 @@
+{
+    "emptyTable":     "אין מידע זמין לתצוגה",
+    "info":           "מציג _START_ עד _END_ מתוך _TOTAL_ סהכ",
+    "infoEmpty":      "מציג 0 עד 0 מתוך 0 סהכ",
+    "infoFiltered":   "(בוצע חיפוש מתוך _MAX_ רשומות קיימות)",
+    "infoPostFix":    "",
+    "thousands":      ",",
+    "lengthMenu":     "מציג _MENU_ רשומות",
+    "loadingRecords": "טוען...",
+    "processing":     "מעבד...",
+    "search":         "",
+    "zeroRecords":    "לא נמצאו רשומות תואמות",
+    "paginate": {
+        "first":      "ראשון",
+        "last":       "אחרון",
+        "next":       "הבא",
+        "previous":   "הקודם"
+    },
+    "aria": {
+        "sortAscending":  ": activate to sort column ascending",
+        "sortDescending": ": activate to sort column descending"
+    }
+}
