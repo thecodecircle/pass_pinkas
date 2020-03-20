@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-		@tasks = current_user.tasks.all
+		@tasks = current_user.tasks
 		@my_tasks = @tasks.where("my_tasks.progress = :zero OR my_tasks.progress = :nothing", zero: 0, nothing: nil)
 		@done_tasks = @tasks.where("my_tasks.progress = ? ", 1)
 		@approved_tasks = @tasks.where("my_tasks.progress = ? ", 2)
@@ -19,6 +19,8 @@ class HomeController < ApplicationController
 			when "Movement"
 				@movements = current_user.movements
 				@groups = @movements.map { |m| m.regions.map { |r| r.branches.map { |b| b.groups }.flatten }.flatten }.flatten
+      when "Admin"
+        @groups = Group.all
 			end
 			@tasks_to_approve = []
 			@kids_with_unapproved_tasks = []

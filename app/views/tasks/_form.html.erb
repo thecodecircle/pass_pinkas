@@ -20,10 +20,10 @@
                 collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
 		<%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
                 collection: publicities, label_method: :second, value_method: :first, input_html: {class: "m-2"} %>
-    <% if current_user.my_groups.pluck(:my_groupable_type).include?("Movement") %>
-      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "approved", as: :hidden %>
+    <% if %w(Movement Admin).include?(current_user.role) %>
+      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "approved", input_html: {class: "hidden"} %>
     <% else %>
-    <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "unapproved", as: :hidden %>
+      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "unapproved", input_html: {class: "hidden"} %>
     <% end %>
     <!-- תראה את זה אם זה לא חניך -->
   </div>
