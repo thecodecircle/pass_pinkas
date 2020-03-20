@@ -13,4 +13,10 @@ class Branch < ApplicationRecord
 
   delegate :movement, to: :region
 
+
+	def kids
+		groups.map{ |g| g.kids.where("my_groups.role = ? ", 0) }.flatten
+		# .where("my_groups.role = ? ", 0)
+		# .users.where("my_groups.role = ? ", 0)
+	end
 end

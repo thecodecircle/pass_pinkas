@@ -19,6 +19,10 @@ class HomeController < ApplicationController
 			@kids_with_unapproved_tasks.uniq!
 			@general_tasks = Task.where(publicity: 1, status: 1).limit(10).order("RANDOM()")
 		end
+		if current_user.role == "Branch"
+			@branches = current_user.branches
+			@groups = @branches.groups
+		end
   end
 
 	def leaders
