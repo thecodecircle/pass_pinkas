@@ -2,25 +2,19 @@
 
 <h1>Tasks</h1>
 
-
-<!-- class="nowrap table table-hover" -->
 <table id="tasks_table">
   <thead>
     <tr>
-      <!-- <th data-data="name">שם</th>
-      <th data-data="score">ניקוד</th>
-      <th data-data="description">פירוט</th>
-      <th data-data="publicity">פרטיות</th>
-      <th data-data="status">סטטוס</th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th> -->
       <th>Name</th>
-      <th>Score</th>
+      <th>Difficulty</th>
       <th>Description</th>
       <th>Publicity</th>
       <th>Status</th>
-      <th>Edit</th>
-      <th>Delete</th>
-      <th>Assign</th>
+      <% if current_user.role == "Movement" %>
+        <th>Edit</th>
+        <th>Delete</th>
+      <% end %>
+      <th>להוסיף</th>
     </tr>
   </thead>
 
@@ -28,7 +22,7 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= link_to task.name, task %></td>
-        <td><%= task.score %></td>
+        <td><%= task.difficulty %></td>
         <td><%= task.description %></td>
         <td><%= task.publicity %></td>
         <td><%= task.status %></td>
