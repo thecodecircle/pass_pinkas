@@ -22,7 +22,7 @@ he:
         password: "סיסמה"
         password_confirmation: "אימות סיסמה"
         sign up: "הרשמה"
-        remember_me: "זכור אותי"
+        remember_me: "זכרו אותי"
   activerecord:
     models:
       user: משתמש
