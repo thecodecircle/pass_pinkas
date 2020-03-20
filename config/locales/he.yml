@@ -17,10 +17,12 @@ he:
     label:
       user:
         username: "שם משתמש"
+        login: "שם משתמש"
         name: "שם מלא"
         password: "סיסמה"
         password_confirmation: "אימות סיסמה"
         sign up: "הרשמה"
+        remember_me: "זכרו אותי"
   activerecord:
     models:
       user: משתמש

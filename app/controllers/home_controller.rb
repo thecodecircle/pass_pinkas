@@ -42,9 +42,9 @@ class HomeController < ApplicationController
 	end
 
   def assign_task
-    @group = Group.find(params[:group])
     @task = Task.find(params[:task])
-    if current_user.is_guide(@group)
+    if params[:group].present?
+      @group = Group.find(params[:group])
       @group.kids.each do |k|
         k.tasks << @task if k.tasks.exclude?(@task)
       end

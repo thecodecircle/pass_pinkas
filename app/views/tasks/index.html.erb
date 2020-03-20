@@ -1,26 +1,27 @@
 <p id="notice"><%= notice %></p>
 
+<% difficulties = {
+    easy: "קל",
+    medium: "בינוני",
+    hard: "קשה",
+    impossible: "כמעט בלתי אפשרי"
+}%>
+
 <h1>Tasks</h1>
 
-
-<!-- class="nowrap table table-hover" -->
 <table id="tasks_table">
   <thead>
     <tr>
-      <!-- <th data-data="name">שם</th>
-      <th data-data="score">ניקוד</th>
-      <th data-data="description">פירוט</th>
-      <th data-data="publicity">פרטיות</th>
-      <th data-data="status">סטטוס</th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th> -->
-      <th>Name</th>
-      <th>Score</th>
-      <th>Description</th>
-      <th>Publicity</th>
-      <th>Status</th>
-      <th>Edit</th>
-      <th>Delete</th>
-      <th>Assign</th>
+      <th>כותרת</th>
+      <th>רמת קושי</th>
+      <th>פירוט</th>
+      <% if current_user.role == "Movement" %>
+        <th>פרטיות</th>
+        <th>סטטוס</th>
+        <th>עריכה</th>
+        <th>מחיקה</th>
+      <% end %>
+      <th>להוסיף</th>
     </tr>
   </thead>
 
@@ -28,12 +29,14 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= link_to task.name, task %></td>
-        <td><%= task.score %></td>
+        <td><%= difficulties[task.difficulty.to_sym] %></td>
         <td><%= task.description %></td>
-        <td><%= task.publicity %></td>
-        <td><%= task.status %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.role == "Movement" %>
+          <td><%= task.publicity %></td>
+          <td><%= task.status %></td>
+          <td><%= link_to 'Edit', edit_task_path(task) %></td>
+          <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
         <td><%= link_to assign_task_path(group: current_user.groups.last, task: task.id) do %>
 					Assign Task
 				<% end %></td>
@@ -56,7 +59,12 @@
 <script type="text/javascript">
 $(document).ready( function () {
   $('#tasks_table').DataTable({
-    responsive: true
-  });
+    responsive: true,
+    language: {
+      url: "/he_he.lang",
+      searchPlaceholder: "חיפוש חופשי",
+      },
+    },
+  );
 } );
 </script>
