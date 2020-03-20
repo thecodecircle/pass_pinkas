@@ -50,7 +50,7 @@
     <%= hidden_field_tag(:role, params[:r]) %>
     <%= hidden_field_tag(:new, params[:n]) %>
 
-    <% unless params[:t] == "jbhl" %>
+    <% if params[:t] != "jbhl" && params[:n].present? %>
       <div class="mb-6">
         <%= f.label :groupable_name, class:"label" do %>
           <% case params[:t] %>
