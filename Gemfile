@@ -58,4 +58,6 @@ gem 'friendly_id', '~> 5.3'
 gem 'sidekiq', '~> 6.0', '>= 6.0.1'
 gem 'hirb'
 gem 'simple_form'
+gem 'rails_real_favicon'
+
 # gem "select2-rails"

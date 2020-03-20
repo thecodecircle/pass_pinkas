@@ -1,5 +1,6 @@
 *{
 	direction: rtl;
+	font-family: 'Miriam Libre', sans-serif;
 }
 
 .btn {
@@ -12,6 +13,9 @@
 	 @apply bg-blue-700;
  }
 
+.brand{
+	font-family: 'Suez One', serif;
+}
 $green: #68d391;
 $yellow: #ffda00;
 $gray: #4a5568;
