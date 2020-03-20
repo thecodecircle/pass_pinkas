@@ -6,8 +6,20 @@ class HomeController < ApplicationController
 		@approved_tasks = @tasks.where("my_tasks.progress = ? ", 2)
 		@random_tasks = Task.where(publicity: 1, status: 1).left_outer_joins(:my_tasks).where( my_tasks: { id: nil } ).limit(5).order("RANDOM()")
 		@my_score = current_user.score
-		if current_user.role == "Group"
-			@groups = current_user.groups
+		if current_user.role != "Kid"
+			case current_user.role
+			when "Group"
+				@groups = current_user.groups
+			when "Branch"
+				@branches = current_user.branches
+				@groups = @branches.map { |b| b.groups }.flatten
+			when "Region"
+				@regions = current_user.regions
+				@groups = @regions.map { |r| r.branches.map { |b| b.groups }.flatten }.flatten
+			when "Movement"
+				@movements = current_user.movements
+				@groups = @movements.map { |m| m.regions.map { |r| r.branches.map { |b| b.groups }.flatten }.flatten }.flatten
+			end
 			@tasks_to_approve = []
 			@kids_with_unapproved_tasks = []
 			@groups.each_with_index do |group, index|
@@ -19,24 +31,8 @@ class HomeController < ApplicationController
 			@kids_with_unapproved_tasks.uniq!
 			@general_tasks = Task.where(publicity: 1, status: 1).limit(10).order("RANDOM()")
 		end
-		if current_user.role == "Branch"
-			@branches = current_user.branches
-			@groups = @branches.map { |b| b.groups }.flatten
-			# @branches.each do |branch|
-			# 	@groups << branch.groups
-			# end
-			@tasks_to_approve = []
-			@kids_with_unapproved_tasks = []
-			@groups.each_with_index do |group, index|
-				@tasks_to_approve << Task.joins(:my_tasks).where(my_tasks: {user_id: group.kids.ids}).where(my_tasks: {progress: 1}).ids
-				@tasks_to_approve[index].each do |task|
-					@kids_with_unapproved_tasks << [task, group.kids.joins(:my_tasks).where(my_tasks: {progress: 1, task_id: task}).ids]
-				end
-			end
-			@kids_with_unapproved_tasks.uniq!
-			@general_tasks = Task.where(publicity: 1, status: 1).limit(10).order("RANDOM()")
-		end
-  end
+	end
+
 
 	def leaders
 		@regions = Region.all.order("score DESC")
@@ -49,10 +45,10 @@ class HomeController < ApplicationController
     @task = Task.find(params[:task])
     if current_user.is_guide(@group)
       @group.kids.each do |k|
-        k.tasks << @task
+        k.tasks << @task if k.tasks.exclude?(@task)
       end
     else
-      current_user.tasks << @task
+      current_user.tasks << @task if current_user.tasks.exclude?(@task)
     end
     redirect_to root_path
   end

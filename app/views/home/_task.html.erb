@@ -1,11 +1,9 @@
 <div class="container w-full py-1 shadow my-2 rounded-lg" id="con<%= task.id %><%= kid %>">
 	<div class="w-full flex justify-between">
-
 		<span class="name mx-3 text-lg" id="name<% task.id %>kid"><%= task.name %></span>
-		<!-- <i class="gg-info open-description"></i> -->
 		<% if status == "to_approve" %>
-			<%= link_to change_progress_path(task_id: task.id, kid_id: kid) do %>
-				<span class="mx-3 w-1/3 flex justify-end"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+			<%= link_to change_progress_path(task_id: task.id, kid_id: kid), data: {confirm: "ראית שהחניכ.ה סיימ.ה?"} do %>
+				<span class="mx-3 w-10 flex justify-end"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 			<% end %>
 		<% elsif status == "done" %>
 			<!-- לא הבנתי מה קורה פה, אז לא שמתי כפתור -->
@@ -13,33 +11,26 @@
 		<% else %>
 			<span class="mx-3 w-1/3 flex justify-end"><i class="gg-push-chevron-down" id="open<%= task.id %><%= kid %>"></i></span>
 		<% end %>
-		<%# case status %>
-			<%# when "in_progress", "random" %>
-			<%# when "done" %>
-				<!-- <span class="mx-3 text-lg line-through"><%#task.name %></span> -->
-				<!-- <span class="mx-3 w-1/3 flex justify-end"><i class="gg-time"></i></span> -->
-			<%# when "approved" %>
-				<!-- <span class="mx-3 text-lg line-through"><%# task.name %></span> -->
-				<!-- <span class="mx-3 w-1/3 flex justify-end"><i class="gg-check-o"></i></span> -->
-		<%# end %>
+
 	</div>
 	<% if status == "to_approve" %>
 		<span class="mx-3 text-md"><%= User.find(kid).name %></span>
 	<% end %>
 	<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
-	<div style="display: flex" class="description mx-3 hidden justify-between w-full" >
+	<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
 		<span><%= task.description %></span>
 		<% unless status == "to_approve" %>
 			<% if %w(general random).include?(status) %>
 			<!-- צריך לסדר פה את שיוך הקבוצה -->
-				<%= link_to assign_task_path(group: "1", task: task.id) do %>
+				<%= link_to assign_task_path(group: "1", task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
 					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 				<% end %>
 			<% else %>
-				<%= link_to change_progress_path(task_id: task.id) do %>
+				<%= link_to change_progress_path(task_id: task.id), data: {confirm: "הראת למדריכים שסיימת את המשימה?"} do %>
 					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 				<% end %>
 			<% end %>
+			<% else %>
 		<% end %>
 	</div>
 </div>
