@@ -49,7 +49,7 @@
 		</div>
 		<div class="text-white flex text-xl mt-10 ml-10a w-1/2">
 			<% if current_user.role == "Kid" %>
-				<strong><%= current_user.groups.first.score %> נק'</strong>
+				<strong><%= current_user.groups.first.score if current_user.groups.exist? %> נק'</strong>
 			<% end %>
 		</div>
 	</div>
