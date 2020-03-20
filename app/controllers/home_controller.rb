@@ -4,7 +4,8 @@ class HomeController < ApplicationController
 		@my_tasks = @tasks.where("my_tasks.progress = :zero OR my_tasks.progress = :nothing", zero: 0, nothing: nil)
 		@done_tasks = @tasks.where("my_tasks.progress = ? ", 1)
 		@approved_tasks = @tasks.where("my_tasks.progress = ? ", 2)
-		@random_tasks = Task.where(publicity: 1, status: 1).left_outer_joins(:my_tasks).where( my_tasks: { id: nil } ).limit(5).order("RANDOM()")
+		# @random_tasks = Task.where(publicity: 1, status: 1).left_outer_joins(:my_tasks).where.not(my_tasks: {user_id: current_user.id}).limit(5).order("RANDOM()")
+		@random_tasks = Task.where(publicity: 1, status: 1).where.not(id: current_user.tasks).limit(5).order("RANDOM()")
 		@my_score = current_user.score
 		if current_user.role != "Kid"
 			case current_user.role
