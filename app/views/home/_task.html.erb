@@ -1,4 +1,4 @@
-<div class="container w-full py-1 shadow my-2 rounded-lg" id="con<%= task.id %><%= kid %>">
+<div class="container w-full py-1 shadow my-2 rounded-lg z-50" id="con<%= task.id %><%= kid %>">
 	<div class="w-full flex justify-between">
 		<span class="name mx-3 text-lg" id="name<% task.id %>kid"><%= task.name %></span>
 		<% if status == "to_approve" %>
@@ -9,7 +9,8 @@
 			<!-- לא הבנתי מה קורה פה, אז לא שמתי כפתור -->
 			<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 		<% else %>
-			<span class="mx-3 w-1/3 flex justify-end"><i class="gg-push-chevron-down" id="open<%= task.id %><%= kid %>"></i></span>
+			<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down"  id="open<%= task.id %><%= kid %>"></i><i class="gg-chevron-up hidden"   id="close<%= task.id %><%= kid %>"></i></span>
+			<!-- <span class="mx-3 w-1/3 flex justify-end hidden"></span> -->
 		<% end %>
 
 	</div>
@@ -22,7 +23,7 @@
 		<% unless status == "to_approve" %>
 			<% if %w(general random).include?(status) %>
 			<!-- צריך לסדר פה את שיוך הקבוצה -->
-				<%= link_to assign_task_path(group: "5", task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+				<%= link_to assign_task_path(group: group, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
 					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 				<% end %>
 			<% else %>
@@ -33,6 +34,7 @@
 			<% else %>
 		<% end %>
 	</div>
+
 </div>
 
 <script type="text/javascript">
@@ -54,7 +56,14 @@
 	$(document).ready(function() {
 		$('.description').hide();
 		$("#open<%= task.id %><%= kid %>").click(function(event) {
-			$(this).parents(".container").children('.description').toggle();
+			$(this).hide()
+			$("#close<%= task.id %><%= kid %>").show()
+			$(this).parents(".container").children('.description').show();
+		});
+		$("#close<%= task.id %><%= kid %>").click(function(event) {
+			$(this).hide()
+			$("#open<%= task.id %><%= kid %>").show()
+			$(this).parents(".container").children('.description').hide();
 		});
 	});
 
