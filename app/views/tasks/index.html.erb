@@ -34,11 +34,11 @@
         <% if current_user.role == "Movement" %>
           <td><%= task.publicity %></td>
           <td><%= task.status %></td>
-          <td><%= link_to 'Edit', edit_task_path(task) %></td>
-          <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'עריכה', edit_task_path(task) %></td>
+          <td><%= link_to 'מחיקה', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
         <td><%= link_to assign_task_path(group: current_user.groups.last, task: task.id) do %>
-					Assign Task
+					הוספת המשימה
 				<% end %></td>
       </tr>
     <% end %>
