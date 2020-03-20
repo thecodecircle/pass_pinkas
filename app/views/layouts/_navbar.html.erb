@@ -35,10 +35,10 @@
 	</div>
 	<div class="w-full block lg:flex lg:flex-row lg:flex-1 mt-2 lg:mt-0 text-center lg:text-left lg:justify-end items-center">
 		<% if user_signed_in? %>
-		<%= link_to "Log out", destroy_user_session_path, method: :delete, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
+		<%= link_to "התנתקות", destroy_user_session_path, method: :delete, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
 		<% else %>
-		<%= link_to "Login", new_user_session_path, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
-		<%= link_to "Sign Up", new_user_registration_path, class:"btn btn-default block" %>
+		<%= link_to "כניסה", new_user_session_path, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
+		<%= link_to "הרשמה", new_user_registration_path, class:"btn btn-default block" %>
 		<% end %>
 	</div>
 </div>
@@ -47,11 +47,13 @@
 		<div class="text-white self-end text-xl mt-10">
 			שלום <%= current_user.name %>!
 		</div>
-		<div class="text-white flex text-xl mt-10 ml-10a w-1/2">
-			<% if current_user.role == "Kid" %>
-				<strong><%= current_user.groups.first.score %> נק'</strong>
-			<% end %>
-		</div>
+		<% unless current_user.groups.empty? %>
+			<div class="text-white flex text-xl mt-10 ml-10a w-1/2">
+				<% if current_user.role == "Kid" %>
+					<strong><%= current_user.groups.first.score %> נק'</strong>
+				<% end %>
+			</div>
+		<% end %>
 	</div>
 
 </nav>

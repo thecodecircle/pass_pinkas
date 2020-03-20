@@ -49,6 +49,7 @@ class User < ApplicationRecord
 	end
 
 	def role
+    return "Admin" if my_groups.empty?
 		return "Movement" if my_groups.pluck(:my_groupable_type).uniq.include?("Movement")
 		return "Region" if my_groups.pluck(:my_groupable_type).uniq.include?("Region")
 		return "Branch" if my_groups.pluck(:my_groupable_type).uniq.include?("Branch")
