@@ -1,4 +1,8 @@
-
+<% if current_user.role == "Branch" %>
+	<% @branches.each do |branch| %>
+		<button  class="text-md sign_up_branch" type="button" name="button">קישור להרשמת מדריכות מ<%= branch.name %></button>
+	<% end %>
+<% end %>
 <% @groups.each_with_index do |group, index|%>
 	<h1 class="text-2xl flex justify-between">
 		<span class="mx-3"><%= group.name %></span>
@@ -9,7 +13,6 @@
 			<button id="button-<%= group.id %>" value="<%= group.id %>" class="ml-10a text-white toggle-modal w-12 h-12 rounded-full bg-red-400 self-end move-down flex justify-center" type="button" name="button"><i class="gg-add-task"></i></button>
 		</div>
 	</h1>
-	<button  class="text-md" id="sign_up_<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button>
 	<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5">
 			<h1 class="text-xl">משימות לאישור</h1>
 			<% @kids_with_unapproved_tasks.each do |task| %>
@@ -38,7 +41,7 @@
 				</div>
 			</div>
 		<% end %>
-
+		<button  class="text-md sign_up_group" id="sign_up_<%= group.id %>" value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button>
 	</div>
 
 	<div id="modal-<%= group.id %>" class="modal-bg hidden w-screen absolute bg-gray-900 top-0 left-0 mt-24 z-40">
@@ -66,32 +69,8 @@
 		$("#close-<%= group.id %>").click(function(event) {
 			$(".modal-bg").hide("slow")
 		});
-	});
-	$("#sign_up_<%= group.id %>").click(function(event) {
-		var url = "<%= root_url %>users/sign_up?t=jbhl&i=<%= group.id %>"
-		if (navigator.share) {
-			navigator.share({
-				title: 'פנקסי',
-				text: 'בואו תירשמו לפנקסי 2020',
-				url: url,
-			})
-		}
-		else {
-				/* Get the text field */
-				$("body").append("<input id='temp' value='" + url + "'>")
-				var copyText = document.getElementById("temp");
 
-				/* Select the text field */
-				copyText.select();
-				copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 
-				/* Copy the text inside the text field */
-				document.execCommand("copy");
-
-				/* Alert the copied text */
-				alert("הקישור הועתק!");
-				$("#temp").remove()
-	}
 	});
 </script>
 <% end %>
@@ -107,9 +86,26 @@ $(document).ready(function() {
 		return false;
 	});
 
+	$(".sign_up_group").click(function(event) {
+		var url = "<%= root_url %>users/sign_up?t=jbhl&i=" + $(this).val()
+		share_sign_up(url)
+	});
+	function share_sign_up(url) {
+		/* Get the text field */
+		$("body").append("<input id='temp' value='" + url + "'>")
+		var copyText = document.getElementById("temp");
 
+		/* Select the text field */
+		copyText.select();
+		copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 
+		/* Copy the text inside the text field */
+		document.execCommand("copy");
 
+		/* Alert the copied text */
+		alert("הקישור הועתק!");
+		$("#temp").remove()
+	}
 })
 
 </script>
