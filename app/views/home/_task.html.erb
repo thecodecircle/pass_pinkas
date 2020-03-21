@@ -1,7 +1,8 @@
 <div class="container w-full py-1 shadow my-2 rounded-lg z-50" id="con<%= task.id %><%= kid %>">
 	<div class="w-full flex justify-between">
-		<span class="name mx-3 text-lg" id="name<% task.id %>kid"><%= task.name %></span>
+		<span class="name mx-3 text-lg" id="name<%= task.id %><%= kid %>"><%= task.name %></span>
 		<% if status == "to_approve" %>
+
 			<%= link_to change_progress_path(task_id: task.id, kid_id: kid), data: {confirm: "ראית שהחניכ.ה סיימ.ה?"} do %>
 				<span class="mx-3 w-10 flex justify-end"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 			<% end %>
