@@ -30,6 +30,7 @@ class Task < ApplicationRecord
     }
     puts score_hash[self.difficulty.to_sym]
     self.score = score_hash[self.difficulty.to_sym]
+    self.score = 50 if self.personal? && self.score > 50
     puts "Score: #{self.score}"
   end
 

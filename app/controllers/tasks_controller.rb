@@ -32,7 +32,6 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        @task.update(score: 50) if @task.personal? && @task.score > 50
         puts "****************************************"
         puts "task: #{@task.id}"
         if params[:private_group_id].present? && @task.personal?
