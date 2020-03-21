@@ -23,7 +23,7 @@ class HomeController < ApplicationController
 				@branches = @regions.map { |r| r.branches}.flatten
 				@groups = @branches.map { |b| b.groups }.flatten
       when "Admin"
-        @movements = Movement.all 
+        @movements = Movement.all
         @regions = Region.all
         @branches = Branch.all
         @groups = Group.all
@@ -44,8 +44,25 @@ class HomeController < ApplicationController
 
 	def leaders
 		@regions = Region.all.order("score DESC")
-	  @branches = current_user.groups.map{|g| g.branch}.uniq.sort_by(&:score)
-		@groups = current_user.groups.map{|g| g.branch}.uniq.map{|b| b.groups}.flatten.sort_by(&:score).reverse
+		if params[:all] == "true"
+			@branches = Branch.all.order("score DESC")
+			@groups = Group.all.order("score DESC")
+		else
+			case current_user.role
+			when "Group", "Kid"
+				@branches = current_user.groups.map{|g| g.region.branches }.uniq.flatten.sort_by(&:score).reverse
+				@groups = current_user.groups.map{|g| g.branch.groups}.uniq.flatten.sort_by(&:score).reverse
+			when "Branch"
+				@branches = current_user.branches.map{|g| g.region.branches}.uniq.flatten.sort_by(&:score).reverse
+				@groups = @branches.map { |b| b.groups }.uniq.flatten.sort_by(&:score).reverse
+			when "Region"
+				@branches = current_user.regions.map { |r| r.branches}.flatten.uniq.sort_by(&:score).reverse
+				@groups = @branches.map { |b| b.groups }.flatten.uniq.sort_by(&:score).reverse
+			when "Movement"
+				@branches = Branch.all.order("score DESC")
+				@groups = Group.all.order("score DESC")
+			end
+		end
 	end
 
   def assign_task
