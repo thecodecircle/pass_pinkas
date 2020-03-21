@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   before_validation :set_score
 
-  has_many :my_tasks
+  has_many :my_tasks, dependant: :destroy
   validates_associated  :my_tasks
 
   has_many :users, through: :my_tasks
@@ -32,5 +32,5 @@ class Task < ApplicationRecord
     self.score = score_hash[self.difficulty.to_sym]
     puts "Score: #{self.score}"
   end
-  
+
 end
