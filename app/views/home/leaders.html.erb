@@ -6,15 +6,15 @@
 <% end %>
 <h1 class="text-3xl w-full text-center">אזורים</h1>
 <div class="rounded-lg bg-gray-100 shadow px-4 py-4 mb-3">
-	<%= render "groupable_scores", {groupables: @regions} %>
+	<%= render "groupable_scores", {groupables: @regions} unless @regions.empty? %>
 </div>
 
 <h1 class="text-3xl w-full text-center">קנים</h1>
 <div class="rounded-lg bg-gray-100 shadow px-4 py-4 mb-3">
-	<%= render "groupable_scores", {groupables: @branches} %>
+	<%= render "groupable_scores", {groupables: @branches} unless @branches.empty? %>
 </div>
 
 <h1 class="text-3xl w-full text-center">קבוצות</h1>
 <div class="rounded-lg bg-gray-100 shadow px-4 py-4 mb-3">
-	<%= render "groupable_scores", {groupables: @groups} %>
+	<%= render "groupable_scores", {groupables: @groups} unless @groups.empty? %>
 </div>
