@@ -4,7 +4,11 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all.where(publicity: 1, status: 1)
+    if %w(Admin Movement).include?(current_user.role)
+      @tasks = Task.all
+    else
+      @tasks = Task.all.where(publicity: 1, status: 1)
+    end
   end
 
   # GET /tasks/1
@@ -25,12 +29,20 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-    # @task.score = 0
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to root_path }
-        format.json { render :show, status: :created, location: @task }
+        puts "****************************************"
+        puts "task: #{@task.id}"
+        if params[:private_group_id].present? && @task.personal?
+          format.html {
+          @group = Group.find(params[:private_group_id])
+          redirect_to assign_task_path(task: @task.id, group: @group.id)
+        }
+        else
+          format.html { redirect_to root_path }
+          format.json { render :show, status: :created, location: @task }
+        end
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
