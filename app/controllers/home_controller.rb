@@ -23,10 +23,10 @@ class HomeController < ApplicationController
 				@branches = @regions.map { |r| r.branches}.flatten
 				@groups = @branches.map { |b| b.groups }.flatten
       when "Admin"
+        @movements = Movement.all 
+        @regions = Region.all
+        @branches = Branch.all
         @groups = Group.all
-				@movements = Movement.all
-				@regions = Region.all
-				@branches = Branch.all
 			end
 			@tasks_to_approve = []
 			@kids_with_unapproved_tasks = []
@@ -84,6 +84,11 @@ class HomeController < ApplicationController
     end
     my_task.save
     puts "to #{my_task.progress}"
+    redirect_to root_path
+  end
+
+  def approve_task
+    Task.find(params[:task_id]).approved!
     redirect_to root_path
   end
 end
