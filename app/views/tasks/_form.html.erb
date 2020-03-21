@@ -18,8 +18,13 @@
     <%= f.input :description,	label: "תיאור", input_html: {class: "border block m-2"} %>
     <%= f.input :difficulty, 	label: "רמת קושי", as: :radio_buttons,
                 collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
-		<%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
-                collection: publicities, label_method: :second, value_method: :first, input_html: {class: "m-2"} %>
+    <% if current_user.role == "Kid" %>
+      <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", collection: Task.publicities.keys,
+      selected: "general", wrapper_html: {class: "hidden"} %>
+    <% else %>
+      <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
+      collection: publicities, label_method: :second, value_method: :first, input_html: {class: "m-2"} %>
+    <% end %>
 
     <% if %w(Admin Movement).include?(current_user.role) %>
       <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "approved", wrapper_html: {class: "hidden"} %>
