@@ -1,5 +1,8 @@
-<button  id="open_links" class="text-md mb-2 bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8">
-	קישורים להרשמה</button>
+<% if current_user.role != "Group"%>
+	<button  id="open_links" class="text-md mb-2 bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8">
+		קישורים להרשמה
+	</button>
+<% end %>
 	<div id="links" class="hidden">
 		<% case current_user.role %>
 		<% when "Branch" %>
