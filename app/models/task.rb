@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   before_validation :set_score
 
-  has_many :my_tasks, dependant: :destroy
+  has_many :my_tasks, dependent: :destroy
   validates_associated  :my_tasks
 
   has_many :users, through: :my_tasks
