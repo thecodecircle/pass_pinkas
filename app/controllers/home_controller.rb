@@ -110,7 +110,7 @@ class HomeController < ApplicationController
   end
 
   def kid_guide
-    MyGroup.create(user_id: current_user.id, role: "kid", my_groupable_id: params[:g], my_groupable_type: "Group")
+    MyGroup.create(user_id: current_user.id, role: "kid", my_groupable_id: params[:g], my_groupable_type: "Group") unless current_user.groups.ids.include?(params[:g])
     redirect_to root_path
   end
 

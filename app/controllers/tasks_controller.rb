@@ -29,6 +29,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @task.score = 50 if @task.personal? && @task.score > 50
 
     respond_to do |format|
       if @task.save

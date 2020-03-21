@@ -3,10 +3,10 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <% difficulties = {
-      easy: "קל",
-      medium: "בינוני",
-      hard: "קשה",
-      impossible: "כמעט בלתי אפשרי"
+      easy: "קל - 10",
+      medium: "בינוני - 50",
+      hard: "קשה - 100",
+      impossible: "כמעט בלתי אפשרי - 300"
   }%>
   <% publicities = {
     personal: "פרטית",
@@ -20,12 +20,12 @@
                 collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
 		<%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
                 collection: publicities, label_method: :second, value_method: :first, input_html: {class: "m-2"} %>
+    משימה ציבורית עוברת לאישור, וניתנת לשימוש בהמשך. משימה פרטית ניתנת לשימוש מיידי ומשויכת לקבוצה, אך שווה עד 50 נקודות
     <% if %w(Admin Movement).include?(current_user.role) %>
-      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "approved", input_html: {class: "hidden"} %>
+      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "approved", wrapper_html: {class: "hidden"} %>
     <% else %>
-      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "unapproved", input_html: {class: "hidden"} %>
+      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "unapproved", wrapper_html: {class: "hidden"} %>
     <% end %>
-    <!-- תראה את זה אם זה לא חניך -->
   </div>
 
   <%= hidden_field_tag(:private_group_id, params[:private_group_id]) %>
