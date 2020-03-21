@@ -4,8 +4,8 @@ class Group < ApplicationRecord
 
   # validates_associated  :my_groups
 
-  has_many              :my_groups, as: :my_groupable
-  has_many              :users, through: :my_groups, as: :my_groupable
+  has_many              :my_groups, as: :my_groupable, dependent: :destroy
+  has_many              :users, through: :my_groups, as: :my_groupable, dependent: :destroy
   # validates_associated  :users
 
   validates             :name, presence: true
