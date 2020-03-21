@@ -1,19 +1,7 @@
 class Task < ApplicationRecord
   before_validation :set_score
 
-  def set_score
-    puts "****************************************"
-    score_hash = {
-        easy: 10,
-        medium: 50,
-        hard: 100,
-        impossible: 300
-    }
-    puts score_hash[self.difficulty.to_sym]
-    self.score = score_hash[self.difficulty.to_sym]
-    puts "Score: #{self.score}"
-  end
-  has_many :my_tasks
+  has_many :my_tasks, dependent: :destroy
   validates_associated  :my_tasks
 
   has_many :users, through: :my_tasks
@@ -31,5 +19,19 @@ class Task < ApplicationRecord
   validates             :name, presence: true
   validates             :description, presence: true
   validates             :score, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  def set_score
+    puts "****************************************"
+    score_hash = {
+      easy: 10,
+      medium: 50,
+      hard: 100,
+      impossible: 300
+    }
+    puts score_hash[self.difficulty.to_sym]
+    self.score = score_hash[self.difficulty.to_sym]
+    self.score = 50 if self.personal? && self.score > 50
+    puts "Score: #{self.score}"
+  end
 
 end
