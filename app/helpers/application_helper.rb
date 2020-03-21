@@ -11,10 +11,9 @@ module ApplicationHelper
 	def error_btn
 		if mobile_device?
 			html = "<hr>"
-			html += "<a href='whatsapp://send?text=דיווח על תקלה&phone=972546621300' data-action='share/whatsapp/share' class='bg-yellow-500 hover:bg-yellow-700 text-black py-2 px-4 rounded'> <i class='gg-pen'></i> דיווח על תקלה</a>"
+			html += "<a href='whatsapp://send?text=דיווח על תקלה&phone=972546621300' data-action='share/whatsapp/share' class='block bg-yellow-500 hover:bg-yellow-700 text-black apy-2 px-4 rounded'><i class='gg-pen'></i> דיווח על תקלה</a>"
 		else
-			html = "<hr>"
-			html += mail_to 'yarden11111@gmail.com', '<i class="gg-pen"></i> דיווח על תקלה '.html_safe,class:'bg-yellow-500 hover:bg-yellow-700 text-black py-2 px-4 rounded', subject: 'דיווח על תקלה'
+			html = mail_to 'yarden11111@gmail.com', '<i class="gg-pen"></i> דיווח על תקלה '.html_safe,class:'block w-32 bg-yellow-500 hover:bg-yellow-700 text-black apy-2 px-4 rounded', subject: 'דיווח על תקלה'
 		end
 		html.html_safe
 	end

@@ -380,7 +380,7 @@ transform: translate(0px, 50%);
     box-sizing: border-box;
     position: relative;
     display: block;
-    transform: rotate(-45deg) scale(var(--ggs,1));
+    transform: rotate(-45deg) scale(var(--ggs,1)) translate(-5px, 11px);
     width: 14px;
     height: 4px;
     border-right: 2px solid transparent;
