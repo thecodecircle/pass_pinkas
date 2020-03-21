@@ -29,10 +29,10 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-    @task.score = 50 if @task.personal? && @task.score > 50
 
     respond_to do |format|
       if @task.save
+        @task.update(score: 50) if @task.personal? && @task.score > 50
         puts "****************************************"
         puts "task: #{@task.id}"
         if params[:private_group_id].present? && @task.personal?
