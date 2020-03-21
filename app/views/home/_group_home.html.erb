@@ -37,8 +37,8 @@
 				</div>
 			</div>
 		<% end %>
-		<button  class="text-md sign_up_kid" id="sign_up_<%= group.id %>" value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button>
-		<%= link_to "קישור להרשמת חניך שהוא מדריך רשום במערכת", kid_guide_path(g: group.id) %>
+		<button  class="text-md sign_up_kid" value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button> <br>
+		<button  class="text-md sign_up_group_kid"   value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך שהוא מדריך רשום במערכת</button>
 	</div>
 
 	<div id="modal-<%= group.id %>" class="modal-bg hidden w-screen absolute bg-gray-900 top-0 left-0 mt-24 z-40">
@@ -101,6 +101,10 @@ $(document).ready(function() {
 	});
 	$(".sign_up_movement").click(function(event) {
 		var url = "<%= root_url %>users/sign_up?t=bugv&i=" + $(this).val() + "&n=y"
+		share_sign_up(url)
+	});
+	$(".sign_up_group_kid").click(function(event) {
+		var url = "<%= root_url %>kid_guide?g=" + $(this).val()
 		share_sign_up(url)
 	});
 
