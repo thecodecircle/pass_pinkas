@@ -38,6 +38,7 @@
 			</div>
 		<% end %>
 		<button  class="text-md sign_up_kid" id="sign_up_<%= group.id %>" value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button>
+		<%= link_to "קישור להרשמת חניך שהוא מדריך רשום במערכת", kid_guide_path(g: group.id) %>
 	</div>
 
 	<div id="modal-<%= group.id %>" class="modal-bg hidden w-screen absolute bg-gray-900 top-0 left-0 mt-24 z-40">

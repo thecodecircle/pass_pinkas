@@ -108,4 +108,10 @@ class HomeController < ApplicationController
     Task.find(params[:task_id]).approved!
     redirect_to tasks_path
   end
+
+  def kid_guide
+    MyGroup.create(user_id: current_user.id, role: "kid", my_groupable_id: params[:g], my_groupable_type: "Group")
+    redirect_to root_path
+  end
+
 end
