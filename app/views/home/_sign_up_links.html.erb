@@ -38,15 +38,15 @@
 	<% end %>
 	<% @regions.each do |region| %>
 		<button  class="text-md sign_up_branch" value="<%= region.id %>">
-			קישור להרשמת רכזות קנים מ<%=ד region.name %>
+						קישור להרשמת רכזות קנים מ<%= region.name %>
 		</button>
 	<% end %>
 	<% @movements.each do |movement| %>
 		<button  class="text-md sign_up_region" value="<%= movement.id %>">
 			קישור להרשמת רכזות אזורים מ<%= movement.name %>
 		</button>
-	<% end %>
 		<button  class="text-md sign_up_movement" value="<%= movement.id %>">
 			ליצירת תנועה חדשה
 		</button>
+	<% end %>
 <% end %>
