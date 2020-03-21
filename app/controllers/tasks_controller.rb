@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     if %w(Admin Movement).include?(current_user.role)
-      @tasks = Task.all
+      @tasks = Task.all.order(:status)
     else
       @tasks = Task.all.where(publicity: 1, status: 1)
     end
