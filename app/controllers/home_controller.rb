@@ -23,7 +23,7 @@ class HomeController < ApplicationController
 				@branches = @regions.map { |r| r.branches}.flatten
 				@groups = @branches.map { |b| b.groups }.flatten
       when "Admin"
-        @movements = Movement.all 
+        @movements = Movement.all
         @regions = Region.all
         @branches = Branch.all
         @groups = Group.all
@@ -89,6 +89,6 @@ class HomeController < ApplicationController
 
   def approve_task
     Task.find(params[:task_id]).approved!
-    redirect_to root_path
+    redirect_to tasks_path
   end
 end

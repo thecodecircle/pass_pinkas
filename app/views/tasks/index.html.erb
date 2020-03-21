@@ -33,7 +33,10 @@
         <td><%= task.description %></td>
         <% if %w(Admin Movement).include?(current_user.role) %>
           <td><%= task.publicity %></td>
-          <td><%= task.status %></td>
+          <td>
+            <%= task.status if task.approved? %>
+            <%= link_to task.status, approve_task_path(task_id: task.id) if task.unapproved? %>
+          </td>
           <td><%= link_to 'עריכה', edit_task_path(task) %></td>
           <td><%= link_to 'מחיקה', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
