@@ -106,6 +106,6 @@ class HomeController < ApplicationController
 
   def approve_task
     Task.find(params[:task_id]).approved!
-    redirect_to root_path
+    redirect_to tasks_path
   end
 end

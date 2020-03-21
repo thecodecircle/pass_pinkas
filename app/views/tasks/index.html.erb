@@ -15,7 +15,7 @@
       <th>כותרת</th>
       <th>רמת קושי</th>
       <th>פירוט</th>
-      <% if current_user.role == "Movement" %>
+      <% if %w(Admin Movement).include?(current_user.role) %>
         <th>פרטיות</th>
         <th>סטטוס</th>
         <th>עריכה</th>
@@ -31,9 +31,12 @@
         <td><%= link_to task.name, task %></td>
         <td><%= difficulties[task.difficulty.to_sym] %></td>
         <td><%= task.description %></td>
-        <% if current_user.role == "Movement" %>
+        <% if %w(Admin Movement).include?(current_user.role) %>
           <td><%= task.publicity %></td>
-          <td><%= task.status %></td>
+          <td>
+            <%= task.status if task.approved? %>
+            <%= link_to task.status, approve_task_path(task_id: task.id) if task.unapproved? %>
+          </td>
           <td><%= link_to 'עריכה', edit_task_path(task) %></td>
           <td><%= link_to 'מחיקה', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
