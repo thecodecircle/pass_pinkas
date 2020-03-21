@@ -20,7 +20,7 @@
                 collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
 		<%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
                 collection: publicities, label_method: :second, value_method: :first, input_html: {class: "m-2"} %>
-    משימה ציבורית עוברת לאישור, וניתנת לשימוש בהמשך. משימה פרטית ניתנת לשימוש מיידי ומשויכת לקבוצה, אך שווה עד 50 נקודות
+
     <% if %w(Admin Movement).include?(current_user.role) %>
       <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "approved", wrapper_html: {class: "hidden"} %>
     <% else %>
@@ -34,3 +34,9 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.task_publicity').append("<br><span class='font-normal text-sm'>משימה ציבורית עוברת לאישור, וניתנת לשימוש בהמשך. משימה פרטית ניתנת לשימוש מיידי ומשויכת לקבוצה, אך שווה עד 50 נקודות</span>")
+});
+</script>
