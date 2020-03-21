@@ -380,7 +380,7 @@ transform: translate(0px, 50%);
     box-sizing: border-box;
     position: relative;
     display: block;
-    transform: rotate(-45deg) scale(var(--ggs,1)) translate(-5px, 11px);
+    transform: rotate(-45deg) scale(var(--ggs,1));
     width: 14px;
     height: 4px;
     border-right: 2px solid transparent;
@@ -415,4 +415,55 @@ transform: translate(0px, 50%);
     border-right: 7px solid;
     left: -11px;
     top: -2px
+}
+
+.move-pen-errors{
+	  transform: rotate(-45deg) scale(var(--ggs,1)) translate(-5px, 11px) !important;
+}
+.move-pen-edit{
+	  transform: rotate(-45deg) scale(var(--ggs,1)) translate(10px, 18px) !important;
+}
+.move-chevron{
+	  transform: scale(var(--ggs,1.4)) translate(-41px, -16px) !important;
+}
+.gg-trash {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 10px;
+    height: 12px;
+    border: 2px solid transparent;
+    box-shadow:
+        0 0 0 2px,
+        inset -2px 0 0,
+        inset 2px 0 0;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    margin-top: 4px
+}
+.gg-trash::after,
+.gg-trash::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute
+}
+.gg-trash::after {
+    background: currentColor;
+    border-radius: 3px;
+    width: 16px;
+    height: 2px;
+    top: -4px;
+    left: -5px
+}
+.gg-trash::before {
+    width: 10px;
+    height: 4px;
+    border: 2px solid;
+    border-bottom: transparent;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    top: -7px;
+    left: -2px
 }

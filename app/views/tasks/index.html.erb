@@ -8,7 +8,7 @@
 }%>
 
 <% statuses = {
-  unapproved: "מחכה לאישור",
+  unapproved: ["לא מאושר", "לאישור"],
   approved: "מאושר"
   } %>
 
@@ -22,15 +22,19 @@
   <thead>
     <tr>
       <th>כותרת</th>
+			  <% if %w(Admin Movement).include?(current_user.role) %>
+					<th>סטטוס</th>
+				<% end %>
       <th>רמת קושי</th>
       <th>פירוט</th>
       <% if %w(Admin Movement).include?(current_user.role) %>
+				<th></th>
         <th>פרטיות</th>
-        <th>סטטוס</th>
-        <th>עריכה</th>
-        <th>מחיקה</th>
+				<th>להוסיף</th>
+				<th></th>
+				<% else %>
+				<th>להוסיף</th>
       <% end %>
-      <th>להוסיף</th>
     </tr>
   </thead>
 
@@ -38,20 +42,30 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= link_to task.name, task %></td>
+				<% if %w(Admin Movement).include?(current_user.role) %>
+				 <td>
+					 <%= statuses[task.status.to_sym] if task.approved? %>
+					 <span class="text-red-600"> <%= statuses[task.status.to_sym][0] if task.unapproved? %></span>
+				 </td>
+			 <% end %>
         <td><%= difficulties[task.difficulty.to_sym] %></td>
         <td><%= task.description %></td>
         <% if %w(Admin Movement).include?(current_user.role) %>
+					<td>
+						<%# statuses[task.status.to_sym] if task.approved? %>
+						<%= link_to statuses[task.status.to_sym][1], approve_task_path(task_id: task.id), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" if task.unapproved? %>
+					</td>
           <td><%= publicities[task.publicity.to_sym] %></td>
           <td>
-            <%= statuses[task.status.to_sym] if task.approved? %>
-            <%= link_to statuses[task.status.to_sym], approve_task_path(task_id: task.id) if task.unapproved? %>
-          </td>
-          <td><%= link_to 'עריכה', edit_task_path(task) %></td>
-          <td><%= link_to 'מחיקה', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+						<%= link_to "<i class='gg-push-chevron-down-o m-auto'></i>".html_safe, assign_task_path(group: current_user.groups.last, task: task.id) , data: { confirm: 'מוכנים לעוד משימה?' }%>
+					</td>
+					<td>
+						<%= link_to "<i class='gg-pen move-pen-edit m-auto lg:ml-24 ml-16 text-gray-700'></i>".html_safe, edit_task_path(task)%>
+						<%= link_to "<i class='gg-trash m-auto text-red-700'></i>".html_safe, task, method: :delete, data: { confirm: 'למחוק?' } %>
+					</td>
+				<% else %>
+					<td><%= link_to "<i class='gg-push-chevron-down-o m-auto'></i>".html_safe, assign_task_path(group: current_user.groups.last, task: task.id) ,class: "mb-10", data: { confirm: 'מוכנים לעוד משימה?' }%></td>
         <% end %>
-        <td><%= link_to assign_task_path(group: current_user.groups.last, task: task.id) do %>
-					הוספת המשימה
-				<% end %></td>
       </tr>
     <% end %>
   </tbody>
@@ -72,6 +86,8 @@
 $(document).ready( function () {
   $('#tasks_table').DataTable({
     responsive: true,
+		 "order": [[ 1, "asc" ]],
+		 "paging": false,
     language: {
       url: "/he_he.lang",
       searchPlaceholder: "חיפוש חופשי",
