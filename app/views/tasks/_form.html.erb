@@ -2,6 +2,7 @@
 <%= simple_form_for(@task, defaults: { input_html: {class: ""}}) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
   <% difficulties = {
       easy: "קל - 10",
       medium: "בינוני - 50",
@@ -12,12 +13,21 @@
     personal: "פרטית",
     general: "ציבורית"
     } %>
+
+    <% ages = {
+      gutz: "גו''צ",
+      tzabar: "צבר",
+      goob: "גו''ב ומעלה"
+      } %>
+
   <div class="form-inputs">
     <%= f.input :name, label: "שם המשימה", input_html: { class: "border block m-2"} %>
     <%# f.input :score %>
     <%= f.input :description,	label: "תיאור", input_html: {class: "border block m-2"} %>
     <%= f.input :difficulty, 	label: "רמת קושי", as: :radio_buttons,
                 collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
+    <%= f.input :age, 	label: "גילאים", as: :radio_buttons,
+                collection: ages, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
     <% if current_user.role == "Kid" %>
       <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", collection: Task.publicities.keys,
       selected: "general", wrapper_html: {class: "hidden"} %>
