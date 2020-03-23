@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root to: 'home#index'
-  get "/home/:leaders" => "home#leaders"
+  get "/leaders" => "home#leaders"
+	get "/pinkasi" => "home#pinkasi"
   get "/assign_task", to: "home#assign_task"
   get "/change_progress", to: "home#change_progress"
   get "/approve_task", to: "home#approve_task"

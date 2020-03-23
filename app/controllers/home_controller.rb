@@ -65,6 +65,10 @@ class HomeController < ApplicationController
 		end
 	end
 
+	def pinkasi
+	  #code
+	end
+
   def assign_task
     @task = Task.find(params[:task])
     if params[:group].present?

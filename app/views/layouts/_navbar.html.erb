@@ -31,6 +31,9 @@
 		<%# link_to "משתמשים", users_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
 	</div> -->
 	<div class="lg:flex-grow">
+		<%= link_to "מה זה פנקסי?", "pinkasi", class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
+	</div>
+	<div class="lg:flex-grow">
 		<%= link_to "כל המשימות", tasks_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
 	</div>
 	<div class="w-full block lg:flex lg:flex-row lg:flex-1 mt-2 lg:mt-0 text-center lg:text-left lg:justify-end items-center">
@@ -50,10 +53,10 @@
 		<div class="text-white self-end text-xl mt-16">
 			שלום <%= current_user.name %>!
 		</div>
-		<% unless current_user.groups.nil? %>
+		<% unless current_user.groups.empty? %>
 			<div class="text-white flex text-xl mt-16 ml-10a w-1/2">
 				<% if current_user.role == "Kid" %>
-					<strong><%# current_user.groups.first.score %> נק'</strong>
+					<strong><%= current_user.groups.first.score %> נק'</strong>
 				<% end %>
 			</div>
 		<% end %>
