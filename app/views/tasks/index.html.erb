@@ -16,6 +16,11 @@
   general: "ציבורי"
   } %>
 
+  <% ages = {
+    gutz: "גו''צ",
+    tzabar: "צבר",
+    goob: "גו''ב ומעלה"
+    } %>
 
 <table id="tasks_table">
   <thead>
@@ -25,6 +30,7 @@
 					<th>סטטוס</th>
 				<% end %>
       <th>רמת קושי</th>
+      <th>גילאים</th>
       <th>פירוט</th>
       <% if %w(Admin Movement).include?(current_user.role) %>
 				<th></th>
@@ -48,6 +54,7 @@
 				 </td>
 			 <% end %>
         <td><%= difficulties[task.difficulty.to_sym] %></td>
+        <td><%= ages[task.age.to_sym] %></td>
         <td><%= task.description %></td>
         <% if %w(Admin Movement).include?(current_user.role) %>
 					<td>

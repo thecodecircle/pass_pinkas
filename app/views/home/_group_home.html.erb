@@ -29,8 +29,8 @@
 				<div class="mx-3 kids_tasks hidden mt-2">
 					<strong>משימות</strong>
 					<ul>
-						<% kid.tasks.each do |task| %>
-							<li><%= task.name %></li>
+						<% kid.my_tasks.in_progress.each do |my_task| %>
+							<li><%= my_task.task.name %></li>
 						<% end %>
 					</ul>
 				</div>
