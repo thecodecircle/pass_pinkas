@@ -12,15 +12,17 @@ require 'csv'
 if File.file?(Rails.root.join('lib/task_seeds.csv'))
   counter = 0
   CSV.foreach(Rails.root.join('lib/task_seeds.csv'), headers: true) do |row|
-    Task.create!({
-      name: row[0],
-      description: row[1],
-      difficulty: row[2],
-      age: row[3],
-      publicity: 1,
-      status: 1
-    })
-    counter += 1
+    if Task.find_by(name: row[0]).nil?
+      Task.create!({
+        name: row[0],
+        description: row[1],
+        difficulty: row[2],
+        age: row[3],
+        publicity: 1,
+        status: 1
+      })
+      counter += 1
+    end
   end
   puts "Inserted #{counter} Tasks"
 end
