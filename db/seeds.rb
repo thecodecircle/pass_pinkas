@@ -15,10 +15,9 @@ if File.file?(Rails.root.join('lib/task_seeds.csv'))
     Task.create!({
       name: row[0],
       description: row[1],
-      score: row[2],
-      publicity: row[3],
-      difficulty: row[4],
-      age: row[5],
+      difficulty: row[2],
+      age: row[3],
+      publicity: 1,
       status: 1
     })
     counter += 1
