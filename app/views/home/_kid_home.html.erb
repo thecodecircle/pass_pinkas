@@ -2,7 +2,7 @@
 <div class="rounded-lg bg-gray-100 shadow px-4 py-4">
 	<h1 class="text-xl">המשימות שלי</h1>
 	<% @my_tasks.each do |task| %>
-		<%= render "task", { task: task, status: "in_progress", kid: current_user.id } %>
+		<%= render "task", { task: task, status: "in_progress", kid: current_user.id, group: 99999 } %>
 	<% end %>
 </div>
 <br>
@@ -10,7 +10,7 @@
 <div class="rounded-lg bg-gray-100 shadow px-4 py-4">
 	<h1 class="text-xl">משימות תנועתיות</h1>
 	<% @random_tasks.each do |task| %>
-		<%= render "task", { task: task, status: "random", kid: current_user.id } %>
+		<%= render "task", { task: task, status: "random", kid: current_user.id, group: 99999 } %>
 	<% end %>
 </div>
 <br>
@@ -18,9 +18,9 @@
 	<h1 class="text-xl">משימות שסיימתי</h1>
 
 	<% @done_tasks.each do |task| %>
-		<%= render "task", { task: task, status: "done", kid: current_user.id } %>
+		<%= render "task", { task: task, status: "done", kid: current_user.id, group: 99999 } %>
 	<% end %>
 	<% @approved_tasks.each do |task| %>
-		<%= render "task", { task: task, status: "approved", kid: current_user.id } %>
+		<%= render "task", { task: task, status: "approved", kid: current_user.id, group: 99999 } %>
 	<% end %>
 </div>
