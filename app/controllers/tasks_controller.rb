@@ -36,6 +36,9 @@ class TasksController < ApplicationController
         puts "task: #{@task.id}"
         if params[:private_group_id].present? && @task.personal?
           format.html {
+          puts "before - task is: #{@task.status}"
+          @task.approved!
+          puts "after - task is: #{@task.status}"
           @group = Group.find(params[:private_group_id])
           redirect_to assign_task_path(task: @task.id, group: @group.id)
         }

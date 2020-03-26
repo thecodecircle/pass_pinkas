@@ -28,7 +28,7 @@
                 collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
     <%= f.input :age, 	label: "גילאים", as: :radio_buttons,
                 collection: ages, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
-    <% if current_user.role == "Kid" %>
+    <% if current_user.role == "Kid" || !params[:private_group_id].present? %>
       <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", collection: Task.publicities.keys,
       selected: "general", wrapper_html: {class: "hidden"} %>
     <% else %>
@@ -43,7 +43,7 @@
     <% end %>
   </div>
 
-  <%= hidden_field_tag(:private_group_id, params[:private_group_id]) %>
+  <%= hidden_field_tag(:private_group_id, params[:private_group_id]) if params[:private_group_id] %>
 
   <div class="form-actions">
     <%= f.button :submit %>
