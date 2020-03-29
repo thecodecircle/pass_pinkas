@@ -36,10 +36,15 @@
 				</div>
 			</div>
 		<% end %>
+		<h1 class="text-xl mt-5">משימות שחניכות הציעו</h1>
+		<div class="">
+			<% Task.where(status: 0, publicity: 0).each do |task| %>
+			<%= render "task", { task: task, status: "suggested", kid: 1111, group: 11111 } %>
+			<% end %>
+		</div>
 		<button  class="text-md sign_up_kid" value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button> <br>
 		<button  class="text-md sign_up_group_kid text-right"   value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך שהוא מדריך רשום במערכת</button>
 	</div>
-
 
 <script type="text/javascript">
 	$(document).ready(function() {

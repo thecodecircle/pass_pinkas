@@ -2,10 +2,14 @@
 	<div class="w-full flex justify-between">
 		<span class="name mx-3 text-lg" id="name<%= task.id %><%= kid %>"><%= task.name %></span>
 		<% if status == "to_approve" %>
-
-			<%= link_to change_progress_path(task_id: task.id, kid_id: kid), data: {confirm: "ראית שהחניכ.ה סיימ.ה?"} do %>
-				<span class="mx-3 w-10 flex justify-end"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+		<span class="mx-3 flex justify-center">
+			<%= link_to change_progress_path(task_id: task.id, kid_id: kid, revert: "revert"), class: "ml-2" ,data: {confirm: "להחזיר את המשימה לחניכ.ה?"} do %>
+				<span class=""><i class="gg-close text-red-500" ></i></span>
 			<% end %>
+			<%= link_to change_progress_path(task_id: task.id, kid_id: kid), data: {confirm: "ראית שהחניכ.ה סיימ.ה?"} do %>
+				<span class=" flex justify-end"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+			<% end %>
+		</span>
 		<% elsif status == "done" || status == "approved" %>
 			<!-- לא הבנתי מה קורה פה, אז לא שמתי כפתור -->
 			<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
@@ -13,7 +17,6 @@
 			<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down"  id="open<%= task.id %><%= kid %>"></i><i class="gg-chevron-up hidden"   id="close<%= task.id %><%= kid %>"></i></span>
 			<!-- <span class="mx-3 w-1/3 flex justify-end hidden"></span> -->
 		<% end %>
-
 	</div>
 	<% if status == "to_approve" %>
 		<span class="mx-3 text-md"><%= User.find(kid).name %></span>
@@ -34,9 +37,14 @@
 				<% end %>
 			<% end %>
 			<% else %>
-				<%= link_to change_progress_path(task_id: task.id), data: {confirm: "הראת למדריכים שסיימת את המשימה?"} do %>
-					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+			<span class="mx-3 my-3 flex justify-center">
+				<%= link_to change_progress_path(task_id: task.id, remove: "remove"), class: "ml-2" ,data: {confirm: "להסיר את המשימה?"} do %>
+					<span class=""><i class="gg-close text-red-500" ></i></span>
 				<% end %>
+				<%= link_to change_progress_path(task_id: task.id), data: {confirm: "הראת למדריכים שסיימת את המשימה?"} do %>
+					<span class=""><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+				<% end %>
+				</span>
 			<% end %>
 			<% else %>
 		<% end %>
@@ -57,7 +65,7 @@
 		$("#i<%= task.id %><%= kid %>").addClass('gg-check')
 		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-gray-200 text-gray-700')
 		$("#name<%= task.id %><%= kid %>").addClass('line-through')
-	<% when "general", "random" %>
+	<% when "general", "random", "suggested" %>
 		$("#i<%= task.id %><%= kid %>").addClass('gg-push-chevron-down-o')
 		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-blue-100')
 	<% end %>
