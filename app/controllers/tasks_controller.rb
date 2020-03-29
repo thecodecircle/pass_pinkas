@@ -92,6 +92,45 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  def change_progress
+    puts "****************************************"
+    puts "Change Progress"
+    if params[:kid_id].present?
+			kid = User.find(params[:kid_id])
+			my_task = kid.my_tasks.find_by(task_id: params[:task_id])
+			puts "kid: #{my_task.user.name}"
+			puts "task: #{my_task.task.name} from #{my_task.progress}"
+			if params[:revert].present?
+				my_task.progress = "in_progress"
+			else
+				my_task.progress = "approved"
+				kid.update(score: kid.score + my_task.task.score)
+				kid.groups.where("my_groups.role = 0").each do |g|
+					g.update(score: g.score + my_task.task.score)
+					g.branch.update(score: g.branch.score + my_task.task.score)
+					g.branch.region.update(score: g.branch.region.score + my_task.task.score)
+					# g.branch.region.movement.update(score: g.branch.region.movement.score + my_task.task.score)
+				end
+			end
+    else
+			my_task = current_user.my_tasks.find_by(task_id: params[:task_id])
+			if params[:remove].present?
+				my_task.delete
+			else
+				puts "task: #{my_task.task.name} from #{my_task.progress}"
+				my_task.progress = "done"
+			end
+    end
+    my_task.save unless params[:remove].present?
+    puts "to #{my_task.progress}"
+    redirect_to root_path
+  end
+
+  def approve_task
+    Task.find(params[:task_id]).approved!
+    redirect_to tasks_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
