@@ -78,6 +78,20 @@ class TasksController < ApplicationController
     end
   end
 
+  def assign_task
+    @task = Task.find(params[:task])
+    if params[:group].present?
+      @group = Group.find(params[:group])
+      @group.kids.each do |k|
+        k.tasks << @task if k.tasks.exclude?(@task)
+      end
+      @task.approved!
+    else
+      current_user.tasks << @task if current_user.tasks.exclude?(@task)
+    end
+    redirect_to root_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
