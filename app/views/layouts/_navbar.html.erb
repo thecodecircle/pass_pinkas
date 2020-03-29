@@ -1,6 +1,6 @@
-<nav class="flex items-start mb-3 h-32 pb-32 justify-between flex-wrap bg-blue-500 py-3 lg:px-10 px-3 text-gray-700 border-b border-gray-400">
-	<div class="fixed-nav bg-blue-500 fixed top-0 right-0 w-full flex justify-between h-16 z-40">
-		<div class="flex items-center flex-no-shrink mr-2 w-1/2 lg:w-1/12 bg-blue-500">
+<nav class="flex items-start mb-3 h-32 pb-32 justify-between flex-wrap bg-shmutz-blue py-3 lg:px-10 px-3 text-gray-700 border-b border-gray-400">
+	<div class="fixed-nav bg-shmutz-blue fixed top-0 right-0 w-full flex justify-between h-16 z-40">
+		<div class="flex items-center flex-no-shrink mr-2 w-1/2 lg:w-1/12 bg-shmutz-blue">
 			<%= link_to root_path, class:"link text-3xl tracking-tight font-semibolda text-white flex item-end" do %>
 				<%= image_tag "white.png", size: "45" %>
 				<span class="brand mx-3">פנקסי</span>
@@ -12,7 +12,7 @@
 			</button>
 		</div>
 	</div>
-	<div class="menu z-50 lg:shadow-none shadow-lg-down w-1/2 block lg:flex-1 lg:flex items-end text-center lg:text-left hidden fixed top-0 left-0 lg:mt-0 mt-12 p-2 rounded-lg rounded-t-none	bg-blue-500">
+	<div class="menu z-50 lg:shadow-none shadow-lg-down w-1/2 block lg:flex-1 lg:flex items-end text-center lg:text-left hidden fixed top-0 left-0 lg:mt-0 mt-12 p-2 rounded-lg rounded-t-none	bg-shmutz-blue">
 		<% if current_user.role == "Admin" %>
 		<div class="lg:flex-grow">
 			<%= link_to "תנועות", movements_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
@@ -52,14 +52,14 @@
 		</div>
 </div>
 
-	<div class="flex justify-between w-full self-end">
+	<div class="flex justify-between w-full self-end brand">
 		<div class="text-white self-end text-xl mt-16">
 			שלום <%= current_user.name %>!
 		</div>
 		<% unless current_user.groups.empty? %>
-			<div class="text-white flex text-xl mt-16 ml-10a w-1/2">
+			<div class="text-white flex text-xl mt-16 ml-10a w-1/2 ">
 				<% if current_user.role == "Kid" %>
-					<strong><%= current_user.groups.first.score %> נק'</strong>
+					<strong class="bg-white text-shmutz-blue px-2 rounded-lg"><%= current_user.groups.first.score %> נק'</strong>
 				<% end %>
 			</div>
 		<% end %>

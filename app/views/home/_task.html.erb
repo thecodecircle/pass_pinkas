@@ -66,7 +66,7 @@
 		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-gray-200 text-gray-700')
 		$("#name<%= task.id %><%= kid %>").addClass('line-through')
 	<% when "general", "random", "suggested" %>
-		$("#i<%= task.id %><%= kid %>").addClass('gg-push-chevron-down-o')
+		$("#i<%= task.id %><%= kid %>").append("<img src='/assets/add-task.svg' width='35' height='35'>")
 		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-blue-100')
 	<% end %>
 	$(document).ready(function() {

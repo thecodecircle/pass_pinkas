@@ -1,23 +1,53 @@
+@font-face {
+   font-family: 'Abraham';
+   src: url('/assets/fonts/Abraham-Regular.otf');
+	 font-family: 'Abraham-Black';
+   src: url('/assets/fonts/Abraham-Black.otf');
+	 font-family: 'Abraham-Bold';
+   src: url('/assets/fonts/Abraham-Bold.otf');
+	 font-family: 'AbrahamMedium';
+   src: url('/assets/fonts/AbrahamMedium.otf');
+}
+
 *{
 	direction: rtl;
-	font-family: 'Miriam Libre', sans-serif;
+	font-family: 'Abraham', sans-serif;
+}
+
+.line-05{
+	line-height: 0.7;
+}
+
+.bg-shmutz-blue{
+	background: #1c14cb !important;
+}
+.text-shmutz-blue{
+	color: #1c14cb !important;
+}
+.bg-my-groups{
+	background: #cce4ff;
 }
 
 .btn {
 	 @apply font-bold py-2 px-4 rounded;
  }
  .btn-blue {
-	 @apply bg-blue-500 text-white;
+	 @apply bg-shmutz-blue text-white;
  }
  .btn-blue:hover {
 	 @apply bg-blue-700;
  }
 
 .brand{
-	font-family: 'Suez One', serif;
+	font-family: 'Abraham', serif;
+	font-weight: bold;
 }
 .white-space-pre{
 	  white-space: pre-wrap;
+}
+
+.blue-plus{
+	background-image: asset_url("blue-plus.svg");
 }
 .bg-black-opacity-50{
 	background: rgba(0,0,0,0.7);

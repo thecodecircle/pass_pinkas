@@ -13,19 +13,19 @@
 	<% if groupable.class.name == "Group" %>
 		<% if current_user.groups.include?(groupable) %>
 		  <script type="text/javascript">
-				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-yellow-400')
+				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-my-groups')
 		  </script>
 		<% end %>
 	<% elsif groupable.class.name == "Branch" %>
 		<% if current_user.branches.include?(groupable) || current_user.groups.map{|g| g.branch}.include?(groupable) %>
 			<script type="text/javascript">
-				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-yellow-400')
+				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-my-groups')
 			</script>
 		<% end %>
 	<% elsif groupable.class.name == "Region" %>
 		<% if current_user.branches.include?(groupable) || current_user.groups.map{|g| g.region}.include?(groupable) ||  current_user.regions.include?(groupable) %>
 			<script type="text/javascript">
-				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-yellow-400')
+				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-my-groups')
 			</script>
 		<% end %>
 	<% end %>

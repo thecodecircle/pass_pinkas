@@ -59,7 +59,7 @@
         <% if %w(Admin Movement).include?(current_user.role) %>
 					<td>
 						<%# statuses[task.status.to_sym] if task.approved? %>
-						<%= link_to statuses[task.status.to_sym][1], approve_task_path(task_id: task.id), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" if task.unapproved? %>
+						<%= link_to statuses[task.status.to_sym][1], approve_task_path(task_id: task.id), class:"bg-shmutz-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" if task.unapproved? %>
 					</td>
           <td><%= publicities[task.publicity.to_sym] %></td>
           <td>
