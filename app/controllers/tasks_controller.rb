@@ -29,6 +29,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @task.suggested_id = params[:suggested_id]
 
     respond_to do |format|
       if @task.save
@@ -36,12 +37,12 @@ class TasksController < ApplicationController
         puts "task: #{@task.id}"
         if params[:private_group_id].present? && @task.personal?
           format.html {
-          puts "before - task is: #{@task.status}"
-          @task.approved!
-          puts "after - task is: #{@task.status}"
-          @group = Group.find(params[:private_group_id])
-          redirect_to assign_task_path(task: @task.id, group: @group.id)
-        }
+            puts "Guide wants personal task"
+            puts "before - task is: #{@task.status}"
+            @task.approved!
+            puts "after - task is: #{@task.status}"
+            redirect_to assign_task_path(task: @task.id, group: params[:private_group_id])
+          }
         else
           format.html { redirect_to root_path }
           format.json { render :show, status: :created, location: @task }
