@@ -38,8 +38,8 @@
 		<% end %>
 		<h1 class="text-xl mt-5">משימות שחניכות הציעו</h1>
 		<div class="">
-			<% Task.where(status: 0, publicity: 0).each do |task| %>
-			<%= render "task", { task: task, status: "suggested", kid: 1111, group: 11111 } %>
+			<% Task.where(status: 0, publicity: 0).where(suggested_id: group.kids).each do |task| %>
+				<%= render "task", { task: task, status: "suggested", kid: task.suggested_id, group: group.id } %>
 			<% end %>
 		</div>
 		<button  class="text-md sign_up_kid" value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button> <br>

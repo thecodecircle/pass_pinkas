@@ -25,7 +25,7 @@
 	<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
 		<span><%= task.description %></span>
 		<% unless status == "to_approve" %>
-			<% if %w(general random).include?(status) %>
+			<% if %w(general random suggested).include?(status) %>
 			<!-- צריך לסדר פה את שיוך הקבוצה -->
 			<% if current_user.role != "Kid" %>
 				<%= link_to assign_task_path(group: group, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
