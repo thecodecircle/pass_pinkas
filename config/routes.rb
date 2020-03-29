@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get "/leaders" => "home#leaders"
 	get "/pinkasi" => "home#pinkasi"
-  get "/assign_task", to: "home#assign_task"
-  get "/change_progress", to: "home#change_progress"
-  get "/approve_task", to: "home#approve_task"
+  get "/assign_task", to: "tasks#assign_task"
+  get "/change_progress", to: "tasks#change_progress"
+  get "/approve_task", to: "tasks#approve_task"
   get "/kid_guide", to: "home#kid_guide"
   # get '/patients/:id', to: 'patients#show'
   # get ‘/show_message’, ‘home#show_message’, as: :show_message

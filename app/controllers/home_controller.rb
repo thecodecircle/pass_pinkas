@@ -66,60 +66,8 @@ class HomeController < ApplicationController
 	end
 
 	def pinkasi
-	  #code
 	end
 
-  def assign_task
-    @task = Task.find(params[:task])
-    if params[:group].present?
-      @group = Group.find(params[:group])
-      @group.kids.each do |k|
-        k.tasks << @task if k.tasks.exclude?(@task)
-      end
-    else
-      current_user.tasks << @task if current_user.tasks.exclude?(@task)
-    end
-    redirect_to root_path
-  end
-
-  def change_progress
-    puts "****************************************"
-    puts "Change Progress"
-    if params[:kid_id].present?
-			kid = User.find(params[:kid_id])
-			my_task = kid.my_tasks.find_by(task_id: params[:task_id])
-			puts "kid: #{my_task.user.name}"
-			puts "task: #{my_task.task.name} from #{my_task.progress}"
-			if params[:revert].present?
-				my_task.progress = "in_progress"
-			else
-				my_task.progress = "approved"
-				kid.update(score: kid.score + my_task.task.score)
-				kid.groups.where("my_groups.role = 0").each do |g|
-					g.update(score: g.score + my_task.task.score)
-					g.branch.update(score: g.branch.score + my_task.task.score)
-					g.branch.region.update(score: g.branch.region.score + my_task.task.score)
-					# g.branch.region.movement.update(score: g.branch.region.movement.score + my_task.task.score)
-				end
-			end
-    else
-			my_task = current_user.my_tasks.find_by(task_id: params[:task_id])
-			if params[:remove].present?
-				my_task.delete
-			else
-				puts "task: #{my_task.task.name} from #{my_task.progress}"
-				my_task.progress = "done"
-			end
-    end
-    my_task.save unless params[:remove].present?
-    puts "to #{my_task.progress}"
-    redirect_to root_path
-  end
-
-  def approve_task
-    Task.find(params[:task_id]).approved!
-    redirect_to tasks_path
-  end
 
   def kid_guide
     MyGroup.create(user_id: current_user.id, role: "kid", my_groupable_id: params[:g], my_groupable_type: "Group") unless current_user.groups.ids.include?(params[:g])
