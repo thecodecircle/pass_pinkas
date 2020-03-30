@@ -1,85 +1,128 @@
-<div class="container w-full py-1 shadow my-2 rounded-lg z-50" id="con<%= task.id %><%= kid %><%= group %>">
+
+
+	<% case status %>
+	<% when "in_progress" %>
+	<div class="container w-full py-1 shadow my-2 rounded-lg z-50 bg-blue-100" >
+		<div class="w-full flex justify-between">
+			<span class="name mx-3 text-lg"><%= task.name %></span>
+			<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down open"  ></i><i class="gg-chevron-up close hidden" ></i></span>
+		</div>
+		<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
+		<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
+			<span><%= task.description %></span>
+			<span class="mx-3 my-3 flex justify-center">
+				<%= link_to change_progress_path(task_id: task.id, remove: "remove"), class: "ml-2" ,data: {confirm: "להסיר את המשימה?"} do %>
+				<span class=""><i class="gg-close text-red-500" ></i></span>
+				<% end %>
+				<%= link_to change_progress_path(task_id: task.id), data: {confirm: "הראת למדריכים שסיימת את המשימה?"} do %>
+				<span class=""><i class="gg-check-o" ></i></span>
+				<% end %>
+			</span>
+		</div>
+	</div>
+
+
+	<% when "to_approve" %>
+	<div class="container w-full py-1 shadow my-2 rounded-lg z-50 bg-blue-100" >
 	<div class="w-full flex justify-between">
-		<span class="name mx-3 text-lg" id="name<%= task.id %><%= kid %>"><%= task.name %></span>
-		<% if status == "to_approve" %>
+		<span class="name mx-3 text-lg"><%= task.name %></span>
+		<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down open"  ></i><i class="gg-chevron-up close hidden" ></i></span>
+	</div>
+	<span class="mx-3 text-md"><%= User.find(kid).name %></span>
+	<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
+	<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
+		<span><%= task.description %></span>
 		<span class="mx-3 flex justify-center">
 			<%= link_to change_progress_path(task_id: task.id, kid_id: kid, revert: "revert"), class: "ml-2" ,data: {confirm: "להחזיר את המשימה לחניכ.ה?"} do %>
 				<span class=""><i class="gg-close text-red-500" ></i></span>
 			<% end %>
 			<%= link_to change_progress_path(task_id: task.id, kid_id: kid), data: {confirm: "ראית שהחניכ.ה סיימ.ה?"} do %>
-				<span class=" flex justify-end"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+				<span class=" flex justify-end"><i class="gg-check-o" ></i></span>
 			<% end %>
 		</span>
-		<% elsif status == "done" || status == "approved" %>
-			<!-- לא הבנתי מה קורה פה, אז לא שמתי כפתור -->
-			<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
-		<% else %>
-			<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down"  id="open<%= task.id %><%= kid %>"></i><i class="gg-chevron-up hidden"   id="close<%= task.id %><%= kid %>"></i></span>
-			<!-- <span class="mx-3 w-1/3 flex justify-end hidden"></span> -->
-		<% end %>
 	</div>
-	<% if status == "to_approve" %>
-		<span class="mx-3 text-md"><%= User.find(kid).name %></span>
-	<% end %>
+	</div>
+
+	<% when "done" %>
+	<div class="container w-full py-1 shadow my-2 rounded-lg z-50 bg-gray-200 text-gray-700" >
+	<div class="w-full flex justify-between">
+		<span class="name mx-3 text-lg line-through"><%= task.name %></span>
+		<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
+		<span class="mx-6"><i class="gg-time" ></i></span>
+	</div>
+</div>
+
+	<% when "approved" %>
+	<div class="container w-full py-1 shadow my-2 rounded-lg z-50 bg-gray-200 text-gray-700" >
+	<div class="w-full flex justify-between">
+		<span class="name mx-3 text-lg line-through"><%= task.name %></span>
+		<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
+		<span class="mx-6"><i class="gg-check" ></i></span>
+	</div>
+	</div>
+
+	<% when "general", "random" %>
+	<div class="container w-full py-1 shadow my-2 rounded-lg z-50 bg-blue-100" >
+	<div class="w-full flex justify-between">
+		<span class="name mx-3 text-lg"><%= task.name %></span>
+		<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down open"  ></i><i class="gg-chevron-up close hidden" ></i></span>
+	</div>
 	<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
 	<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
 		<span><%= task.description %></span>
-		<% unless status == "to_approve" %>
-			<% if %w(general random suggested).include?(status) %>
-			<!-- צריך לסדר פה את שיוך הקבוצה -->
+		<span class="mx-3 my-3 flex justify-center">
 			<% if current_user.role != "Kid" %>
 				<%= link_to assign_task_path(group: group, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
-					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+					<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %></i></span>
 				<% end %>
 			<% else %>
 				<%= link_to assign_task_path( task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
-					<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
+					<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %></i></span>
 				<% end %>
 			<% end %>
-			<% else %>
-			<span class="mx-3 my-3 flex justify-center">
-				<%= link_to change_progress_path(task_id: task.id, remove: "remove"), class: "ml-2" ,data: {confirm: "להסיר את המשימה?"} do %>
-					<span class=""><i class="gg-close text-red-500" ></i></span>
-				<% end %>
-				<%= link_to change_progress_path(task_id: task.id), data: {confirm: "הראת למדריכים שסיימת את המשימה?"} do %>
-					<span class=""><i class="" id="i<%= task.id %><%= kid %>"></i></span>
-				<% end %>
-				</span>
-			<% end %>
-			<% else %>
-		<% end %>
+		</span>
 	</div>
 
 </div>
 
-<script type="text/javascript">
-	<% case status %>
-	<% when "in_progress", "to_approve" %>
-		$("#i<%= task.id %><%= kid %>").addClass('gg-check-o')
-		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-blue-100')
-	<% when "done" %>
-		$("#i<%= task.id %><%= kid %>").addClass('gg-time')
-		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-gray-200 text-gray-700')
-		$("#name<%= task.id %><%= kid %>").addClass('line-through')
-	<% when "approved" %>
-		$("#i<%= task.id %><%= kid %>").addClass('gg-check')
-		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-gray-200 text-gray-700')
-		$("#name<%= task.id %><%= kid %>").addClass('line-through')
-	<% when "general", "random", "suggested" %>
-		$("#i<%= task.id %><%= kid %>").append("<img src='/assets/add-task.svg' width='35' height='35'>")
-		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-blue-100')
+	<% when "suggested" %>
+	<div class="container w-full py-1 shadow my-2 rounded-lg z-50 bg-blue-100" >
+	<div class="w-full flex justify-between">
+		<span class="name mx-3 text-lg"><%= task.name %></span>
+		<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down open "  ></i><i class="gg-chevron-up close hidden" ></i></span>
+	</div>
+		<span class="mx-3 text-md"><%= User.find(kid).name %></span>
+		<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
+	<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
+		<span><%= task.description %></span>
+		<span class="flex items-center">
+			<%= link_to task, method: :delete, data: { confirm: 'למחוק את המשימה?' }   do %>
+				<%= image_tag "trash.svg", size:"25", class:"mx-3" %>
+			<% end %>
+			<%= link_to assign_task_path(group: group, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+				<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %> </i></span>
+			<% end %>
+
+		</span>
+	</div>
+
+</div>
 	<% end %>
+
+
+<script type="text/javascript">
+
 	$(document).ready(function() {
 		$('.description').hide();
-		$("#open<%= task.id %><%= kid %>").click(function(event) {
+		$(".open").click(function(event) {
 			$(this).hide()
-			$("#close<%= task.id %><%= kid %>").show()
-			$(this).parents(".container").children('.description').show();
+			$(this).parents("span").children('.close').show();
+			$(this).parents(".container").children('.description').show("fast");
 		});
-		$("#close<%= task.id %><%= kid %>").click(function(event) {
+		$(".close").click(function(event) {
 			$(this).hide()
-			$("#open<%= task.id %><%= kid %>").show()
-			$(this).parents(".container").children('.description').hide();
+			$(this).parents("span").children('.open').show();
+			$(this).parents(".container").children('.description').hide("fast");
 		});
 	});
 

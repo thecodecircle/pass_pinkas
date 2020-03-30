@@ -42,8 +42,17 @@
 				<%= render "task", { task: task, status: "suggested", kid: task.suggested_id, group: group.id } %>
 			<% end %>
 		</div>
-		<button  class="text-md sign_up_kid" value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך</button> <br>
-		<button  class="text-md sign_up_group_kid text-right"   value="<%= group.id %>" type="button" name="button">קישור להרשמת חניך שהוא מדריך רשום במערכת</button>
+		<div class="sign-ups-div">
+			<div class="open-group-sign-ups flex justify-between">
+				<button class=" bg-shmutz-blue text-white my-1 px-1 rounded-lg" type="button" name="button">קישורי הרשמה</button>
+				<button class=" bg-shmutz-blue text-white my-1 px-1 rounded-lg" type="button" name="button"><i class="gg-push-chevron-down"></i> </button>
+			</div>
+			<div class="group-sign-ups hidden">
+				<button  class="text-md sign_up_kid bg-shmutz-blue text-white my-1 px-1 rounded-lg" value="<%= group.id %>" type="button" name="button">הרשמת חניך ל<%= group.name %></button> <br>
+				<button  class="text-md sign_up_another_group bg-shmutz-blue text-white my-1 px-1 rounded-lg" value="<%= group.id %>" type="button" name="button">הרשמת מדריכה נוספת ל<%= group.name %></button> <br>
+				<button  class="text-md sign_up_group_kid text-right bg-shmutz-blue text-white my-1 px-1 rounded-lg"   value="<%= group.id %>" type="button" name="button">הרשמת חניך שהוא מדריך רשום במערכת ל<%= group.name %></button>
+			</div>
+		</div>
 	</div>
 
 <script type="text/javascript">
@@ -70,7 +79,7 @@
 <% end %>
 
 <div class="modal-bg hidden w-screen fixed top-0 left-0 bg-black-opacity-50  z-40 h-screen close-modal">
-	<div class="w-full h-full flex items-center close-modal">
+	<div class="w-full h-full flex items-center close-modal justify-center">
 		<div class="modal-body rounded-lg overflow-scroll overflow-y-scroll h-3/4 bg-white ltr ">
 			<div class=" bg-gray-100 modal-header h-full">
 				<div class="flex justify-between">
@@ -97,6 +106,9 @@ $(document).ready(function() {
 	$(".open_kids_tasks").click(function(event) {
 		$(this).parents(".container").children('.kids_tasks').toggle("fast")
 	});
+	$(".open-group-sign-ups").click(function(event) {
+		$(this).parents(".sign-ups-div").children('.group-sign-ups').toggle("fast")
+	});
 
 	$(".open-description").click(function(event) {
 		$(this).parents(".container").children('.description').toggle();
@@ -109,6 +121,10 @@ $(document).ready(function() {
 	});
 	$(".sign_up_group").click(function(event) {
 		var url = "<%= root_url %>users/sign_up?t=ecumv&i=" + $(this).val() + "&n=y"
+		share_sign_up(url)
+	});
+	$(".sign_up_another_group").click(function(event) {
+		var url = "<%= root_url %>users/sign_up?t=ecumv&i=" + $(this).val()
 		share_sign_up(url)
 	});
 	$(".sign_up_branch").click(function(event) {
@@ -127,7 +143,6 @@ $(document).ready(function() {
 		var url = "<%= root_url %>kid_guide?g=" + $(this).val()
 		share_sign_up(url)
 	});
-
 
 	function share_sign_up(url) {
 		/* Get the text field */

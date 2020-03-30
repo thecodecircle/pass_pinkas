@@ -73,8 +73,12 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
+			if %w(Movement Admin).include?(current_user.role)
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
+			format.json { head :no_content }
+			else
+				format.html { redirect_to root_path }
+			end
     end
   end
 
