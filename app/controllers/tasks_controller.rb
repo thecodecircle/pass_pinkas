@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    if %w(Admin Movement).include?(current_user.role)
+    if current_user.role == "admin"
       @tasks = Task.all
     else
       @tasks = Task.all.where(publicity: 1, status: 1)

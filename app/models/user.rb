@@ -21,6 +21,9 @@ class User < ApplicationRecord
 
   validates :username, presence: :true, uniqueness: { case_sensitive: false }
 
+  enum role: %i[admin user]
+  validates  :difficulty, inclusion: { in: Task.difficulties.keys }
+
   def email_required?
     false
   end
@@ -44,5 +47,5 @@ class User < ApplicationRecord
       end
     end
 
-	
+
 end
