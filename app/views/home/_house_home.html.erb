@@ -1,8 +1,7 @@
-<%= render "sign_up_links" %>
+<%# render "sign_up_links" %>
 <% @houses.each_with_index do |house, index|%>
 	<h1 class="w-full text-2xl flex justify-between mt-2">
 		<span class="mx-3 text-shmutz-blue brand"><%= house.name %></span>
-		<!-- <a href="<%= root_url %>users/sign_up?t=jbhl&i=<%= house.id %>"></a> -->
 		<br>
 		<span class="font-bold w-1/3"><span class=" text-white bg-shmutz-blue px-2 rounded-lg"> <%= house.score %> <span class="text-xl font-normal">נק'</span></span></span>
 		<div class="float-left w-1/5 flex justify-end ml-6">
@@ -10,39 +9,23 @@
 		</div>
 	</h1>
 	<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5">
-			<h1 class="text-xl text-shmutz-blue brand">משימות לאישור</h1>
-			<% @users_with_unapproved_tasks.each do |task| %>
-				<% task[1].each do |kid_id| %>
-					<% kid = User.find(kid_id) %>
-				<% if house.users.include?(kid) %>
-					<%= render "task", { task: Task.find(task[0]), status: "to_approve", kid: kid_id, house: house.id } %>
-				<% end %>
-				<% end %>
-			<% end %>
-			<h1 class="text-xl mt-5 text-shmutz-blue brand">חניכים וחניכות</h1>
-		<% house.users.each do |kid| %>
-			<div class="container w-full py-1 shadow my-2 rounded-lg bg-blue-100">
-				<div class="w-full flex justify-between">
-					<span class="name mx-3 text-lg"><%= kid.name %></span>
-					<span class="mx-3 open_users_tasks"><i class="gg-push-chevron-down" ></i></span>
-				</div>
-				<div class="mx-3 users_tasks hidden mt-2">
-					<strong>משימות</strong>
-					<ul>
-						<% kid.my_tasks.in_progress.each do |my_task| %>
-							<li><%= my_task.task.name %></li>
-						<% end %>
-					</ul>
-				</div>
-			</div>
+		<h1 class="text-xl text-shmutz-blue brand">המשימות שלנו</h1>
+		<% @my_tasks.each do |task| %>
+			<%= render "task", { task: task, status: "in_progress", kid: current_user.id, house: 99999 } %>
 		<% end %>
-		<h1 class="text-xl mt-5 text-shmutz-blue brand">משימות שחניכות הציעו</h1>
+
+		<h1 class="text-xl mt-5 text-shmutz-blue brand">משימות שאתגרו אותנו</h1>
 		<div class="">
-			<% Task.where(status: 0, publicity: 0).where(suggested_id: house.users).each do |task| %>
+			<% @suggested_tasks.where(suggested_id: house.users).each do |task| %>
 				<%= render "task", { task: task, status: "suggested", kid: task.suggested_id, house: house.id } %>
 			<% end %>
 		</div>
-		<div class="sign-ups-div">
+		<h1 class="text-xl text-shmutz-blue brand">משימות שסיימנו</h1>
+
+		<% @done_tasks.each do |task| %>
+			<%= render "task", { task: task, status: "done", kid: current_user.id, house: 99999 } %>
+		<% end %>
+		<!-- <div class="sign-ups-div">
 			<div class="open-house-sign-ups flex justify-between">
 				<button class=" bg-shmutz-blue text-white my-1 px-1 rounded-lg" type="button" name="button">קישורי הרשמה</button>
 				<button class=" bg-shmutz-blue text-white my-1 px-1 rounded-lg" type="button" name="button"><i class="gg-push-chevron-down"></i> </button>
@@ -52,30 +35,24 @@
 				<button  class="text-md sign_up_another_house bg-shmutz-blue text-white my-1 px-1 rounded-lg" value="<%= house.id %>" type="button" name="button">הרשמת מדריכה נוספת ל<%= house.name %></button> <br>
 				<button  class="text-md sign_up_house_kid text-right bg-shmutz-blue text-white my-1 px-1 rounded-lg"   value="<%= house.id %>" type="button" name="button">הרשמת חניך שהוא מדריך רשום במערכת ל<%= house.name %></button>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#button-<%= house.id %>").click(function(event) {
-			$('.modal-content').html("<%= j (render partial: 'add_task_to_house', locals: { general_tasks: @general_tasks, house: house }) %>")
-			$(".modal-bg").show("slow")
-		});
-		// $("#close-<%= house.id %>").click(function(event) {
-		// 	$(".modal-bg").hide("slow")
-		// });
-		// $(".open-modal").click(function(event) {
-		// 	var house_id = $(this).val()
-		// 	console.log("open");
-		// 	$('.modal-content').html("<%= j (render partial: 'add_task_to_house', locals: { general_tasks: @general_tasks, house: house }) %>")
-		//
-		// 	// $('.modal-content').css('top', 'value');
-		// 	$(".modal-bg").show("slow")
-		//
-		// });
 
-	});
-</script>
+
+<% end %>
+<% @families.each do |family| %>
+<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5 mt-3">
+	<h1 class="text-xl text-shmutz-blue brand"><%= family.name %></h1>
+	<% family.houses.where.not(id: @houses.ids).each do |house| %>
+	<div class="flex justify-between">
+		<span><%= house.name %></span>
+		<button value="<%= house.id %>" class="open-modal bg-shmutz-blue text-white rounded-lg px-2">לאתגר אותם!</button>
+	</div>
+	<% end %>
+
+</div>
+
 <% end %>
 
 <div class="modal-bg hidden w-screen fixed top-0 left-0 bg-black-opacity-50  z-40 h-screen close-modal">
@@ -87,7 +64,8 @@
 					<i class="gg-close-o m-3 close-modal"></i>
 				</div>
 				<div class="modal-content ">
-
+					<button id="new-task" class=" bg-shmutz-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"></button>
+					<button id="task-index" class=" bg-shmutz-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"></button>
 				</div>
 			</div>
 		</div>
@@ -97,7 +75,12 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-
+	$(".open-modal").click(function(event) {
+		house_id = $(this).val()
+		$("#new-task").html("<a href='/tasks/new?private_house_id=" + house_id + "'>משימה חדשה</a>")
+		$("#task-index").html("<a href='/tasks?private_house_id=" + house_id + "'>ממאגר המשימות</a>")
+		$(".modal-bg").show("slow")
+	});
 	$(".close-modal").click(function(event) {
 		if (event.target == this){
 			$(".modal-bg").hide("slow")

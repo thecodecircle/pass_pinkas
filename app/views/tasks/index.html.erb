@@ -1,4 +1,5 @@
 
+
 <% difficulties = {
     easy: "קל",
     medium: "בינוני",
@@ -85,20 +86,18 @@
 
 <%= link_to 'משימה חדשה', new_task_path if current_user.role == "Admin" %>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/b-html5-1.6.1/fh-3.1.6/r-2.2.3/sp-1.0.1/datatables.min.css"/>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/b-html5-1.6.1/fh-3.1.6/r-2.2.3/sp-1.0.1/datatables.min.js"></script>
-
 <script type="text/javascript">
-$(document).ready( function () {
-  $('#tasks_table').DataTable({
-    responsive: true,
-		 "order": [[ 1, "asc" ]],
-		 "paging": false,
-    language: {
-      url: "/he_he.lang",
-      searchPlaceholder: "חיפוש חופשי",
-      },
-    },
-  );
-} );
+	$(document).ready( function () {
+
+	  $('#tasks_table').DataTable({
+	    responsive: true,
+			 "order": [[ 1, "asc" ]],
+			 "paging": false,
+	    language: {
+	      url: "/he_he.lang",
+	      searchPlaceholder: "חיפוש חופשי",
+	      },
+	    },
+	  );
+	} );
 </script>

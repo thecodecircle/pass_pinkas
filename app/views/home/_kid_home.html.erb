@@ -6,7 +6,31 @@
 	<% end %>
 </div>
 <br>
-<%= @house_score %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="rounded-lg bg-gray-100 shadow px-4 py-4">
 	<h1 class="text-xl text-shmutz-blue brand">משימות תנועתיות</h1>
 	<% @random_tasks.each do |task| %>
@@ -19,8 +43,5 @@
 
 	<% @done_tasks.each do |task| %>
 		<%= render "task", { task: task, status: "done", kid: current_user.id, house: 99999 } %>
-	<% end %>
-	<% @approved_tasks.each do |task| %>
-		<%= render "task", { task: task, status: "approved", kid: current_user.id, house: 99999 } %>
 	<% end %>
 </div>

@@ -84,15 +84,15 @@ class TasksController < ApplicationController
 
   def assign_task
     @task = Task.find(params[:task])
-    if params[:house].present?
-      @house = House.find(params[:house])
-      @house.users.each do |k|
-        k.tasks << @task if k.tasks.exclude?(@task)
-      end
-      @task.approved!
-    else
+    # if params[:house].present?
+    #   @house = House.find(params[:house])
+    #   @house.users.each do |k|
+    #     k.tasks << @task if k.tasks.exclude?(@task)
+    #   end
+    #   @task.approved!
+    # else
       current_user.tasks << @task if current_user.tasks.exclude?(@task)
-    end
+    # end
     redirect_to root_path
   end
 

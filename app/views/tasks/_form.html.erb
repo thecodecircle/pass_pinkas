@@ -29,13 +29,13 @@
                 collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
     <%= f.input :age, 	label: "גילאים", as: :radio_buttons,
                 collection: ages, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
-    <% unless current_user.role == "Kid" || params[:private_house_id].present? %>
+    <%# unless  params[:private_house_id].present? %>
       <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", collection: Task.publicities.keys,
-      selected: "general", wrapper_html: {class: "hidden"} %>
-    <% else %>
-      <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
+      selected: "personal", wrapper_html: {class: "hidden"} %>
+    <%# else %>
+      <%# f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
       collection: publicities, label_method: :second, value_method: :first, input_html: {class: "m-2"} %>
-    <% end %>
+    <%# end %>
 
     <% if %w(Admin Movement).include?(current_user.role) %>
       <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "approved", wrapper_html: {class: "hidden"} %>

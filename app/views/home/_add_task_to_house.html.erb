@@ -1,6 +1,6 @@
 <h1 class="text-xl mr-3"><%= house.name %></h1>
 	<div class="rounded-lg shadow px-4 py-4">
-		<% general_tasks.each do |task| %>
+		<% @random_tasks.each do |task| %>
 		<%= render "task", { task: task, status: "general", kid: 234567, house: house.id } %>
 		<% end %>
 		<button class="open-modal bg-shmutz-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
