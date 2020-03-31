@@ -44,23 +44,5 @@ class User < ApplicationRecord
       end
     end
 
-	def is_guide(houseable)
-	  if my_houses.find_by(my_houseable_id: houseable.id, my_houseable_type: houseable.class.name).role == "guide"
-			return true
-		else
-			return false
-		end
-	end
-
-	def role
-    return "Admin" if my_houses.empty?
-		return "Movement" if my_houses.pluck(:my_houseable_type).uniq.include?("Movement")
-		return "Region" if my_houses.pluck(:my_houseable_type).uniq.include?("Region")
-		return "Family" if my_houses.pluck(:my_houseable_type).uniq.include?("Family")
-		if houses.map {|g| is_guide(g)}.include?(true)
-			return "House" if my_houses.pluck(:my_houseable_type).uniq.include?("House")
-		else
-			return "Kid"
-		end
-	end
+	
 end
