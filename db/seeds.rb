@@ -2,9 +2,9 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-unless Admin.find_by(email: "codecircle13@gmail.com").present?
-  Admin.create(email: "codecircle13@gmail.com", password: "mered1913")
-  puts "Inserted Admin"
+unless User.find_by(email: "codecircle13@gmail.com").present?
+  User.create(email: "codecircle13@gmail.com", password: "mered1913")
+  puts "Inserted User"
   end
 
 require 'csv'
