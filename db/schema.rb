@@ -10,41 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_132045) do
+ActiveRecord::Schema.define(version: 2020_03_31_135849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "branches", force: :cascade do |t|
+  create_table "families", force: :cascade do |t|
     t.string "name"
     t.integer "score"
-    t.bigint "region_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["region_id"], name: "index_branches_on_region_id"
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "houses", force: :cascade do |t|
     t.string "name"
     t.integer "score"
-    t.bigint "branch_id", null: false
+    t.bigint "family_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["branch_id"], name: "index_groups_on_branch_id"
+    t.index ["family_id"], name: "index_houses_on_family_id"
   end
 
-  create_table "movements", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "my_groups", force: :cascade do |t|
+  create_table "houses_users", id: false, force: :cascade do |t|
+    t.bigint "house_id", null: false
     t.bigint "user_id", null: false
-    t.integer "role"
-    t.bigint "my_groupable_id"
-    t.string "my_groupable_type"
-    t.index ["user_id"], name: "index_my_groups_on_user_id"
   end
 
   create_table "my_tasks", force: :cascade do |t|
@@ -55,15 +44,6 @@ ActiveRecord::Schema.define(version: 2020_03_29_132045) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_my_tasks_on_task_id"
     t.index ["user_id"], name: "index_my_tasks_on_user_id"
-  end
-
-  create_table "regions", force: :cascade do |t|
-    t.string "name"
-    t.integer "score"
-    t.bigint "movement_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["movement_id"], name: "index_regions_on_movement_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -93,10 +73,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_132045) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "branches", "regions"
-  add_foreign_key "groups", "branches"
-  add_foreign_key "my_groups", "users"
+  add_foreign_key "houses", "families"
   add_foreign_key "my_tasks", "tasks"
   add_foreign_key "my_tasks", "users"
-  add_foreign_key "regions", "movements"
 end
