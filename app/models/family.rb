@@ -4,7 +4,7 @@ class Family < ApplicationRecord
   validates_associated  :houses
 
   has_many              :users, through: :houses, as: :my_groupable, dependent: :destroy
-  has_many              :tasks through: users
+  has_many              :tasks, through: users
 
   validates             :name, presence: true
   validates             :score, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
