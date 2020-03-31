@@ -16,7 +16,7 @@ class Task < ApplicationRecord
   enum difficulty: %i[easy medium hard impossible]
   validates  :difficulty, inclusion: { in: Task.difficulties.keys }
 
-  enum age: %i[gutz tzabar goob]
+  enum age: %i[toddler small big grownup]
   validates  :age, inclusion: { in: Task.ages.keys }
 
   validates             :name, presence: true
