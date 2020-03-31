@@ -11,22 +11,22 @@
 	</h1>
 	<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5">
 			<h1 class="text-xl text-shmutz-blue brand">משימות לאישור</h1>
-			<% @kids_with_unapproved_tasks.each do |task| %>
+			<% @users_with_unapproved_tasks.each do |task| %>
 				<% task[1].each do |kid_id| %>
 					<% kid = User.find(kid_id) %>
-				<% if house.kids.include?(kid) %>
+				<% if house.users.include?(kid) %>
 					<%= render "task", { task: Task.find(task[0]), status: "to_approve", kid: kid_id, house: house.id } %>
 				<% end %>
 				<% end %>
 			<% end %>
 			<h1 class="text-xl mt-5 text-shmutz-blue brand">חניכים וחניכות</h1>
-		<% house.kids.each do |kid| %>
+		<% house.users.each do |kid| %>
 			<div class="container w-full py-1 shadow my-2 rounded-lg bg-blue-100">
 				<div class="w-full flex justify-between">
 					<span class="name mx-3 text-lg"><%= kid.name %></span>
-					<span class="mx-3 open_kids_tasks"><i class="gg-push-chevron-down" ></i></span>
+					<span class="mx-3 open_users_tasks"><i class="gg-push-chevron-down" ></i></span>
 				</div>
-				<div class="mx-3 kids_tasks hidden mt-2">
+				<div class="mx-3 users_tasks hidden mt-2">
 					<strong>משימות</strong>
 					<ul>
 						<% kid.my_tasks.in_progress.each do |my_task| %>
@@ -38,7 +38,7 @@
 		<% end %>
 		<h1 class="text-xl mt-5 text-shmutz-blue brand">משימות שחניכות הציעו</h1>
 		<div class="">
-			<% Task.where(status: 0, publicity: 0).where(suggested_id: house.kids).each do |task| %>
+			<% Task.where(status: 0, publicity: 0).where(suggested_id: house.users).each do |task| %>
 				<%= render "task", { task: task, status: "suggested", kid: task.suggested_id, house: house.id } %>
 			<% end %>
 		</div>
@@ -103,8 +103,8 @@ $(document).ready(function() {
 			$(".modal-bg").hide("slow")
 		}
 	});
-	$(".open_kids_tasks").click(function(event) {
-		$(this).parents(".container").children('.kids_tasks').toggle("fast")
+	$(".open_users_tasks").click(function(event) {
+		$(this).parents(".container").children('.users_tasks').toggle("fast")
 	});
 	$(".open-house-sign-ups").click(function(event) {
 		$(this).parents(".sign-ups-div").children('.house-sign-ups').toggle("fast")

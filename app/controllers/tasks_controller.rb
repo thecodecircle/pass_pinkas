@@ -86,7 +86,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:task])
     if params[:house].present?
       @house = House.find(params[:house])
-      @house.kids.each do |k|
+      @house.users.each do |k|
         k.tasks << @task if k.tasks.exclude?(@task)
       end
       @task.approved!
