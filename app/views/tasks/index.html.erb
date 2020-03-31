@@ -63,14 +63,14 @@
 					</td>
           <td><%= publicities[task.publicity.to_sym] %></td>
           <td>
-						<%= link_to "<i class='gg-push-chevron-down-o m-auto'></i>".html_safe, assign_task_path(group: current_user.groups.last, task: task.id) , data: { confirm: 'מוכנים לעוד משימה?' }%>
+						<%= link_to "<i class='gg-push-chevron-down-o m-auto'></i>".html_safe, assign_task_path(house: current_user.houses.last, task: task.id) , data: { confirm: 'מוכנים לעוד משימה?' }%>
 					</td>
 					<td>
 						<%= link_to "<i class='gg-pen move-pen-edit m-auto lg:ml-24 ml-16 text-gray-700'></i>".html_safe, edit_task_path(task)%>
 						<%= link_to "<i class='gg-trash m-auto text-red-700'></i>".html_safe, task, method: :delete, data: { confirm: 'למחוק?' } %>
 					</td>
 				<% else %>
-					<td><%= link_to "<i class='gg-push-chevron-down-o m-auto'></i>".html_safe, assign_task_path(group: current_user.groups.last, task: task.id) ,class: "mb-10", data: { confirm: 'מוכנים לעוד משימה?' }%></td>
+					<td><%= link_to "<i class='gg-push-chevron-down-o m-auto'></i>".html_safe, assign_task_path(house: current_user.houses.last, task: task.id) ,class: "mb-10", data: { confirm: 'מוכנים לעוד משימה?' }%></td>
         <% end %>
       </tr>
     <% end %>

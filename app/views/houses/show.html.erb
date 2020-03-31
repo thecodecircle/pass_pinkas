@@ -2,24 +2,24 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @group.name %>
+  <%= @house.name %>
 </p>
 
 <p>
   <strong>Score:</strong>
-  <%= @group.score %>
+  <%= @house.score %>
 </p>
 
 <p>
-  <strong>Branch:</strong>
-  <%= @group.branch_id %>
+  <strong>Family:</strong>
+  <%= @house.family_id %>
 </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to 'Edit', edit_house_path(@house) %> |
+<%= link_to 'Back', houses_path %>
 
-<!-- <a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=ecumv&i=<%= @group.id %>">קישור להרשמת מדריך</a> -->
-<!-- <a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=jbhl&i=<%= @group.id %>">קישור להרשמת חניך</a> -->
+<!-- <a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=ecumv&i=<%= @house.id %>">קישור להרשמת מדריך</a> -->
+<!-- <a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=jbhl&i=<%= @house.id %>">קישור להרשמת חניך</a> -->
 
-<a href="<%= root_url %>users/sign_up?t=ecumv&i=<%= @group.id %>">קישור להרשמת מדריך</a>
-<a href="<%= root_url %>users/sign_up?t=jbhl&i=<%= @group.id %>">קישור להרשמת חניך</a>
+<a href="<%= root_url %>users/sign_up?t=ecumv&i=<%= @house.id %>">קישור להרשמת מדריך</a>
+<a href="<%= root_url %>users/sign_up?t=jbhl&i=<%= @house.id %>">קישור להרשמת חניך</a>

@@ -2,7 +2,7 @@ class House < ApplicationRecord
   belongs_to            :family
   validates             :family, presence: true
 
-  # validates_associated  :my_groups
+  # validates_associated  :my_houses
   has_many              :house_users
   has_many              :users, through: :house_users, dependent: :destroy
   has_many              :tasks, through: :users

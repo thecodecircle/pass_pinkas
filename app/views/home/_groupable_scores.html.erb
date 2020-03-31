@@ -1,31 +1,31 @@
-<% groupables.each_with_index do |groupable, index| %>
-	<div class="flex justify-between border" id="groupable<%= groupable.class %><%= groupable.id %>">
+<% houseables.each_with_index do |houseable, index| %>
+	<div class="flex justify-between border" id="houseable<%= houseable.class %><%= houseable.id %>">
 		<% if index == 0 %>
 			<span class="mx-5 text-2xl font-bold"><%= index + 1 %></span>
-			<span class="mx-5 text-2xl font-bold"><%= groupable.name %></span>
-			<span class="mx-5 text-2xl font-bold"><%= groupable.score %></span>
+			<span class="mx-5 text-2xl font-bold"><%= houseable.name %></span>
+			<span class="mx-5 text-2xl font-bold"><%= houseable.score %></span>
 		<% else %>
 			<span class="mx-5 text-xl"><%= index + 1 %></span>
-			<span class="mx-5 text-xl"><%= groupable.name %></span>
-			<span class="mx-5 text-xl"><%= groupable.score %></span>
+			<span class="mx-5 text-xl"><%= houseable.name %></span>
+			<span class="mx-5 text-xl"><%= houseable.score %></span>
 		<% end %>
 	</div>
-	<% if groupable.class.name == "Group" %>
-		<% if current_user.groups.include?(groupable) %>
+	<% if houseable.class.name == "House" %>
+		<% if current_user.houses.include?(houseable) %>
 		  <script type="text/javascript">
-				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-my-groups')
+				$("#houseable<%= houseable.class %><%= houseable.id %>").addClass('bg-my-houses')
 		  </script>
 		<% end %>
-	<% elsif groupable.class.name == "Branch" %>
-		<% if current_user.branches.include?(groupable) || current_user.groups.map{|g| g.branch}.include?(groupable) %>
+	<% elsif houseable.class.name == "Family" %>
+		<% if current_user.families.include?(houseable) || current_user.houses.map{|g| g.family}.include?(houseable) %>
 			<script type="text/javascript">
-				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-my-groups')
+				$("#houseable<%= houseable.class %><%= houseable.id %>").addClass('bg-my-houses')
 			</script>
 		<% end %>
-	<% elsif groupable.class.name == "Region" %>
-		<% if current_user.branches.include?(groupable) || current_user.groups.map{|g| g.region}.include?(groupable) ||  current_user.regions.include?(groupable) %>
+	<% elsif houseable.class.name == "Region" %>
+		<% if current_user.families.include?(houseable) || current_user.houses.map{|g| g.region}.include?(houseable) ||  current_user.regions.include?(houseable) %>
 			<script type="text/javascript">
-				$("#groupable<%= groupable.class %><%= groupable.id %>").addClass('bg-my-groups')
+				$("#houseable<%= houseable.class %><%= houseable.id %>").addClass('bg-my-houses')
 			</script>
 		<% end %>
 	<% end %>

@@ -35,13 +35,13 @@ class TasksController < ApplicationController
       if @task.save
         puts "****************************************"
         puts "task: #{@task.id}"
-        if params[:private_group_id].present? && @task.personal?
+        if params[:private_house_id].present? && @task.personal?
           format.html {
             puts "Guide wants personal task"
             puts "before - task is: #{@task.status}"
             @task.approved!
             puts "after - task is: #{@task.status}"
-            redirect_to assign_task_path(task: @task.id, group: params[:private_group_id])
+            redirect_to assign_task_path(task: @task.id, house: params[:private_house_id])
           }
         else
           format.html { redirect_to root_path }
@@ -84,9 +84,9 @@ class TasksController < ApplicationController
 
   def assign_task
     @task = Task.find(params[:task])
-    if params[:group].present?
-      @group = Group.find(params[:group])
-      @group.kids.each do |k|
+    if params[:house].present?
+      @house = House.find(params[:house])
+      @house.kids.each do |k|
         k.tasks << @task if k.tasks.exclude?(@task)
       end
       @task.approved!
@@ -109,11 +109,11 @@ class TasksController < ApplicationController
 			else
 				my_task.progress = "approved"
 				kid.update(score: kid.score + my_task.task.score)
-				kid.groups.where("my_groups.role = 0").each do |g|
+				kid.houses.where("my_houses.role = 0").each do |g|
 					g.update(score: g.score + my_task.task.score)
-					g.branch.update(score: g.branch.score + my_task.task.score)
-					g.branch.region.update(score: g.branch.region.score + my_task.task.score)
-					# g.branch.region.movement.update(score: g.branch.region.movement.score + my_task.task.score)
+					g.family.update(score: g.family.score + my_task.task.score)
+					g.family.region.update(score: g.family.region.score + my_task.task.score)
+					# g.family.region.movement.update(score: g.family.region.movement.score + my_task.task.score)
 				end
 			end
     else

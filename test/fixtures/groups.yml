@@ -3,9 +3,9 @@
 one:
   name: MyString
   score: 
-  branch: one
+  family: one
 
 two:
   name: MyString
   score: 
-  branch: two
+  family: two

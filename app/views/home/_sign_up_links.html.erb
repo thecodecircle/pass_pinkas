@@ -1,38 +1,38 @@
-<% if current_user.role != "Group"%>
+<% if current_user.role != "House"%>
 	<button  id="open_links" class="text-md mb-2 bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8">
 		קישורים להרשמה
 	</button>
 <% end %>
 	<div id="links" class="hidden">
 		<% case current_user.role %>
-		<% when "Branch" %>
+		<% when "Family" %>
 		קישורים להרשמת מדריכות
-		<% @branches.each do |branch| %>
-		<li><button  class="text-md mb-2 sign_up_group bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= branch.id %>">
-			מדריכות מ<%= branch.name %></button></li>
+		<% @families.each do |family| %>
+		<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
+			מדריכות מ<%= family.name %></button></li>
 			<% end %>
 			<% when "Region" %>
 			קישורים להרשמת מדריכות
-			<% @branches.each do |branch| %>
-			<li><button  class="text-md mb-2 sign_up_group bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= branch.id %>">
-				מדריכות מ<%= branch.name %></button></li>
+			<% @families.each do |family| %>
+			<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
+				מדריכות מ<%= family.name %></button></li>
 				<% end %>
 				קישורים להרשמת רכזות בתים\קנים
 				<% @regions.each do |region| %>
-				<li><button  class="text-md mb-2 sign_up_branch bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= region.id %>">
+				<li><button  class="text-md mb-2 sign_up_family bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= region.id %>">
 					רכזות בתים\קנים מ<%= region.name %>
 				</button></li>
 				<% end %>
 				<% when "Movement" %>
 				קישורים להרשמת מדריכות
-				<% @branches.each do |branch| %>
-				<li><button  class="text-md mb-2 sign_up_group bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= branch.id %>">
-					מדריכות מ<%= branch.name %>
+				<% @families.each do |family| %>
+				<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
+					מדריכות מ<%= family.name %>
 				</button></li>
 				<% end %>
 				קישורים להרשמת רכזות בתים\קנים
 				<% @regions.each do |region| %>
-				<li><button  class="text-md mb-2 sign_up_branch bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= region.id %>">
+				<li><button  class="text-md mb-2 sign_up_family bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= region.id %>">
 					רכזות בתים\קנים מ<%= region.name %>
 				</button></li>
 				<% end %>
@@ -44,14 +44,14 @@
 				<% end %>
 				<% when "Admin" %>
 				קישורים להרשמת מדריכות
-				<% @branches.each do |branch| %>
-				<li><button  class="text-md mb-2 sign_up_group bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= branch.id %>">
-					מדריכות מ<%= branch.name %>
+				<% @families.each do |family| %>
+				<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
+					מדריכות מ<%= family.name %>
 				</button></li>
 				<% end %>
 				קישורים להרשמת רכזות בתים\קנים
 				<% @regions.each do |region| %>
-				<li><button  class="text-md mb-2 sign_up_branch bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= region.id %>">
+				<li><button  class="text-md mb-2 sign_up_family bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= region.id %>">
 					רכזות בתים\קנים מ<%= region.name %>
 				</button></li>
 				<% end %>

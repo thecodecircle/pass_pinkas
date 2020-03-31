@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Branches</h1>
+<h1>Families</h1>
 
 <table>
   <thead>
@@ -13,14 +13,14 @@
   </thead>
 
   <tbody>
-    <% @branches.each do |branch| %>
+    <% @families.each do |family| %>
       <tr>
-        <td><%= branch.name %></td>
-        <td><%= branch.score %></td>
-        <td><%= branch.region_id %></td>
-        <td><%= link_to 'Show', branch %></td>
-        <td><%= link_to 'Edit', edit_branch_path(branch) %></td>
-        <td><%= link_to 'Destroy', branch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= family.name %></td>
+        <td><%= family.score %></td>
+        <td><%= family.region_id %></td>
+        <td><%= link_to 'Show', family %></td>
+        <td><%= link_to 'Edit', edit_family_path(family) %></td>
+        <td><%= link_to 'Destroy', family, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Branch', new_branch_path %>
+<%= link_to 'New Family', new_family_path %>

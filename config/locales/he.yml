@@ -5,8 +5,8 @@ he:
     new:
       movement: "שם התנועה"
       region: "שם האזור"
-      branch: "שם הקן"
-      group: "שם הקבוצה"
+      family: "שם הקן"
+      house: "שם הקבוצה"
   helpers:
     select:
       prompt: נא לבחור
@@ -28,8 +28,8 @@ he:
       user: משתמש
       movement: תנועה
       region: אזור
-      branch: קן
-      group: קבוצה
+      family: קן
+      house: קבוצה
       task: משימה
     errors:
       messages:

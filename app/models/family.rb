@@ -3,7 +3,7 @@ class Family < ApplicationRecord
   has_many              :houses, dependent: :destroy
   validates_associated  :houses
 
-  has_many              :users, through: :houses, as: :my_groupable, dependent: :destroy
+  has_many              :users, through: :houses, as: :my_houseable, dependent: :destroy
   has_many              :tasks, through: :users
 
   validates             :name, presence: true

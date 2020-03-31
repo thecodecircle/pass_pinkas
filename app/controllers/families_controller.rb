@@ -1,74 +1,74 @@
-class BranchesController < ApplicationController
-  before_action :set_branch, only: [:show, :edit, :update, :destroy]
+class FamiliesController < ApplicationController
+  before_action :set_family, only: [:show, :edit, :update, :destroy]
 
-  # GET /branches
-  # GET /branches.json
+  # GET /families
+  # GET /families.json
   def index
-    @branches = Branch.all
+    @families = Family.all
   end
 
-  # GET /branches/1
-  # GET /branches/1.json
+  # GET /families/1
+  # GET /families/1.json
   def show
   end
 
-  # GET /branches/new
+  # GET /families/new
   def new
-    @branch = Branch.new
+    @family = Family.new
   end
 
-  # GET /branches/1/edit
+  # GET /families/1/edit
   def edit
   end
 
-  # POST /branches
-  # POST /branches.json
+  # POST /families
+  # POST /families.json
   def create
-    @branch = Branch.new(branch_params)
+    @family = Family.new(family_params)
 
     respond_to do |format|
-      if @branch.save
-        format.html { redirect_to @branch, notice: 'Branch was successfully created.' }
-        format.json { render :show, status: :created, location: @branch }
+      if @family.save
+        format.html { redirect_to @family, notice: 'Family was successfully created.' }
+        format.json { render :show, status: :created, location: @family }
       else
         format.html { render :new }
-        format.json { render json: @branch.errors, status: :unprocessable_entity }
+        format.json { render json: @family.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /branches/1
-  # PATCH/PUT /branches/1.json
+  # PATCH/PUT /families/1
+  # PATCH/PUT /families/1.json
   def update
     respond_to do |format|
-      if @branch.update(branch_params)
-        format.html { redirect_to @branch, notice: 'Branch was successfully updated.' }
-        format.json { render :show, status: :ok, location: @branch }
+      if @family.update(family_params)
+        format.html { redirect_to @family, notice: 'Family was successfully updated.' }
+        format.json { render :show, status: :ok, location: @family }
       else
         format.html { render :edit }
-        format.json { render json: @branch.errors, status: :unprocessable_entity }
+        format.json { render json: @family.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /branches/1
-  # DELETE /branches/1.json
+  # DELETE /families/1
+  # DELETE /families/1.json
   def destroy
-    @branch.destroy
+    @family.destroy
     respond_to do |format|
-      format.html { redirect_to branches_url, notice: 'Branch was successfully destroyed.' }
+      format.html { redirect_to families_url, notice: 'Family was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_branch
-      @branch = Branch.find(params[:id])
+    def set_family
+      @family = Family.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def branch_params
-      params.require(:branch).permit(:name, :score, :region_id)
+    def family_params
+      params.require(:family).permit(:name, :score, :region_id)
     end
 end

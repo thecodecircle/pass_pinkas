@@ -72,7 +72,7 @@
 		<span><%= task.description %></span>
 		<span class="mx-3 my-3 flex justify-center">
 			<% if current_user.role != "Kid" %>
-				<%= link_to assign_task_path(group: group, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+				<%= link_to assign_task_path(house: house, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
 					<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %></i></span>
 				<% end %>
 			<% else %>
@@ -99,7 +99,7 @@
 			<%= link_to task, method: :delete, data: { confirm: 'למחוק את המשימה?' }   do %>
 				<%= image_tag "trash.svg", size:"25", class:"mx-3" %>
 			<% end %>
-			<%= link_to assign_task_path(group: group, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+			<%= link_to assign_task_path(house: house, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
 				<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %> </i></span>
 			<% end %>
 

@@ -46,25 +46,25 @@
     </div>
 
     <%= hidden_field_tag(:type, params[:t]) %>
-    <%= hidden_field_tag(:groupable_id, params[:i]) %>
+    <%= hidden_field_tag(:houseable_id, params[:i]) %>
     <%= hidden_field_tag(:role, params[:r]) %>
     <%= hidden_field_tag(:new, params[:n]) %>
 
     <% if params[:t] != "jbhl" && params[:n].present? %>
       <div class="mb-6">
-        <%= f.label :groupable_name, class:"label" do %>
+        <%= f.label :houseable_name, class:"label" do %>
           <% case params[:t] %>
           <% when "bugv" %>
             <%= I18n.t("user.new.movement") %>
           <% when "tzur" %>
             <%= I18n.t("user.new.region") %>
           <% when "ei" %>
-            <%= I18n.t("user.new.branch") %>
+            <%= I18n.t("user.new.family") %>
           <% when "ecumv" %>
-            <%= I18n.t("user.new.group") %>
+            <%= I18n.t("user.new.house") %>
           <% end %>
         <% end%>
-        <%= text_field_tag(:groupable_name, nil, class:"input") %>
+        <%= text_field_tag(:houseable_name, nil, class:"input") %>
       </div>
     <% end %>
 

@@ -1,4 +1,4 @@
-<div class="container w-full py-1 shadow my-2 rounded-lg z-50" id="con<%= task.id %><%= kid %><%= group %>">
+<div class="container w-full py-1 shadow my-2 rounded-lg z-50" id="con<%= task.id %><%= kid %><%= house %>">
 	<div class="w-full flex justify-between">
 		<span class="name mx-3 text-lg" id="name<%= task.id %><%= kid %>"><%= task.name %></span>
 		<% if status == "to_approve" %>
@@ -28,7 +28,7 @@
 			<% if %w(general random suggested).include?(status) %>
 				<!-- צריך לסדר פה את שיוך הקבוצה -->
 				<% if current_user.role != "Kid" %>
-					<%= link_to assign_task_path(group: group, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+					<%= link_to assign_task_path(house: house, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
 						<span class="mx-6"><i class="" id="i<%= task.id %><%= kid %>"></i></span>
 					<% end %>
 				<% else %>
@@ -81,18 +81,18 @@
 	<% case status %>
 	<% when "in_progress", "to_approve" %>
 		$("#i<%= task.id %><%= kid %>").addClass('gg-check-o')
-		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-blue-100')
+		$("#con<%= task.id %><%= kid %><%= house %>").addClass('bg-blue-100')
 	<% when "done" %>
 		$("#i<%= task.id %><%= kid %>").addClass('gg-time')
-		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-gray-200 text-gray-700')
+		$("#con<%= task.id %><%= kid %><%= house %>").addClass('bg-gray-200 text-gray-700')
 		$("#name<%= task.id %><%= kid %>").addClass('line-through')
 	<% when "approved" %>
 		$("#i<%= task.id %><%= kid %>").addClass('gg-check')
-		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-gray-200 text-gray-700')
+		$("#con<%= task.id %><%= kid %><%= house %>").addClass('bg-gray-200 text-gray-700')
 		$("#name<%= task.id %><%= kid %>").addClass('line-through')
 	<% when "general", "random", "suggested" %>
 		$("#i<%= task.id %><%= kid %>").append("<img src='/assets/add-task.svg' width='35' height='35'>")
-		$("#con<%= task.id %><%= kid %><%= group %>").addClass('bg-blue-100')
+		$("#con<%= task.id %><%= kid %><%= house %>").addClass('bg-blue-100')
 	<% end %>
 	$(document).ready(function() {
 		$('.description').hide();

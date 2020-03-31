@@ -1,74 +1,74 @@
-class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+class HousesController < ApplicationController
+  before_action :set_house, only: [:show, :edit, :update, :destroy]
 
-  # GET /groups
-  # GET /groups.json
+  # GET /houses
+  # GET /houses.json
   def index
-    @groups = Group.all
+    @houses = House.all
   end
 
-  # GET /groups/1
-  # GET /groups/1.json
+  # GET /houses/1
+  # GET /houses/1.json
   def show
   end
 
-  # GET /groups/new
+  # GET /houses/new
   def new
-    @group = Group.new
+    @house = House.new
   end
 
-  # GET /groups/1/edit
+  # GET /houses/1/edit
   def edit
   end
 
-  # POST /groups
-  # POST /groups.json
+  # POST /houses
+  # POST /houses.json
   def create
-    @group = Group.new(group_params)
+    @house = House.new(house_params)
 
     respond_to do |format|
-      if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render :show, status: :created, location: @group }
+      if @house.save
+        format.html { redirect_to @house, notice: 'House was successfully created.' }
+        format.json { render :show, status: :created, location: @house }
       else
         format.html { render :new }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
+        format.json { render json: @house.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /groups/1
-  # PATCH/PUT /groups/1.json
+  # PATCH/PUT /houses/1
+  # PATCH/PUT /houses/1.json
   def update
     respond_to do |format|
-      if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
+      if @house.update(house_params)
+        format.html { redirect_to @house, notice: 'House was successfully updated.' }
+        format.json { render :show, status: :ok, location: @house }
       else
         format.html { render :edit }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
+        format.json { render json: @house.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.json
+  # DELETE /houses/1
+  # DELETE /houses/1.json
   def destroy
-    @group.destroy
+    @house.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to houses_url, notice: 'House was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_group
-      @group = Group.find(params[:id])
+    def set_house
+      @house = House.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def group_params
-      params.require(:group).permit(:name, :score, :branch_id)
+    def house_params
+      params.require(:house).permit(:name, :score, :family_id)
     end
 end

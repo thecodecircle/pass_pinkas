@@ -1,48 +1,48 @@
 require 'test_helper'
 
-class GroupsControllerTest < ActionDispatch::IntegrationTest
+class HousesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @group = groups(:one)
+    @house = houses(:one)
   end
 
   test "should get index" do
-    get groups_url
+    get houses_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_group_url
+    get new_house_url
     assert_response :success
   end
 
-  test "should create group" do
-    assert_difference('Group.count') do
-      post groups_url, params: { group: { branch_id: @group.branch_id, name: @group.name, score: @group.score } }
+  test "should create house" do
+    assert_difference('House.count') do
+      post houses_url, params: { house: { family_id: @house.family_id, name: @house.name, score: @house.score } }
     end
 
-    assert_redirected_to group_url(Group.last)
+    assert_redirected_to house_url(House.last)
   end
 
-  test "should show group" do
-    get group_url(@group)
+  test "should show house" do
+    get house_url(@house)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_group_url(@group)
+    get edit_house_url(@house)
     assert_response :success
   end
 
-  test "should update group" do
-    patch group_url(@group), params: { group: { branch_id: @group.branch_id, name: @group.name, score: @group.score } }
-    assert_redirected_to group_url(@group)
+  test "should update house" do
+    patch house_url(@house), params: { house: { family_id: @house.family_id, name: @house.name, score: @house.score } }
+    assert_redirected_to house_url(@house)
   end
 
-  test "should destroy group" do
-    assert_difference('Group.count', -1) do
-      delete group_url(@group)
+  test "should destroy house" do
+    assert_difference('House.count', -1) do
+      delete house_url(@house)
     end
 
-    assert_redirected_to groups_url
+    assert_redirected_to houses_url
   end
 end

@@ -1,8 +1,8 @@
-class CreateMyGroup < ActiveRecord::Migration[6.0]
+class CreateMyHouse < ActiveRecord::Migration[6.0]
   def change
-    create_table :my_groups do |t|
+    create_table :my_houses do |t|
       t.references :user, null: false, foreign_key: true
-      t.references :group, null: false, foreign_key: true
+      t.references :house, null: false, foreign_key: true
       t.integer :role
     end
   end

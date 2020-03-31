@@ -1,2 +1,2 @@
-module GroupsHelper
+module HousesHelper
 end

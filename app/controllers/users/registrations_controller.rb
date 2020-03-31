@@ -15,14 +15,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts "****************************************"
     puts "username: #{@user.username}"
     puts "type: #{params[:type]}"
-    puts "groupable_id: #{params[:groupable_id]}"
-    puts "groupable_name: #{params[:groupable_name]}" if params[:groupable_id] == "w8"
+    puts "houseable_id: #{params[:houseable_id]}"
+    puts "houseable_name: #{params[:houseable_name]}" if params[:houseable_id] == "w8"
     @user.score = 0
     @user.save 
     roles = {
        kid: "jbhl",
-       group: "ecumv",
-       branch: "ei",
+       house: "ecumv",
+       family: "ei",
        region: "tzur",
        movement: "bugv"
       }
@@ -30,27 +30,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:new] == "y"
       case roles.key(params[:type])
       when :movement
-        m = Movement.create(name: params[:groupable_name])
-        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: m.id, my_groupable_type: "Movement")
+        m = Movement.create(name: params[:houseable_name])
+        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: m.id, my_houseable_type: "Movement")
       when :region
-        r = Region.create(name: params[:groupable_name], score: 0, movement_id: params[:groupable_id])
-        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: r.id, my_groupable_type: "Region")
-      when :branch
-        b = Branch.create(name: params[:groupable_name], score: 0, region_id: params[:groupable_id])
-        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: b.id, my_groupable_type: "Branch")
-      when :group
-        g = Group.create(name: params[:groupable_name], score: 0, branch_id: params[:groupable_id])
-        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: g.id, my_groupable_type: "Group")
+        r = Region.create(name: params[:houseable_name], score: 0, movement_id: params[:houseable_id])
+        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: r.id, my_houseable_type: "Region")
+      when :family
+        b = Family.create(name: params[:houseable_name], score: 0, region_id: params[:houseable_id])
+        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: b.id, my_houseable_type: "Family")
+      when :house
+        g = House.create(name: params[:houseable_name], score: 0, family_id: params[:houseable_id])
+        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: g.id, my_houseable_type: "House")
       end
     else
       if roles.key(params[:type]) == :kid
-        MyGroup.create(user_id: @user.id, role: "kid", my_groupable_id: params[:groupable_id], my_groupable_type: "Group")
+        MyHouse.create(user_id: @user.id, role: "kid", my_houseable_id: params[:houseable_id], my_houseable_type: "House")
       else
-        MyGroup.create(user_id: @user.id, role: "guide", my_groupable_id: params[:groupable_id], my_groupable_type: roles.key(params[:type]).to_s.capitalize())
+        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: params[:houseable_id], my_houseable_type: roles.key(params[:type]).to_s.capitalize())
       end
     end
 
-    puts "Created MyGroup!"
+    puts "Created MyHouse!"
   end
 
   # GET /resource/edit

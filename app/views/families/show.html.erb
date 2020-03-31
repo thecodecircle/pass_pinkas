@@ -2,24 +2,24 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @branch.name %>
+  <%= @family.name %>
 </p>
 
 <p>
   <strong>Score:</strong>
-  <%= @branch.score %>
+  <%= @family.score %>
 </p>
 
 <p>
   <strong>Region:</strong>
-  <%= @branch.region_id %>
+  <%= @family.region_id %>
 </p>
 
-<%= link_to 'Edit', edit_branch_path(@branch) %> |
-<%= link_to 'Back', branches_path %>
+<%= link_to 'Edit', edit_family_path(@family) %> |
+<%= link_to 'Back', families_path %>
 
-<!-- <a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=ei&i=<%= @branch.id %>">קישור להרשמה וואטסאפ</a>
-<a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=ecumv&i=<%= @branch.id %>&n=y">קישור לשליחה למדריכות שיפתחו קבוצות וואטסאפ</a> -->
+<!-- <a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=ei&i=<%= @family.id %>">קישור להרשמה וואטסאפ</a>
+<a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=ecumv&i=<%= @family.id %>&n=y">קישור לשליחה למדריכות שיפתחו קבוצות וואטסאפ</a> -->
 
-<a href="<%= root_url %>users/sign_up?t=ei&i=<%= @branch.id %>">קישור להרשמה</a>
-<a href="<%= root_url %>users/sign_up?t=ecumv&i=<%= @branch.id %>&n=y">קישור לשליחה למדריכות שיפתחו קבוצות</a>
+<a href="<%= root_url %>users/sign_up?t=ei&i=<%= @family.id %>">קישור להרשמה</a>
+<a href="<%= root_url %>users/sign_up?t=ecumv&i=<%= @family.id %>&n=y">קישור לשליחה למדריכות שיפתחו קבוצות</a>

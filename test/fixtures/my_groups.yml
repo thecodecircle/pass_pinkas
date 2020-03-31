@@ -2,10 +2,10 @@
 
 one:
   user: one
-  group: one
+  house: one
   role: 1
 
 two:
   user: two
-  group: two
+  house: two
   role: 1

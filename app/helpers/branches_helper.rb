@@ -1,2 +1,2 @@
-module BranchesHelper
+module FamiliesHelper
 end

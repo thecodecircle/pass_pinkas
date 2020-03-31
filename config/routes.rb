@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :tasks
-  resources :groups
-  resources :branches
+  resources :houses
+  resources :families
   resources :regions
   resources :movements
   devise_for :users, controllers: {

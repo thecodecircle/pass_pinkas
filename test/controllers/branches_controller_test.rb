@@ -1,48 +1,48 @@
 require 'test_helper'
 
-class BranchesControllerTest < ActionDispatch::IntegrationTest
+class FamiliesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @branch = branches(:one)
+    @family = families(:one)
   end
 
   test "should get index" do
-    get branches_url
+    get families_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_branch_url
+    get new_family_url
     assert_response :success
   end
 
-  test "should create branch" do
-    assert_difference('Branch.count') do
-      post branches_url, params: { branch: { name: @branch.name, region_id: @branch.region_id, score: @branch.score } }
+  test "should create family" do
+    assert_difference('Family.count') do
+      post families_url, params: { family: { name: @family.name, region_id: @family.region_id, score: @family.score } }
     end
 
-    assert_redirected_to branch_url(Branch.last)
+    assert_redirected_to family_url(Family.last)
   end
 
-  test "should show branch" do
-    get branch_url(@branch)
+  test "should show family" do
+    get family_url(@family)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_branch_url(@branch)
+    get edit_family_url(@family)
     assert_response :success
   end
 
-  test "should update branch" do
-    patch branch_url(@branch), params: { branch: { name: @branch.name, region_id: @branch.region_id, score: @branch.score } }
-    assert_redirected_to branch_url(@branch)
+  test "should update family" do
+    patch family_url(@family), params: { family: { name: @family.name, region_id: @family.region_id, score: @family.score } }
+    assert_redirected_to family_url(@family)
   end
 
-  test "should destroy branch" do
-    assert_difference('Branch.count', -1) do
-      delete branch_url(@branch)
+  test "should destroy family" do
+    assert_difference('Family.count', -1) do
+      delete family_url(@family)
     end
 
-    assert_redirected_to branches_url
+    assert_redirected_to families_url
   end
 end

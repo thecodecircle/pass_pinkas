@@ -1,6 +1,6 @@
-class CreateBranches < ActiveRecord::Migration[6.0]
+class CreateFamilies < ActiveRecord::Migration[6.0]
   def change
-    create_table :branches do |t|
+    create_table :families do |t|
       t.string :name
       t.integer :score
       t.references :region, null: false, foreign_key: true

@@ -1,26 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Groups</h1>
+<h1>Houses</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Score</th>
-      <th>Branch</th>
+      <th>Family</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @groups.each do |group| %>
+    <% @houses.each do |house| %>
       <tr>
-        <td><%= group.name %></td>
-        <td><%= group.score %></td>
-        <td><%= group.branch_id %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= house.name %></td>
+        <td><%= house.score %></td>
+        <td><%= house.family_id %></td>
+        <td><%= link_to 'Show', house %></td>
+        <td><%= link_to 'Edit', edit_house_path(house) %></td>
+        <td><%= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Group', new_group_path %>
+<%= link_to 'New House', new_house_path %>

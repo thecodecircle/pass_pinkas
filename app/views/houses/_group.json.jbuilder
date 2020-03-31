@@ -1,2 +1,2 @@
-json.extract! group, :id, :name, :score, :branch_id, :created_at, :updated_at
-json.url group_url(group, format: :json)
+json.extract! house, :id, :name, :score, :family_id, :created_at, :updated_at
+json.url house_url(house, format: :json)

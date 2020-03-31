@@ -8,13 +8,13 @@ class User < ApplicationRecord
   has_many              :houses, through: :house_users, dependent: :destroy
   has_many              :families, through: :houses
 
-  # has_many              :groups, through: :my_groups
-  # has_many              :my_groups
-  # has_many              :my_groupables, through: :my_groups
-  # has_many              :groups, through: :my_groups, source: :my_groupable, source_type: "Group"
-  # has_many              :branches, through: :my_groups, source: :my_groupable, source_type: "Branch"
-  # has_many              :regions, through: :my_groups, source: :my_groupable, source_type: "Region"
-  # has_many              :movements, through: :my_groups, source: :my_groupable, source_type: "Movement"
+  # has_many              :houses, through: :my_houses
+  # has_many              :my_houses
+  # has_many              :my_houseables, through: :my_houses
+  # has_many              :houses, through: :my_houses, source: :my_houseable, source_type: "House"
+  # has_many              :families, through: :my_houses, source: :my_houseable, source_type: "Family"
+  # has_many              :regions, through: :my_houses, source: :my_houseable, source_type: "Region"
+  # has_many              :movements, through: :my_houses, source: :my_houseable, source_type: "Movement"
   has_many              :my_tasks
   # has_many              :my_tasks, inverse_of: :my_tasks
   has_many              :tasks, through: :my_tasks
@@ -44,8 +44,8 @@ class User < ApplicationRecord
       end
     end
 
-	def is_guide(groupable)
-	  if my_groups.find_by(my_groupable_id: groupable.id, my_groupable_type: groupable.class.name).role == "guide"
+	def is_guide(houseable)
+	  if my_houses.find_by(my_houseable_id: houseable.id, my_houseable_type: houseable.class.name).role == "guide"
 			return true
 		else
 			return false
@@ -53,12 +53,12 @@ class User < ApplicationRecord
 	end
 
 	def role
-    return "Admin" if my_groups.empty?
-		return "Movement" if my_groups.pluck(:my_groupable_type).uniq.include?("Movement")
-		return "Region" if my_groups.pluck(:my_groupable_type).uniq.include?("Region")
-		return "Branch" if my_groups.pluck(:my_groupable_type).uniq.include?("Branch")
-		if groups.map {|g| is_guide(g)}.include?(true)
-			return "Group" if my_groups.pluck(:my_groupable_type).uniq.include?("Group")
+    return "Admin" if my_houses.empty?
+		return "Movement" if my_houses.pluck(:my_houseable_type).uniq.include?("Movement")
+		return "Region" if my_houses.pluck(:my_houseable_type).uniq.include?("Region")
+		return "Family" if my_houses.pluck(:my_houseable_type).uniq.include?("Family")
+		if houses.map {|g| is_guide(g)}.include?(true)
+			return "House" if my_houses.pluck(:my_houseable_type).uniq.include?("House")
 		else
 			return "Kid"
 		end
