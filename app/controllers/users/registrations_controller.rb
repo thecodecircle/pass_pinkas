@@ -17,8 +17,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts "type: #{params[:type]}"
     puts "houseable_id: #{params[:houseable_id]}"
     puts "houseable_name: #{params[:houseable_name]}" if params[:houseable_id] == "w8"
-    # @user.score = 0
-    # @user.save
+
+    # if no params, completely new
+    f = Family.create(name: params[:family], score: 0)
+    h = House.create(name: params[:houseable_name], score: 0, family_id: params[:houseable_id])
+    current_user.houses << h
+
     roles = {
        kid: "jbhl",
        house: "ecumv",
@@ -26,21 +30,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
        region: "tzur",
        movement: "bugv"
       }
-
     if params[:new] == "y"
       case roles.key(params[:type])
-      when :movement
-        m = Movement.create(name: params[:houseable_name])
-        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: m.id, my_houseable_type: "Movement")
-      when :region
-        r = Region.create(name: params[:houseable_name], score: 0, movement_id: params[:houseable_id])
-        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: r.id, my_houseable_type: "Region")
       when :family
-        b = Family.create(name: params[:houseable_name], score: 0, region_id: params[:houseable_id])
-        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: b.id, my_houseable_type: "Family")
       when :house
-        g = House.create(name: params[:houseable_name], score: 0, family_id: params[:houseable_id])
-        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: g.id, my_houseable_type: "House")
       end
     else
       if roles.key(params[:type]) == :kid

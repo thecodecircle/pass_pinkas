@@ -3,10 +3,8 @@ he:
 
   user:
     new:
-      movement: "שם התנועה"
-      region: "שם האזור"
-      family: "שם הקן"
-      house: "שם הקבוצה"
+      family: "שם המשפחה"
+      house: "שם הבית"
   helpers:
     select:
       prompt: נא לבחור
@@ -26,10 +24,8 @@ he:
   activerecord:
     models:
       user: משתמש
-      movement: תנועה
-      region: אזור
-      family: קן
-      house: קבוצה
+      family: משפחה
+      house: בית
       task: משימה
     errors:
       messages:
