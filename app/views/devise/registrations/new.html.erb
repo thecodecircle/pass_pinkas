@@ -69,10 +69,10 @@
         <% end %>
         <%= text_field_tag(:house, nil, class:"input") %>
       </div>
+      <%= hidden_field_tag(:family_id, params[:f]) if params[:f].present? %>
     <% end %>
 
     <%= hidden_field_tag(:new, params[:n]) if params[:n].present? %>
-    <%= hidden_field_tag(:family_id, params[:f]) if params[:f].present? && params[:t] == "h" %>
     <%= hidden_field_tag(:house_id, params[:h]) if params[:h].present? %>
 
     <div class="mb-6">
