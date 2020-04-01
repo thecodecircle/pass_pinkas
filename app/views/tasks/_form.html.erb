@@ -29,22 +29,17 @@
                 collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
     <%= f.input :age, 	label: "גילאים", as: :radio_buttons,
                 collection: ages, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
-    <%# unless  params[:private_house_id].present? %>
+    <% if  params[:house_id].present? %>
       <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", collection: Task.publicities.keys,
       selected: "personal", wrapper_html: {class: "hidden"} %>
-    <%# else %>
-      <%# f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
-      collection: publicities, label_method: :second, value_method: :first, input_html: {class: "m-2"} %>
-    <%# end %>
-
-    <% if %w(Admin Movement).include?(current_user.role) %>
-      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "approved", wrapper_html: {class: "hidden"} %>
     <% else %>
-      <%= f.input :status, 	label: false, collection: Task.statuses.keys, selected: "unapproved", wrapper_html: {class: "hidden"} %>
+      <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", as: :radio_buttons,
+      collection: publicities, label_method: :second, value_method: :first, input_html: {class: "m-2"} %>
     <% end %>
+
   </div>
 
-  <%= hidden_field_tag(:private_house_id, params[:private_house_id]) if params[:private_house_id] %>
+  <%= hidden_field_tag(:house_id, params[:house_id]) if params[:house_id] %>
   <%= hidden_field_tag(:suggested_id, current_user.id) %>
 
   <div class="form-actions">

@@ -14,12 +14,7 @@
 			<%= render "task", { task: task, status: "in_progress", kid: current_user.id, house: 99999 } %>
 		<% end %>
 
-		<h1 class="text-xl mt-5 text-shmutz-blue brand">משימות שאתגרו אותנו</h1>
-		<div class="">
-			<% @suggested_tasks.where(suggested_id: house.users).each do |task| %>
-				<%= render "task", { task: task, status: "suggested", kid: task.suggested_id, house: house.id } %>
-			<% end %>
-		</div>
+
 		<h1 class="text-xl text-shmutz-blue brand">משימות שסיימנו</h1>
 
 		<% @done_tasks.each do |task| %>
@@ -43,7 +38,10 @@
 <% end %>
 <% @families.each do |family| %>
 <div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5 mt-3">
-	<h1 class="text-xl text-shmutz-blue brand"><%= family.name %></h1>
+	<h1 class="text-xl text-shmutz-blue brand flex justify-between mb-3">
+	<span><%= family.name %></span>
+	<button value="<%= family.id %>" class="open-modal bg-shmutz-blue text-white rounded-lg px-2">לאתגר את כולם!</button>
+	</h1>
 	<% family.houses.where.not(id: @houses.ids).each do |house| %>
 	<div class="flex justify-between">
 		<span><%= house.name %></span>
@@ -77,8 +75,8 @@
 $(document).ready(function() {
 	$(".open-modal").click(function(event) {
 		house_id = $(this).val()
-		$("#new-task").html("<a href='/tasks/new?private_house_id=" + house_id + "'>משימה חדשה</a>")
-		$("#task-index").html("<a href='/tasks?private_house_id=" + house_id + "'>ממאגר המשימות</a>")
+		$("#new-task").html("<a href='/tasks/new?house_id=" + house_id + "'>משימה חדשה</a>")
+		$("#task-index").html("<a href='/tasks?house_id=" + house_id + "'>ממאגר המשימות</a>")
 		$(".modal-bg").show("slow")
 	});
 	$(".close-modal").click(function(event) {

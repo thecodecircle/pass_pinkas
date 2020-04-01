@@ -32,52 +32,29 @@
 </div>
 
 
-	<% when "general", "random" %>
+<% when "general", "random" %>
 	<div class="container w-full py-1 shadow my-2 rounded-lg z-50 bg-blue-100" >
-	<div class="w-full flex justify-between">
-		<span class="name mx-3 text-lg"><%= task.name %></span>
-		<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down open"  ></i><i class="gg-chevron-up close hidden" ></i></span>
-	</div>
-	<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
-	<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
-		<span><%= task.description %></span>
-		<span class="mx-3 my-3 flex justify-center">
-			<% if current_user.role != "Kid" %>
-				<%= link_to assign_task_path(house: house, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
-					<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %></i></span>
-				<% end %>
-			<% else %>
-				<%= link_to assign_task_path( task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
-					<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %></i></span>
-				<% end %>
-			<% end %>
-		</span>
-	</div>
-</div>
-
-	<% when "suggested" %>
-	<div class="container w-full py-1 shadow my-2 rounded-lg z-50 bg-blue-100" >
-	<div class="w-full flex justify-between">
-		<span class="name mx-3 text-lg"><%= task.name %></span>
-		<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down open "  ></i><i class="gg-chevron-up close hidden" ></i></span>
-	</div>
-		<span class="mx-3 text-md"><%= User.find(kid).name %></span>
+		<div class="w-full flex justify-between">
+			<span class="name mx-3 text-lg"><%= task.name %></span>
+			<span class="mx-3 w-1/3 flex justify-end" ><i class="gg-push-chevron-down open"  ></i><i class="gg-chevron-up close hidden" ></i></span>
+		</div>
 		<span class="mx-3 aw-1/3"><%= task.score %> נקודות</span>
-	<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
-		<span><%= task.description %></span>
-		<span class="flex items-center">
-			<%= link_to task, method: :delete, data: { confirm: 'למחוק את המשימה?' }   do %>
-				<%= image_tag "trash.svg", size:"25", class:"mx-3" %>
-			<% end %>
-			<%= link_to assign_task_path(house: house, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
-				<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %> </i></span>
-			<% end %>
-
-		</span>
+		<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
+			<span><%= task.description %></span>
+			<span class="mx-3 my-3 flex justify-center">
+				<% if current_user.role != "Kid" %>
+					<%= link_to assign_task_path(house: house, task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+						<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %></i></span>
+					<% end %>
+				<% else %>
+					<%= link_to assign_task_path( task: task.id),data: {confirm: "מוכנים לעוד משימה?"}  do %>
+						<span class="mx-6"><i class="" ><%= image_tag "add-task.svg", size:"35" %></i></span>
+					<% end %>
+				<% end %>
+			</span>
+		</div>
 	</div>
-
-</div>
-	<% end %>
+<% end %>
 
 
 <script type="text/javascript">

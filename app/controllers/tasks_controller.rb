@@ -30,18 +30,14 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.suggested_id = params[:suggested_id]
-
     respond_to do |format|
       if @task.save
         puts "****************************************"
         puts "task: #{@task.id}"
-        if params[:private_house_id].present? && @task.personal?
+        if params[:house_id].present? && @task.personal?
+					puts "a new task"
           format.html {
-            puts "Guide wants personal task"
-            puts "before - task is: #{@task.status}"
-            @task.approved!
-            puts "after - task is: #{@task.status}"
-            redirect_to assign_task_path(task: @task.id, house: params[:private_house_id])
+            redirect_to assign_task_path(task: @task.id, house: params[:house_id])
           }
         else
           format.html { redirect_to root_path }
@@ -73,7 +69,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-			if %w(Movement Admin).include?(current_user.role)
+			if current_user.admin?
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
 			format.json { head :no_content }
 			else
@@ -84,15 +80,8 @@ class TasksController < ApplicationController
 
   def assign_task
     @task = Task.find(params[:task])
-    # if params[:house].present?
-    #   @house = House.find(params[:house])
-    #   @house.users.each do |k|
-    #     k.tasks << @task if k.tasks.exclude?(@task)
-    #   end
-    #   @task.approved!
-    # else
-      current_user.tasks << @task if current_user.tasks.exclude?(@task)
-    # end
+		@house = House.find(params[:house_id])
+    @house.tasks << @task if @house.tasks.exclude?(@task)
     redirect_to root_path
   end
 
