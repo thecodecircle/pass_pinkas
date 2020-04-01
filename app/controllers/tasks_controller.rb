@@ -8,6 +8,8 @@ class TasksController < ApplicationController
       @tasks = Task.all
     else
       @tasks = Task.all.where(publicity: 1)
+			@house = House.find(params[:house_id]) if params[:house_id].present?
+			@family = House.find(params[:family_id]) if params[:family_id].present?
     end
   end
 

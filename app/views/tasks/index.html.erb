@@ -25,7 +25,7 @@
       <th>רמת קושי</th>
       <th>גילאים</th>
       <th>פירוט</th>
-      <% if %w(Admin Movement).include?(current_user.role) %>
+      <% if current_user.admin? %>
 				<th></th>
         <th>פרטיות</th>
 				<th>להוסיף</th>
@@ -53,13 +53,13 @@
 						<%= link_to "<i class='gg-trash m-auto text-red-700'></i>".html_safe, task, method: :delete, data: { confirm: 'למחוק?' } %>
 					</td>
 				<% else %>
-					<td><%= link_to "<i class='gg-push-chevron-down-o m-auto'></i>".html_safe, assign_task_path(house: current_user.houses.last, task: task.id) ,class: "mb-10", data: { confirm: 'מוכנים לעוד משימה?' }%></td>
+					<td><%= link_to "<i><img src='/assets/add-task.svg' width='35' height='35'></i>".html_safe, assign_task_path(house: @house, task: task.id) ,class: "mb-10", data: { confirm: 'מוכנים לעוד משימה?' } if params[:house_id].present? %>
+						<%= link_to "<i><img src='/assets/add-task.svg' width='35' height='35'></i>".html_safe, assign_task_path(family: @family, task: task.id) ,class: "mb-10", data: { confirm: 'מוכנים לעוד משימה?' } if params[:family_id].present? %></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 
 <br>
 
