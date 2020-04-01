@@ -46,33 +46,6 @@
 	</div>
 </nav> -->
 
-<nav class="flex flex-col justify-center">
-
-	<div class="flex flex-wrap justify-between w-full self-end brand h-12 mt-2">
-		<!-- <%= @house.name %> -->
-		<div class="mx-2  flex flex-col justify-center">
-			<%= image_tag "star.svg", size:"35" %>
-				<span class=" text-whitebg-shmutz-bluepx-2rounded-lg text-center"><%= @house.score %></span>
-		</div>
-		<div class="mx-2">
-			<button class="button flex items-center px-3 py-2 aborder rounded text-grey sborder-gray-500 hover:text-gray-600 ahover:border-gray-600">
-				<i class="gg-more-vertical-alt"></i>
-			</button>
-		</div>
-	</div>
-	<div class="text-shmutz-blue text-3xl w-full flex justify-center items-center flex-col font-bold">
-		<span>שלום <%= current_user.name %>!</span>
-		<span class="text-xl"><%= @house.name %></span>
-	</div>
-	<div class="menu hidden float-left absolute top-0 left-0 mt-8 pl-2 bg-white rounded-lg rounded-t-none">
-		<ol>
-			<% House.all.each do |house| %>
-			<li><%= link_to house.name, root_path(house: house.id)  %></li>
-			<% end %>
-		</ol>
-	</div>
-
-</nav>
 
 <script type="text/javascript">
 $(document).ready(function() {
