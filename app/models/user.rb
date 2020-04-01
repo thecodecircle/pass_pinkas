@@ -7,11 +7,11 @@ class User < ApplicationRecord
   has_many              :house_users
   has_many              :houses, through: :house_users, dependent: :destroy
   has_many              :families, through: :houses
-  
+
 
   validates :username, presence: :true, uniqueness: { case_sensitive: false }
 
-  enum role: %i[admin user]
+  enum role: %i[user admin]
   validates  :role, inclusion: { in: User.roles.keys }
 
   def email_required?

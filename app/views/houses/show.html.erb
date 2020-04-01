@@ -20,6 +20,11 @@
 
 <!-- <a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=ecumv&i=<%= @house.id %>">קישור להרשמת מדריך</a> -->
 <!-- <a href="whatsapp://send?text=<%= root_url %>users/sign_up?t=jbhl&i=<%= @house.id %>">קישור להרשמת חניך</a> -->
-
-<a href="<%= root_url %>users/sign_up?t=ecumv&i=<%= @house.id %>">קישור להרשמת מדריך</a>
-<a href="<%= root_url %>users/sign_up?t=jbhl&i=<%= @house.id %>">קישור להרשמת חניך</a>
+<br>
+<a href="<%= root_url %>users/sign_up">new game/family</a> <br>
+<a href="<%= root_url %>users/sign_up?t=h&f=1">new house in existing family</a><br>
+<a href="<%= root_url %>users/sign_up?t=u&h=1">new user in existing house</a><br>
+<a href="<%= root_url %>add_user_to_house?h=1">new user in existing house</a><br>
+<!-- <a href="<%= root_url %>users/sign_up?t=h&f=<%# @family.id %>">new house in existing family</a>
+<a href="<%= root_url %>users/sign_up?t=u&h=<%# @house.id %>">new user in existing house</a>
+<a href="<%= root_url %>add_user_to_house?h=<%# @house.id %>">new user in existing house</a> -->
