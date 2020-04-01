@@ -7,7 +7,7 @@ class MyTask < ApplicationRecord
   belongs_to :task
   validates  :task, presence: true
 
-  enum       progress: %i[in_progress done approved]
+  enum       progress: %i[in_progress done]
   validates  :progress, inclusion: { in: MyTask.progresses.keys }
 
   private

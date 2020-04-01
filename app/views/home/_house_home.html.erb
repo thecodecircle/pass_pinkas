@@ -10,14 +10,14 @@
 	</h1>
 	<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5">
 		<h1 class="text-xl text-shmutz-blue brand">המשימות שלנו</h1>
-		<% @my_tasks.each do |task| %>
+		<% house.in_progress_tasks.each do |task| %>
 			<%= render "task", { task: task, status: "in_progress", kid: current_user.id, house: 99999 } %>
 		<% end %>
 
 
 		<h1 class="text-xl text-shmutz-blue brand">משימות שסיימנו</h1>
 
-		<% @done_tasks.each do |task| %>
+		<% house.done_tasks.each do |task| %>
 			<%= render "task", { task: task, status: "done", kid: current_user.id, house: 99999 } %>
 		<% end %>
 		<!-- <div class="sign-ups-div">

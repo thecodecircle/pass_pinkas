@@ -10,5 +10,11 @@ class House < ApplicationRecord
   validates             :name, presence: true
   validates             :score, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
+	def in_progress_tasks
+	  tasks.where("my_tasks.progress = ? ", 0)
+	end
 
+	def done_tasks
+	  tasks.where("my_tasks.progress = ? ", 1)
+	end
 end

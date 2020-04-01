@@ -1,11 +1,5 @@
 class HomeController < ApplicationController
   def index
-		@tasks = current_user.tasks
-		@my_tasks = @tasks.where("my_tasks.progress = :zero OR my_tasks.progress = :nothing", zero: 0, nothing: nil)
-		@done_tasks = @tasks.where("my_tasks.progress = ? ", 1)
-		@random_tasks = Task.where(publicity: 1, status: 1).where.not(id: current_user.tasks).limit(5).order("RANDOM()")
-		# @my_score = current_user.score
-		@suggested_tasks = Task.where(publicity: 0).where.not(id: current_user.tasks)
 
 		if current_user.admin?
       @families = Family.all
