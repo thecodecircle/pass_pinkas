@@ -2,8 +2,6 @@
 <% content_for :devise_form do %>
   <h2 class="heading text-4xl font-bold pt-4 mb-8">הרשמה</h2>
 
-  <% if params[:t].present? %>
-
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -17,19 +15,6 @@
       <%= f.text_field :name, class:"input" %>
     </div>
 
-    <%# if params[:t] %>
-      <%# f.hidden_field :role, value: roles.key(params[:t]) %>
-    <%# else %>
-      <!-- <div class="mb-6"> -->
-        <%# f.label :role, class:"label" %>
-        <%# f.select :role, User.roles.keys.to_a, :prompt => 'Select', class:"input", selected: roles.key(params[:t]) %>
-      <!-- </div> -->
-    <%# end %>
-
-    <!-- <div class="mb-6"> -->
-      <%# f.label :email, class:"label" %>
-      <%# f.email_field :email, autocomplete: "email", class:"input" %>
-    <!-- </div> -->
     <div class="mb-6">
       <div class="flex">
         <%= f.label :password, class: "label" %>
@@ -45,42 +30,41 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
     </div>
 
-    <%= hidden_field_tag(:type, params[:t]) %>
-    <%= hidden_field_tag(:houseable_id, params[:i]) %>
-    <%= hidden_field_tag(:role, params[:r]) %>
-    <%= hidden_field_tag(:new, params[:n]) %>
+    <!-- <a href="<%= root_url %>users/sign_up">new game/family</a>
+    <a href="<%= root_url %>users/sign_up?t=h&f=<%= @family.id %>">new house in existing family</a>
+    <a href="<%= root_url %>users/sign_up?t=u&h=<%= @house.id %>">new user in existing house</a> -->
 
-    <% if params[:t] != "jbhl" && params[:n].present? %>
+    <% unless params[:t].present? %>
       <div class="mb-6">
-        <%= f.label :houseable_name, class:"label" do %>
-          <% case params[:t] %>
-          <% when "bugv" %>
-            <%= I18n.t("user.new.movement") %>
-          <% when "tzur" %>
-            <%= I18n.t("user.new.region") %>
-          <% when "ei" %>
-            <%= I18n.t("user.new.family") %>
-          <% when "ecumv" %>
-            <%= I18n.t("user.new.house") %>
-          <% end %>
-        <% end%>
-        <%= text_field_tag(:houseable_name, nil, class:"input") %>
+        <%= f.label :family, class:"label" do %>
+          <%= I18n.t("user.new.family") %>
+        <% end %>
+        <%= text_field_tag(:family, nil, class:"input") %>
       </div>
     <% end %>
+
+    <% if !params[:t].present? || params[:t] == "h" %>
+      <div class="mb-6">
+        <%= f.label :house, class:"label" do %>
+          <%= I18n.t("user.new.house") %>
+        <% end %>
+        <%= text_field_tag(:house, nil, class:"input") %>
+      </div>
+      <%= hidden_field_tag(:family_id, params[:f]) if params[:f].present? %>
+    <% end %>
+
+    <% if params[:t] = "u" %>
+      <%= hidden_field_tag(:house_id, params[:h]) if params[:h].present? %>
+    <% end %>
+
+    <%= hidden_field_tag(:new, params[:n]) if params[:n].present? %>
 
     <div class="mb-6">
       <%= f.submit "הרשמה", class: "btn btn-default" %>
     </div>
 
     <hr class="border mt-6" />
-
   <% end %>
-  <% else %>
-    כדי להירשם, נא לבקש קישור הרשמה ממי שאחראי עלייך!
-  <% end %>
-
   <%= render "devise/shared/links" %>
-
 <% end %>
-
 <%= render "devise/shared/form_wrap" %>
