@@ -11,26 +11,25 @@
 	<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5">
 		<h1 class="text-xl text-shmutz-blue brand">המשימות שלנו</h1>
 		<% house.in_progress_tasks.each do |task| %>
-			<%= render "task", { task: task, status: "in_progress", kid: current_user.id, house: 99999 } %>
+			<%= render "task", { task: task, status: "in_progress", kid: current_user.id, house: house.id } %>
 		<% end %>
 
 
 		<h1 class="text-xl text-shmutz-blue brand">משימות שסיימנו</h1>
 
 		<% house.done_tasks.each do |task| %>
-			<%= render "task", { task: task, status: "done", kid: current_user.id, house: 99999 } %>
+			<%= render "task", { task: task, status: "done", kid: current_user.id, house: house.id } %>
 		<% end %>
-		<!-- <div class="sign-ups-div">
+		<div class="sign-ups-div">
 			<div class="open-house-sign-ups flex justify-between">
-				<button class=" bg-shmutz-blue text-white my-1 px-1 rounded-lg" type="button" name="button">קישורי הרשמה</button>
+				<button class=" bg-shmutz-blue text-white my-1 px-1 rounded-lg" type="button" name="button">להזמין בני בית</button>
 				<button class=" bg-shmutz-blue text-white my-1 px-1 rounded-lg" type="button" name="button"><i class="gg-push-chevron-down"></i> </button>
 			</div>
 			<div class="house-sign-ups hidden">
-				<button  class="text-md sign_up_kid bg-shmutz-blue text-white my-1 px-1 rounded-lg" value="<%= house.id %>" type="button" name="button">הרשמת חניך ל<%= house.name %></button> <br>
-				<button  class="text-md sign_up_another_house bg-shmutz-blue text-white my-1 px-1 rounded-lg" value="<%= house.id %>" type="button" name="button">הרשמת מדריכה נוספת ל<%= house.name %></button> <br>
-				<button  class="text-md sign_up_house_kid text-right bg-shmutz-blue text-white my-1 px-1 rounded-lg"   value="<%= house.id %>" type="button" name="button">הרשמת חניך שהוא מדריך רשום במערכת ל<%= house.name %></button>
+				<button  class="text-md sign_up_kid bg-shmutz-blue text-white my-1 px-1 rounded-lg" value="<%= house.id %>" type="button" name="button">הרשמת בני בית ל<%= house.name %></button> <br>
+				<button  class="text-md sign_up_house_kid text-right bg-shmutz-blue text-white my-1 px-1 rounded-lg"   value="<%= house.id %>" type="button" name="button">הרשמת בני בית רשומים במערכת ל<%= house.name %></button>
 			</div>
-		</div> -->
+		</div>
 	</div>
 
 
@@ -96,7 +95,7 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$(".sign_up_kid").click(function(event) {
+	$(".sign_up_user").click(function(event) {
 		var url = "<%= root_url %>users/sign_up?t=jbhl&i=" + $(this).val()
 		share_sign_up(url)
 	});
@@ -106,22 +105,6 @@ $(document).ready(function() {
 	});
 	$(".sign_up_another_house").click(function(event) {
 		var url = "<%= root_url %>users/sign_up?t=ecumv&i=" + $(this).val()
-		share_sign_up(url)
-	});
-	$(".sign_up_family").click(function(event) {
-		var url = "<%= root_url %>users/sign_up?t=ei&i=" + $(this).val() + "&n=y"
-		share_sign_up(url)
-	});
-	$(".sign_up_region").click(function(event) {
-		var url = "<%= root_url %>users/sign_up?t=tzur&i=" + $(this).val() + "&n=y"
-		share_sign_up(url)
-	});
-	$(".sign_up_movement").click(function(event) {
-		var url = "<%= root_url %>users/sign_up?t=bugv&i=" + $(this).val() + "&n=y"
-		share_sign_up(url)
-	});
-	$(".sign_up_house_kid").click(function(event) {
-		var url = "<%= root_url %>kid_guide?g=" + $(this).val()
 		share_sign_up(url)
 	});
 

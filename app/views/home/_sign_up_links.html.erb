@@ -4,67 +4,17 @@
 	</button>
 <% end %>
 	<div id="links" class="hidden">
-		<% case current_user.role %>
-		<% when "Family" %>
-		קישורים להרשמת מדריכות
-		<% @families.each do |family| %>
-		<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
-			מדריכות מ<%= family.name %></button></li>
-			<% end %>
-			<% when "Region" %>
-			קישורים להרשמת מדריכות
-			<% @families.each do |family| %>
-			<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
-				מדריכות מ<%= family.name %></button></li>
-				<% end %>
-				קישורים להרשמת רכזות בתים\קנים
-				<% @regions.each do |region| %>
-				<li><button  class="text-md mb-2 sign_up_family bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= region.id %>">
-					רכזות בתים\קנים מ<%= region.name %>
-				</button></li>
-				<% end %>
-				<% when "Movement" %>
-				קישורים להרשמת מדריכות
-				<% @families.each do |family| %>
-				<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
-					מדריכות מ<%= family.name %>
-				</button></li>
-				<% end %>
-				קישורים להרשמת רכזות בתים\קנים
-				<% @regions.each do |region| %>
-				<li><button  class="text-md mb-2 sign_up_family bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= region.id %>">
-					רכזות בתים\קנים מ<%= region.name %>
-				</button></li>
-				<% end %>
-				קישורים להרשמת רכזות אזורים
-				<% @movements.each do |movement| %>
-				<li><button  class="text-md mb-2 sign_up_region bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= movement.id %>">
-					רכזות אזורים מ<%= movement.name %>
-				</button></li>
-				<% end %>
-				<% when "Admin" %>
-				קישורים להרשמת מדריכות
-				<% @families.each do |family| %>
-				<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
-					מדריכות מ<%= family.name %>
-				</button></li>
-				<% end %>
-				קישורים להרשמת רכזות בתים\קנים
-				<% @regions.each do |region| %>
-				<li><button  class="text-md mb-2 sign_up_family bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= region.id %>">
-					רכזות בתים\קנים מ<%= region.name %>
-				</button></li>
-				<% end %>
-				קישורים להרשמת רכזות אזורים
-				<% @movements.each do |movement| %>
-				<li><button  class="text-md mb-2 sign_up_region bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= movement.id %>">
-					רכזות אזורים מ<%= movement.name %>
-				</button></li>
-				<li><button  class="text-md mb-2 sign_up_movement bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= movement.id %>">
-					ליצירת תנועה חדשה
-				</button></li>
-				<% end %>
-				<% end %>
+	קישורים להזמנת
+	<% @families.each do |family| %>
+	<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
+	מדריכות מ<%= family.name %></button></li>
+	<% end %>
+	קישורים להרשמת מדריכות
+	<% @families.each do |family| %>
+	<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
+	מדריכות מ<%= family.name %></button></li>
+	<% end %>
+	
 
 	</div>
 <script type="text/javascript">

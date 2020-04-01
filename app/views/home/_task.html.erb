@@ -11,10 +11,10 @@
 		<div style="display: flex" class="description pl-8 mr-3 hidden justify-between w-full" >
 			<span><%= task.description %></span>
 			<span class="mx-3 my-3 flex justify-center">
-				<%= link_to change_progress_path(task_id: task.id, remove: "remove"), class: "ml-2" ,data: {confirm: "להסיר את המשימה?"} do %>
+				<%= link_to change_progress_path(task_id: task.id, remove: "remove", house: house), class: "ml-2" ,data: {confirm: "להסיר את המשימה?"} do %>
 				<span class=""><i class="gg-close text-red-500" ></i></span>
 				<% end %>
-				<%= link_to change_progress_path(task_id: task.id), data: {confirm: "הראת למדריכים שסיימת את המשימה?"} do %>
+				<%= link_to change_progress_path(task_id: task.id, house: house), data: {confirm: "סיימתם את המשימה?"} do %>
 				<span class=""><i class="gg-check-o" ></i></span>
 				<% end %>
 			</span>

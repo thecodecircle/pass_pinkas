@@ -13,32 +13,26 @@
 		</div>
 	</div>
 	<div class="menu z-50 lg:shadow-none shadow-lg-down w-1/2 block lg:flex-1 lg:flex lg:items-center items-end text-center lg:text-left hidden lg:block fixed top-0 left-0 lg:mt-0 mt-12 p-2 rounded-lg rounded-t-none	bg-shmutz-blue lg:h-16 ">
-		<% if current_user.role == "Admin" %>
-		<div class="lg:flex-grow">
-			<%= link_to "תנועות", movements_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
-		</div>
-		<div class="lg:flex-grow">
-			<%= link_to "אזורים", regions_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
-		</div>
-		<div class="lg:flex-grow">
-			<%= link_to "בתים\קנים", families_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
-		</div>
-		<div class="lg:flex-grow">
-			<%= link_to "קבוצות", houses_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
-		</div>
+		<% if current_user.admin? %>
+			<div class="lg:flex-grow">
+				<%= link_to "משפחות", families_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
+			</div>
+			<div class="lg:flex-grow">
+				<%= link_to "בתים", houses_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
+			</div>
 		<% end %>
 		<!-- <div class="lg:flex-grow">
 		<%# link_to "משתמשים", users_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
 	</div> -->
-	<div class="lg:flex-grow">
+	<!-- <div class="lg:flex-grow">
 		<%= link_to "מה זה פנקסי?", "pinkasi", class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
-	</div>
+	</div> -->
 	<div class="lg:flex-grow">
-		<%= link_to "כל המשימות", tasks_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
+		<%= link_to "מאגר המשימות", tasks_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
 	</div>
-	<div class="lg:flex-grow">
+	<!-- <div class="lg:flex-grow">
 		<%= link_to "להציע משימה חדשה", new_task_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
-	</div>
+	</div> -->
 	<div class="w-full block lg:flex lg:flex-row lg:flex-1 mt-2 lg:mt-0 text-center lg:text-left lg:justify-end items-center">
 		<% if user_signed_in? %>
 		<%= link_to "התנתקות", destroy_user_session_path, method: :delete, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
@@ -56,13 +50,6 @@
 		<div class="text-white self-end text-xl mt-16">
 			שלום <%= current_user.name %>!
 		</div>
-		<% unless current_user.houses.empty? %>
-			<div class="text-white flex text-xl mt-16 ml-10a w-1/2 ">
-				<% if current_user.role == "Kid" %>
-					<strong class="bg-white text-shmutz-blue px-2 rounded-lg"><%= current_user.houses.first.score %> נק'</strong>
-				<% end %>
-			</div>
-		<% end %>
 	</div>
 </nav>
 
