@@ -1,8 +1,8 @@
 class MyTask < ApplicationRecord
   before_validation :default_values
 
-  belongs_to :user
-  validates  :user, presence: true
+  belongs_to :house
+  validates  :house, presence: true
 
   belongs_to :task
   validates  :task, presence: true

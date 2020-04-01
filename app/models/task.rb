@@ -4,8 +4,8 @@ class Task < ApplicationRecord
   has_many :my_tasks, dependent: :destroy
   validates_associated  :my_tasks
 
-  has_many :users, through: :my_tasks
-  validates_associated  :users
+  has_many :houses, through: :my_tasks
+  validates_associated  :houses
 
   enum publicity: %i[personal general]
   validates  :publicity, inclusion: { in: Task.publicities.keys }

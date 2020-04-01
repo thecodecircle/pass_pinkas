@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_160806) do
+ActiveRecord::Schema.define(version: 2020_04_01_061428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,13 +37,13 @@ ActiveRecord::Schema.define(version: 2020_03_31_160806) do
   end
 
   create_table "my_tasks", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "house_id", null: false
     t.bigint "task_id", null: false
     t.integer "progress"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["house_id"], name: "index_my_tasks_on_house_id"
     t.index ["task_id"], name: "index_my_tasks_on_task_id"
-    t.index ["user_id"], name: "index_my_tasks_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -70,12 +70,11 @@ ActiveRecord::Schema.define(version: 2020_03_31_160806) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "score"
     t.integer "role"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "houses", "families"
   add_foreign_key "my_tasks", "tasks"
-  add_foreign_key "my_tasks", "users"
+  add_foreign_key "my_tasks", "users", column: "house_id"
 end
