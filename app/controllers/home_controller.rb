@@ -8,27 +8,6 @@ class HomeController < ApplicationController
       @families = current_user.families
       @houses = current_user.houses
     end
-			# case current_user.role
-			# when "House"
-			# 	@houses = current_user.houses
-			# when "Family"
-			# 	@families = current_user.families
-			# 	@houses = @families.map { |b| b.houses }.flatten
-			# when "Region"
-			# 	@regions = current_user.regions
-			# 	@families = @regions.map { |r| r.families}.flatten
-			# 	@houses = @families.map { |b| b.houses }.flatten
-			# when "Movement"
-			# 	@movements = current_user.movements
-			# 	@regions = @movements.map { |m| m.regions }.flatten
-			# 	@families = @regions.map { |r| r.families}.flatten
-			# 	@houses = @families.map { |b| b.houses }.flatten
-      # when "Admin"
-      #   @movements = Movement.all
-      #   @regions = Region.all
-      #   @families = Family.all
-      #   @houses = House.all
-			# end
 	end
 
 
@@ -47,7 +26,7 @@ class HomeController < ApplicationController
 
 
   def add_user_to_house
-    MyHouse.create(user_id: current_user.id, role: "kid", my_houseable_id: params[:g], my_houseable_type: "House") unless current_user.houses.ids.include?(params[:g])
+    current_user.houses << House.find(params[:h]) unless current_user.houses.ids.include?(params[:h])
     redirect_to root_path
   end
 
