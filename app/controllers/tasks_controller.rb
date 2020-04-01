@@ -4,10 +4,10 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    if current_user.role == "admin"
+    if current_user.admin?
       @tasks = Task.all
     else
-      @tasks = Task.all.where(publicity: 1, status: 1)
+      @tasks = Task.all.where(publicity: 1)
     end
   end
 
