@@ -1,0 +1,25 @@
+<% @houses.each do |house| %>
+<button value="<%= house.id %>" class="house outline-none h-24 w-24  bg-green-400 m-6 rounded-full flex flex-col relative open-task-description">
+	<div class="flex justify-center items-center h-full text-center">
+		<span class="mx-3 text-lg "><%= house.name %></span>
+	</div>
+</button>
+<% end %>
+
+<div class="actions flex fixed bottom-0 w-full rounded-lg brand h-16">
+	<%= link_to "<", root_path, class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" %>
+	<a class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl" href="">>></a>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var chosen_house
+	$(".house").click(function(event) {
+		$(".house").removeClass('task-shadow')
+		$(this).addClass('task-shadow')
+		chosen_house = $(this).val()
+		$(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
+		$(".next").attr('href', '/choose_task?house_id=' + chosen_house);
+	});
+});
+</script>

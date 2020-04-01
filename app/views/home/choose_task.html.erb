@@ -1,0 +1,37 @@
+
+<button value="new_task" class="task outline-none h-24 w-24  bg-green-400 m-6 rounded-full flex flex-col relative open-task-description">
+	<div class="flex justify-center items-center h-full text-center">
+		<span class="mx-3 text-lg ">משימה חדשה!</span>
+	</div>
+</button>
+<% @tasks.each do |task| %>
+<button value="<%= task.id %>" class="task outline-none h-24 w-24  bg-green-400 m-6 rounded-full flex flex-col relative open-task-description">
+	<div class="flex justify-center items-center h-full text-center">
+		<span class="mx-3 text-lg "><%= task.name %></span>
+	</div>
+</button>
+<% end %>
+
+<div class="actions flex fixed bottom-0 w-full rounded-lg brand h-16">
+	<%= link_to "<", "/choose_house", class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" %>
+
+	<a class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl" href="">אתגר אותם!</a>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var chosen_task
+	var house = '<%= params[:house_id] %>'
+	$(".task").click(function(event) {
+		$(".task").removeClass('task-shadow')
+		$(this).addClass('task-shadow')
+		chosen_task = $(this).val()
+		$(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
+		if (chosen_task == "new_task") {
+			$(".next").attr('href', '/tasks/new?&house_id=' + house);
+		}else {
+			$(".next").attr('href', '/assign_task?task=' + chosen_task + "&house=" + house);
+		}
+	});
+});
+</script>

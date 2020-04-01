@@ -40,11 +40,11 @@
       <%# render 'layouts/navbar' unless controller_name == "registrations" || controller_name == "sessions" %>
     <!-- </header> -->
 
-    <main class="lg:px-10 px-2 bg-gray-200">
+    <main class="lg:px-10 px-2a bg-gray-200">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
-		<footer class="w-full h-24">
-			<%= render 'layouts/footer' unless controller_name == "registrations" || controller_name == "sessions" %>
-		</footer>
+		<!-- <footer class="w-full h-24"> -->
+			<%# render 'layouts/footer' unless controller_name == "registrations" || controller_name == "sessions" %>
+		<!-- </footer> -->
   </body>
 </html>
