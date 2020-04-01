@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     if current_user.role == "admin"
       @tasks = Task.all
     else
-      @tasks = Task.all.where(publicity: 1, status: 1)
+      @tasks = Task.all.where(publicity: 1)
     end
   end
 
@@ -132,6 +132,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :score, :description, :publicity, :status, :difficulty, :age)
+      params.require(:task).permit(:name, :score, :description, :publicity, :difficulty, :age)
     end
 end
