@@ -1,4 +1,4 @@
-<nav class="flex items-start mb-3 h-32 pb-32 justify-between flex-wrap bg-shmutz-blue py-3 lg:px-10 px-3 text-gray-700 border-b border-gray-400">
+<!-- <nav class="flex items-start mb-3 h-32 pb-32 justify-between flex-wrap bg-shmutz-blue py-3 lg:px-10 px-3 text-gray-700 border-b border-gray-400">
 	<div class="fixed-nav bg-shmutz-blue fixed top-0 right-0 w-full flex justify-between h-16 z-40  ">
 		<div class="flex items-center flex-no-shrink mr-2 w-1/2 lg:w-1/12 bg-shmutz-blue">
 			<%= link_to root_path, class:"link text-3xl tracking-tight font-semibolda text-white flex item-end" do %>
@@ -21,18 +21,11 @@
 				<%= link_to "בתים", houses_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
 			</div>
 		<% end %>
-		<!-- <div class="lg:flex-grow">
-		<%# link_to "משתמשים", users_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link" %>
-	</div> -->
-	<!-- <div class="lg:flex-grow">
-		<%= link_to "מה זה פנקסי?", "pinkasi", class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
-	</div> -->
+
 	<div class="lg:flex-grow">
 		<%= link_to "מאגר המשימות", tasks_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
 	</div>
-	<!-- <div class="lg:flex-grow">
-		<%= link_to "להציע משימה חדשה", new_task_path, class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-4 mb-2 lg:mb-0 link text-white" %>
-	</div> -->
+
 	<div class="w-full block lg:flex lg:flex-row lg:flex-1 mt-2 lg:mt-0 text-center lg:text-left lg:justify-end items-center">
 		<% if user_signed_in? %>
 		<%= link_to "התנתקות", destroy_user_session_path, method: :delete, class:"btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
@@ -51,7 +44,8 @@
 			שלום <%= current_user.name %>!
 		</div>
 	</div>
-</nav>
+</nav> -->
+
 
 <script type="text/javascript">
 $(document).ready(function() {

@@ -1,4 +1,17 @@
 <%# render "sign_up_links" %>
+
+<nav>
+
+	<div class="flex justify-center w-full self-end brand h-12">
+		<div class="text-shmutz-blue self-center text-xl ">
+			שלום <%= current_user.name %>!
+		</div>
+		<div class="">
+
+		</div>
+	</div>
+
+</nav>
 <% @houses.each_with_index do |house, index|%>
 	<h1 class="w-full text-2xl flex justify-between mt-2">
 		<span class="mx-3 text-shmutz-blue brand"><%= house.name %></span>
