@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 		if current_user.admin?
       @families = Family.all
       @houses = House.all
+      @house = @houses.first
     else
       @houses = current_user.houses
 			if params[:house].present?
@@ -31,7 +32,7 @@ class HomeController < ApplicationController
 	end
 
 	def choose_house
-	  
+
 	end
 
   def add_user_to_house
