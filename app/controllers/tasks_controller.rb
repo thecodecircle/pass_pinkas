@@ -80,7 +80,7 @@ class TasksController < ApplicationController
 
   def assign_task
     @task = Task.find(params[:task])
-		@house = House.find(params[:house_id])
+		@house = House.find(params[:house])
     @house.tasks << @task if @house.tasks.exclude?(@task)
     redirect_to root_path
   end
