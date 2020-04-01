@@ -2,11 +2,6 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-unless User.find_by(email: "codecircle13@gmail.com").present?
-  User.create(email: "codecircle13@gmail.com", password: "mered1913")
-  puts "Inserted User"
-  end
-
 require 'csv'
 
 if File.file?(Rails.root.join('lib/task_seeds.csv'))
@@ -19,7 +14,6 @@ if File.file?(Rails.root.join('lib/task_seeds.csv'))
         difficulty: row[2],
         age: row[3],
         publicity: 1,
-        status: 1
       })
       counter += 1
     end
