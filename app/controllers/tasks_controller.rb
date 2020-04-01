@@ -36,9 +36,16 @@ class TasksController < ApplicationController
         puts "task: #{@task.id}"
         if params[:house_id].present? && @task.personal?
 					puts "a new task"
+					puts House.find(params[:house_id]).name
           format.html {
             redirect_to assign_task_path(task: @task.id, house: params[:house_id])
           }
+				elsif params[:family_id].present? && @task.personal?
+						puts "a new task"
+						puts Family.find(params[:family_id]).name
+	          format.html {
+	            redirect_to assign_task_path(task: @task.id, family: params[:family_id])
+	          }
         else
           format.html { redirect_to root_path }
           format.json { render :show, status: :created, location: @task }
@@ -80,8 +87,15 @@ class TasksController < ApplicationController
 
   def assign_task
     @task = Task.find(params[:task])
-		@house = House.find(params[:house])
-    @house.tasks << @task if @house.tasks.exclude?(@task)
+		if params[:house].present?
+			@house = House.find(params[:house])
+			@house.tasks << @task if @house.tasks.exclude?(@task)
+		elsif params[:family].present?
+			@family = Family.find(params[:family])
+			@family.houses.each do |house|
+				house.tasks << @task if house.tasks.exclude?(@task)
+			end
+		end
     redirect_to root_path
   end
 

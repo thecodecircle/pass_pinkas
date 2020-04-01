@@ -22,7 +22,6 @@
       } %>
 
   <div class="form-inputs">
-		<%= params[:house_id] if params[:house_id].present?   %>
     <%= f.input :name, label: "שם המשימה", input_html: { class: "border block m-2"} %>
     <%# f.input :score %>
     <%= f.input :description,	label: "תיאור", input_html: {class: "border block m-2"} %>
@@ -30,7 +29,7 @@
                 collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
     <%= f.input :age, 	label: "גילאים", as: :radio_buttons,
                 collection: ages, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
-    <% if  params[:house_id].present? %>
+    <% if  params[:house_id].present? || params[:family_id].present? %>
       <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", collection: Task.publicities.keys,
       selected: "personal", wrapper_html: {class: "hidden"} %>
     <% else %>
@@ -41,6 +40,7 @@
   </div>
 
   <%= hidden_field_tag(:house_id, params[:house_id]) if params[:house_id] %>
+  <%= hidden_field_tag(:family_id, params[:family_id]) if params[:family_id] %>
   <%= hidden_field_tag(:suggested_id, current_user.id) %>
 
   <div class="form-actions">

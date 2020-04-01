@@ -509,6 +509,7 @@ module.exports = {
     wordBreak: ['responsive'],
     width: ['responsive'],
     zIndex: ['responsive'],
+		aaa: ['hover']
   },
   corePlugins: {},
   plugins: [],
