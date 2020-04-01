@@ -22,6 +22,7 @@
       } %>
 
   <div class="form-inputs">
+		<%= params[:house_id] if params[:house_id].present?   %>
     <%= f.input :name, label: "שם המשימה", input_html: { class: "border block m-2"} %>
     <%# f.input :score %>
     <%= f.input :description,	label: "תיאור", input_html: {class: "border block m-2"} %>
