@@ -13,10 +13,7 @@
 		<% house.in_progress_tasks.each do |task| %>
 			<%= render "task", { task: task, status: "in_progress", kid: current_user.id, house: house.id } %>
 		<% end %>
-
-
 		<h1 class="text-xl text-shmutz-blue brand">משימות שסיימנו</h1>
-
 		<% house.done_tasks.each do |task| %>
 			<%= render "task", { task: task, status: "done", kid: current_user.id, house: house.id } %>
 		<% end %>
@@ -27,15 +24,13 @@
 				<button class="" type="button" name="button"><i class="gg-push-chevron-down"></i> </button>
 			</div>
 			<div class="house-sign-ups hidden">
-				<button  class="text-md sign_up_kid bg-shmutz-blue text-white my-1 px-1 rounded-lg" value="<%= house.id %>" type="button" name="button">הרשמת בני בית ל<%= house.name %></button> <br>
-				<button  class="text-md sign_up_house_user text-right bg-shmutz-blue text-white my-1 px-1 rounded-lg"   value="<%= house.id %>" type="button" name="button">הרשמת בני בית רשומים במערכת ל<%= house.name %></button>
+				<button  class="text-md new_user_to_house bg-shmutz-blue text-white my-1 px-1 rounded-lg" value="<%= house.id %>" type="button" name="button">הרשמת בני בית ל<%= house.name %></button> <br>
+				<button  class="text-md existing_user_to_house text-right bg-shmutz-blue text-white my-1 px-1 rounded-lg"   value="<%= house.id %>" type="button" name="button">הרשמת בני בית רשומים במערכת ל<%= house.name %></button>
 			</div>
 		</div>
 	</div>
-
-
-
 <% end %>
+
 <% @families.each do |family| %>
 <div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5 mt-3">
 	<h1 class="text-xl text-shmutz-blue brand flex justify-between mb-3">
@@ -49,8 +44,8 @@
 	</div>
 	<% end %>
 
+	<button  class="text-md new_house_to_family text-right bg-shmutz-blue text-white my-1 px-1 rounded-lg"   value="<%= family.id %>" type="button" name="button">הזמנת בני משפחה ליצור בית ב<%= family.name %></button>
 </div>
-
 <% end %>
 
 <div class="modal-bg hidden w-screen fixed top-0 left-0 bg-black-opacity-50  z-40 h-screen close-modal">
@@ -102,21 +97,25 @@ $(document).ready(function() {
 	$(".open-description").click(function(event) {
 		$(this).parents(".container").children('.description').toggle();
 	});
+	// new user in existing house
+	$(".new_user_to_house").click(function(event) {
+		var url = "<%= root_url %>users/sign_up?t=u&h=" + $(this).val()
+		share_sign_up(url)
+	});
+	// new house in existing family
+	$(".new_house_to_family").click(function(event) {
+		var url = "<%= root_url %>users/sign_up?t=h&f=" + $(this).val()
+		share_sign_up(url)
+	});
+	// new
+	// $(".sign_up_another_house").click(function(event) {
+	// 	var url = "<%= root_url %>users/sign_up?t=ecumv&i=" + $(this).val()
+	// 	share_sign_up(url)
+	// });
 
-	$(".sign_up_user").click(function(event) {
-		var url = "<%= root_url %>users/sign_up?t=jbhl&i=" + $(this).val()
-		share_sign_up(url)
-	});
-	$(".sign_up_house").click(function(event) {
-		var url = "<%= root_url %>users/sign_up?t=ecumv&i=" + $(this).val() + "&n=y"
-		share_sign_up(url)
-	});
-	$(".sign_up_another_house").click(function(event) {
-		var url = "<%= root_url %>users/sign_up?t=ecumv&i=" + $(this).val()
-		share_sign_up(url)
-	});
-	$(".sign_up_house_user").click(function(event) {
-		var url = "<%= root_url %>kid_guide?g=" + $(this).val()
+	// existing user to existing house
+	$(".existing_user_to_house").click(function(event) {
+		var url = "<%= root_url %>add_user_to_house?h=" + $(this).val()
 		share_sign_up(url)
 	});
 
