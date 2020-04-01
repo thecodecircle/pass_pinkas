@@ -17,8 +17,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts "type: #{params[:type]}"
     puts "houseable_id: #{params[:houseable_id]}"
     puts "houseable_name: #{params[:houseable_name]}" if params[:houseable_id] == "w8"
-    @user.score = 0
-    @user.save 
+    # @user.score = 0
+    # @user.save
     roles = {
        kid: "jbhl",
        house: "ecumv",
