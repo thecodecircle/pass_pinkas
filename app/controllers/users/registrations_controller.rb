@@ -14,36 +14,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
     puts "****************************************"
     puts "username: #{@user.username}"
-    puts "type: #{params[:type]}"
-    puts "houseable_id: #{params[:houseable_id]}"
-    puts "houseable_name: #{params[:houseable_name]}" if params[:houseable_id] == "w8"
+    puts "family_id: #{params[:family_id]}" if params[:family_id].present?
+    puts "house_id: #{params[:house_id]}" if params[:house_id].present?
 
-    # if no params, completely new
-    f = Family.create(name: params[:family], score: 0)
-    h = House.create(name: params[:houseable_name], score: 0, family_id: params[:houseable_id])
-    current_user.houses << h
-
-    roles = {
-       kid: "jbhl",
-       house: "ecumv",
-       family: "ei",
-       region: "tzur",
-       movement: "bugv"
-      }
-    if params[:new] == "y"
-      case roles.key(params[:type])
-      when :family
-      when :house
-      end
-    else
-      if roles.key(params[:type]) == :kid
-        MyHouse.create(user_id: @user.id, role: "kid", my_houseable_id: params[:houseable_id], my_houseable_type: "House")
-      else
-        MyHouse.create(user_id: @user.id, role: "guide", my_houseable_id: params[:houseable_id], my_houseable_type: roles.key(params[:type]).to_s.capitalize())
-      end
+    if !params[:family_id].present? && !params[:house_id].present?
+      f = Family.create(name: params[:family], score: 0)
+      h = House.create(name: params[:house], score: 0, family_id: f.id)
+      current_user.houses << h
+    elsif params[:family_id].present?
+      h = House.create(name: params[:house], score: 0, family_id: params[:family_id])
+      current_user.houses << h
+    elsif params[:house_id].present?
+      current_user.houses << House.find(params[:house_id])
     end
-
-    puts "Created MyHouse!"
+    puts "Done!"
   end
 
   # GET /resource/edit

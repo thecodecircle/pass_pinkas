@@ -30,28 +30,9 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
     </div>
 
-    <% if false %>
-      <%= hidden_field_tag(:type, params[:t]) %>
-      <%= hidden_field_tag(:role, params[:r]) %>
-
-      <% if params[:t] != "jbhl" && params[:n].present? %>
-        <div class="mb-6">
-          <%= f.label :houseable_name, class:"label" do %>
-            <% case params[:t] %>
-            <% when "bugv" %>
-              <%= I18n.t("user.new.movement") %>
-            <% when "tzur" %>
-              <%= I18n.t("user.new.region") %>
-            <% when "ei" %>
-              <%= I18n.t("user.new.family") %>
-            <% when "ecumv" %>
-              <%= I18n.t("user.new.house") %>
-            <% end %>
-          <% end%>
-          <%= text_field_tag(:houseable_name, nil, class:"input") %>
-        </div>
-      <% end %>
-    <% end %>
+    <!-- <a href="<%= root_url %>users/sign_up">new game/family</a>
+    <a href="<%= root_url %>users/sign_up?t=h&f=<%= @family.id %>">new house in existing family</a>
+    <a href="<%= root_url %>users/sign_up?t=u&h=<%= @house.id %>">new user in existing house</a> -->
 
     <% unless params[:t].present? %>
       <div class="mb-6">
@@ -72,8 +53,11 @@
       <%= hidden_field_tag(:family_id, params[:f]) if params[:f].present? %>
     <% end %>
 
+    <% if params[:t] = "u" %>
+      <%= hidden_field_tag(:house_id, params[:h]) if params[:h].present? %>
+    <% end %>
+
     <%= hidden_field_tag(:new, params[:n]) if params[:n].present? %>
-    <%= hidden_field_tag(:house_id, params[:h]) if params[:h].present? %>
 
     <div class="mb-6">
       <%= f.submit "הרשמה", class: "btn btn-default" %>

@@ -46,7 +46,7 @@ class HomeController < ApplicationController
 	end
 
 
-  def kid_guide
+  def add_user_to_house
     MyHouse.create(user_id: current_user.id, role: "kid", my_houseable_id: params[:g], my_houseable_type: "House") unless current_user.houses.ids.include?(params[:g])
     redirect_to root_path
   end
