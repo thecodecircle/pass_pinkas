@@ -4,6 +4,8 @@ class HomeController < ApplicationController
 		if current_user.admin?
       @families = Family.all
       @houses = House.all
+      @house = @houses.first
+      @family = @house.family
     else
       @houses = current_user.houses
 			if params[:house].present?
