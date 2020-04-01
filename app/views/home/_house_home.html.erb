@@ -161,6 +161,14 @@ $(document).ready(function() {
 			});
 
 			$(".open-task-description").click(function(event) {
+				if ($(this).parents(".task").children('.description').is(":visible")) {
+					$(this).parents(".task").children('.description').hide("fast")
+					$(this).toggleClass('task-shadow')
+				}
+				else {
+					$(".description").hide()
+					$(".open-task-description").removeClass('task-shadow')
+					$(this).toggleClass('task-shadow')
 					console.log($(this).offset().left)
 					var half_window = $(window).width()/2
 					var element_left = $(this).offset().left
@@ -173,15 +181,11 @@ $(document).ready(function() {
 
 					}
 					$(this).parents(".task").children('.description').toggle("fast");
-					// $(this).addClass('close-task-description')
-					// $(this).removeClass('open-task-description')
+
+				}
 			});
 
-		// 		$(document).click(function() {
-		// 			if ($(".description").is(":visible")) {
-		// 			$(".description").hide()
-		// 	}
-		// });
+
 
 })
 

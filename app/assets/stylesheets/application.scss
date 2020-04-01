@@ -73,6 +73,11 @@
 	background-position: center;
 	transform: translate(20%, 20%);
 }
+.task-shadow{
+	-webkit-box-shadow: -6px 7px 17px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: -6px 7px 17px -1px rgba(0,0,0,0.75);
+	box-shadow: -6px 7px 17px -1px rgba(0,0,0,0.75);
+}
 
 .transform-right{
 	    transform: translate(50%, -50%);
