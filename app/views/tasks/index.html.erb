@@ -48,20 +48,10 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= link_to task.name, task %></td>
-				<% if %w(Admin Movement).include?(current_user.role) %>
-				 <td>
-					 <%= statuses[task.status.to_sym] if task.approved? %>
-					 <span class="text-red-600"> <%= statuses[task.status.to_sym][0] if task.unapproved? %></span>
-				 </td>
-			 <% end %>
         <td><%= difficulties[task.difficulty.to_sym] %></td>
         <td><%= ages[task.age.to_sym] %></td>
         <td><%= task.description %></td>
-        <% if %w(Admin Movement).include?(current_user.role) %>
-					<td>
-						<%# statuses[task.status.to_sym] if task.approved? %>
-						<%= link_to statuses[task.status.to_sym][1], approve_task_path(task_id: task.id), class:"bg-shmutz-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" if task.unapproved? %>
-					</td>
+        <% if current_user.admin? %>
           <td><%= publicities[task.publicity.to_sym] %></td>
           <td>
 						<%= link_to "<i class='gg-push-chevron-down-o m-auto'></i>".html_safe, assign_task_path(house: current_user.houses.last, task: task.id) , data: { confirm: 'מוכנים לעוד משימה?' }%>
