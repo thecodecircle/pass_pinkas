@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   }
   root to: 'home#index'
   get "/leaders" => "home#leaders"
+  get "/choose_house" => "home#choose_house"
 	get "/pinkasi" => "home#pinkasi"
   get "/assign_task", to: "tasks#assign_task"
   get "/change_progress", to: "tasks#change_progress"

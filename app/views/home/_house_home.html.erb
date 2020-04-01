@@ -97,13 +97,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$(".open-menu").click(function(event) {
-
 		$(".menu").toggle("fast")
-		// event.stopPropagation(); // This is the preferred method.
-		// return false;        // This should not be used unless you do not want
-		// $("nav").toggleClass('h-32');
+		event.stopPropagation(); // This is the preferred method.
+		return false;        // This should not be used unless you do not want
 	});
-
+	$(document).click(function() {
+		$(".menu").hide("fast")
+	})
 	$(window).scroll(function() {
     var height = $(window).scrollTop();
     if(height > 50) {

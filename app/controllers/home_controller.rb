@@ -30,6 +30,9 @@ class HomeController < ApplicationController
 	def pinkasi
 	end
 
+	def choose_house
+	  
+	end
 
   def add_user_to_house
     current_user.houses << House.find(params[:h]) unless current_user.houses.ids.include?(params[:h])
