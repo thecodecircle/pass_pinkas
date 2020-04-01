@@ -7,11 +7,6 @@
     impossible: "כמעט בלתי אפשרי"
 }%>
 
-<% statuses = {
-  unapproved: ["לא מאושר", "לאישור"],
-  approved: "מאושר"
-  } %>
-
 <% publicities = {
   personal: "פרטי",
   general: "ציבורי"
@@ -27,9 +22,6 @@
   <thead>
     <tr>
       <th>כותרת</th>
-			  <% if %w(Admin Movement).include?(current_user.role) %>
-					<th>סטטוס</th>
-				<% end %>
       <th>רמת קושי</th>
       <th>גילאים</th>
       <th>פירוט</th>
@@ -68,9 +60,6 @@
   </tbody>
 </table>
 
-<!-- <div class="table-responsive">
-
-</div> -->
 
 <br>
 
