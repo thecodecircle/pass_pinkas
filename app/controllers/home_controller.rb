@@ -17,7 +17,7 @@ class HomeController < ApplicationController
 			@houses = House.all
 		else
 			@families = current_user.families
-			@houses = @families.map { |f| f.houses }.flatten.uniq.sort_by(&:score).reverse
+			# @houses = @families.map { |f| f.houses }.flatten.uniq.sort_by(&:score).reverse
 		end
 	end
 

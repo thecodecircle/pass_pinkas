@@ -38,13 +38,12 @@
 	<button name="family_id" value="<%= family.id %>" class="open-modal bg-shmutz-blue text-white rounded-lg px-2">לאתגר את כולם!</button>
 	</h1>
 	<% family.houses.where.not(id: @houses.ids).each do |house| %>
-	<div class="flex justify-between">
+	<div class="flex justify-between my-2">
 		<span><%= house.name %></span>
 		<button name="house_id" value="<%= house.id %>" class="open-modal bg-shmutz-blue text-white rounded-lg px-2">לאתגר אותם!</button>
 	</div>
 	<% end %>
-
-	<button  class="text-md new_house_to_family text-right bg-shmutz-blue text-white my-1 px-1 rounded-lg"   value="<%= family.id %>" type="button" name="button">הזמנת בני משפחה ליצור בית ב<%= family.name %></button>
+	<button  class="text-md new_house_to_family bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white px-4 border border-blue-500 hover:border-transparent rounded "   value="<%= family.id %>" type="button" name="button">הזמנת בני משפחה ליצור בית ב<%= family.name %></button>
 </div>
 <% end %>
 
