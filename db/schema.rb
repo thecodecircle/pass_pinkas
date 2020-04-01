@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_061428) do
+ActiveRecord::Schema.define(version: 2020_04_01_062851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2020_04_01_061428) do
     t.integer "score"
     t.text "description"
     t.integer "publicity"
-    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "difficulty"

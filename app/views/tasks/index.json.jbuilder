@@ -6,7 +6,6 @@ json.set! :data do
     json.score "#{task.score}"
     json.description "#{task.description}"
     json.publicity "#{task.publicity}"
-    json.status "#{task.status}"
     json.url  "
               #{link_to '<i class="fas fa-edit"></i>'.html_safe, edit_task_path(task), style: 'color: grey'}
               #{link_to "<i class='far fa-trash-alt'></i>".html_safe, task, method: :delete, data: { confirm: 'את/ה בטוח/ה?' }, class:"mx-2", style: "color: red" if current_staff.admin? || current_staff.vip?}

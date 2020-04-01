@@ -10,9 +10,6 @@ class Task < ApplicationRecord
   enum publicity: %i[personal general]
   validates  :publicity, inclusion: { in: Task.publicities.keys }
 
-  enum status: %i[unapproved approved]
-  validates  :status, inclusion: { in: Task.statuses.keys }
-
   enum difficulty: %i[easy medium hard impossible]
   validates  :difficulty, inclusion: { in: Task.difficulties.keys }
 
