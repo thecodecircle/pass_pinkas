@@ -69,6 +69,6 @@ class FamiliesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def family_params
-      params.require(:family).permit(:name, :score, :region_id)
+      params.require(:family).permit(:name, :score)
     end
 end
