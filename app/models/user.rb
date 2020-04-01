@@ -7,17 +7,7 @@ class User < ApplicationRecord
   has_many              :house_users
   has_many              :houses, through: :house_users, dependent: :destroy
   has_many              :families, through: :houses
-
-  # has_many              :houses, through: :my_houses
-  # has_many              :my_houses
-  # has_many              :my_houseables, through: :my_houses
-  # has_many              :houses, through: :my_houses, source: :my_houseable, source_type: "House"
-  # has_many              :families, through: :my_houses, source: :my_houseable, source_type: "Family"
-  # has_many              :regions, through: :my_houses, source: :my_houseable, source_type: "Region"
-  # has_many              :movements, through: :my_houses, source: :my_houseable, source_type: "Movement"
-  has_many              :my_tasks
-  # has_many              :my_tasks, inverse_of: :my_tasks
-  has_many              :tasks, through: :my_tasks
+  
 
   validates :username, presence: :true, uniqueness: { case_sensitive: false }
 
