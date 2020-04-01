@@ -31,6 +31,20 @@
 	background: #cce4ff;
 }
 
+
+.chevron{
+
+    -moz-transition: all 0.5s linear;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+
+.chevron.rotate-chev{
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
 .btn {
 	 @apply font-bold py-2 px-4 rounded;
  }
@@ -51,6 +65,20 @@
 
 .blue-plus{
 	background-image: asset_url("blue-plus.svg");
+}
+.star{
+	background-image: asset_url('star.svg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+	transform: translate(20%, 20%);
+}
+
+.transform-right{
+	    transform: translate(50%, -50%);
+}
+.transform-left{
+	    transform: translate(-50%, -50%);
 }
 .bg-black-opacity-50{
 	background: rgba(0,0,0,0.7);
@@ -258,7 +286,8 @@ $gray: #4a5568;
     width: 22px;
     height: 22px;
     border: 2px solid;
-    border-radius: 100px
+    border-radius: 100px;
+		transform-origin: center;
 }
 .gg-push-chevron-down-o::after,
 .gg-push-chevron-down-o::before {
@@ -383,7 +412,7 @@ transform: translate(0px, 50%);
 }
 .gg-more-vertical-alt {
     transform: scale(var(--ggs,1));
-		color: white;
+		color: black;
 }
 .gg-more-vertical-alt,
 .gg-more-vertical-alt::after,
@@ -576,4 +605,44 @@ transform: translate(0px, 50%);
 }
 .gg-close::after {
     transform: rotate(-45deg)
+}
+
+.star-five {
+	margin: 50px 0;
+	position: relative;
+	display: block;
+	color: red;
+	width: 0px;
+	height: 0px;
+	border-right: 100px solid transparent;
+	border-bottom: 70px solid red;
+	border-left: 100px solid transparent;
+	transform: rotate(35deg);
+}
+.star-five:before {
+	border-bottom: 80px solid red;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	position: absolute;
+	height: 0;
+	width: 0;
+	top: -45px;
+	left: -65px;
+	display: block;
+	content: '';
+	transform: rotate(-35deg);
+}
+.star-five:after {
+	position: absolute;
+	display: block;
+	color: red;
+	top: 3px;
+	left: -105px;
+	width: 0px;
+	height: 0px;
+	border-right: 100px solid transparent;
+	border-bottom: 70px solid red;
+	border-left: 100px solid transparent;
+	transform: rotate(-70deg);
+	content: '';
 }
