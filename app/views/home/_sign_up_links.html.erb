@@ -1,17 +1,17 @@
 <% if current_user.role != "House"%>
-	<button  id="open_links" class="text-md mb-2 bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8">
+	<button  id="open_links" class="text-md mb-2 bg-transparent hover:bg-cta text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8">
 		קישורים להרשמה
 	</button>
 <% end %>
 	<div id="links" class="hidden">
 	קישורים להזמנת
 	<% @families.each do |family| %>
-	<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
+	<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-cta text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
 	מדריכות מ<%= family.name %></button></li>
 	<% end %>
 	קישורים להרשמת מדריכות
 	<% @families.each do |family| %>
-	<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-shmutz-blue text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
+	<li><button  class="text-md mb-2 sign_up_house bg-transparent hover:bg-cta text-blue-700 hover:text-white px-4 border border-blue-500 hover:border-transparent rounded h-8" value="<%= family.id %>">
 	מדריכות מ<%= family.name %></button></li>
 	<% end %>
 	

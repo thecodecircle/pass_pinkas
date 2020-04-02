@@ -10,13 +10,13 @@
    aria-hidden="true"
    focusable="false"
    data-prefix="fas"
-   data-icon="star"
-   class="svg-inline--fa fa-star fa-w-18"
+   data-icon="home"
+   class="svg-inline--fa fa-home fa-w-18"
    role="img"
    viewBox="0 0 576 512"
    version="1.1"
    id="svg4"
-   sodipodi:docname="star.svg"
+   sodipodi:docname="home-solid.svg"
    inkscape:version="0.92.3 (2405546, 2018-03-11)">
   <metadata
      id="metadata10">
@@ -44,16 +44,17 @@
      inkscape:window-height="1029"
      id="namedview6"
      showgrid="false"
-     inkscape:zoom="0.4609375"
-     inkscape:cx="-71.050849"
-     inkscape:cy="256"
+     inkscape:zoom="0.65186406"
+     inkscape:cx="-622.82495"
+     inkscape:cy="186.78604"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg4" />
   <path
-     fill="currentColor"
-     d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+     d="M 280.37,107.26 96,259.11 V 464 c 0,8.83656 7.16344,16 16,16 249.92616,-0.9078 180.15847,-0.47555 352,0 8.83656,0 16,-7.16344 16,-16 V 259 L 295.67,107.26 c -4.46504,-3.59905 -10.83496,-3.59905 -15.3,0 z M 571.6,251.47 488,182.56 V 44.05 c 0,-6.627417 -5.37258,-12 -12,-12 h -56 c -6.62742,0 -12,5.372583 -12,12 v 72.61 L 318.47,43 c -17.71927,-14.581155 -43.28073,-14.581155 -61,0 L 4.34,251.47 c -5.11050552,4.22399 -5.8270027,11.79199 -1.6,16.9 l 25.5,31 c 4.215911,5.12634 11.792527,5.85667 16.91,1.63 L 280.37,107.26 c 4.46504,-3.59905 10.83496,-3.59905 15.3,0 L 530.9,301 c 5.10801,4.227 12.67601,3.51051 16.9,-1.6 l 25.5,-31 c 4.22377,-5.13906 3.46121,-12.73332 -1.7,-16.93 z"
      id="path2"
-     style="fill:#f6e05e;fill-opacity:1" />
+     inkscape:connector-curvature="0"
+     style="fill:#81f5ff;fill-opacity:1"
+     sodipodi:nodetypes="ccsccscccccssssccccccccccccc" />
 </svg>

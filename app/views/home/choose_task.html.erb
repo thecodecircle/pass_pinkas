@@ -1,21 +1,33 @@
-
-<button value="new_task" class="task outline-none h-24 w-24  bg-green-400 m-6 rounded-full flex flex-col relative open-task-description">
-	<div class="flex justify-center items-center h-full text-center">
-		<span class="mx-3 text-lg ">משימה חדשה!</span>
+<div class="fixed top-0 left-0 w-full h-16  bg-header shadow-lg z-50">
+	<div class="w-full flex justify-around h-full items-center text-xl atext-white">
+		<span>בחירת בית</span>
+		<b class="text-2xl">בחירת אתגר</b>
 	</div>
-</button>
-<% @tasks.each do |task| %>
-<button value="<%= task.id %>" class="task outline-none h-24 w-24  bg-green-400 m-6 rounded-full flex flex-col relative open-task-description">
-	<div class="flex justify-center items-center h-full text-center">
-		<span class="mx-3 text-lg "><%= task.name %></span>
-	</div>
-</button>
-<% end %>
 
-<div class="actions flex fixed bottom-0 w-full rounded-lg brand h-16">
-	<%= link_to "<", "/choose_house", class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" %>
+</div>
+<div class="my-24 flex flex-wrap justify-center">
 
-	<a class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl" href="">אתגר אותם!</a>
+	<button value="new_task" class="task outline-none h-32 w-32 bg-task-green m-6 rounded-full flex flex-col relative open-task-description">
+		<div class="flex justify-center items-center h-full text-center">
+			<span class="mx-3 text-lg ">משימה חדשה!</span>
+		</div>
+	</button>
+	<% @tasks.each do |task| %>
+	<button value="<%= task.id %>" class="task outline-none h-32 w-32 bg-task-green m-6 rounded-full flex flex-col relative open-task-description">
+		<div class="flex justify-center items-center h-full text-center w-32">
+			<span class="mx-3 text-lg text-center w-full"><%= task.name %></span>
+			<span class="star w-16 h-16 star-transform absolute bottom-0 right-0 justify-center flex items-center"><%= task.score %></span>
+		</div>
+	</button>
+	<% end %>
+</div>
+
+<div class="actions flex fixed bottom-0 w-full rounded-lg brand h-16 shadow-up">
+	<%= link_to "/choose_house", class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" do  %>
+		<%= image_tag "back.svg", size:"25" %>
+	<% end %>
+	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl" ><%= image_tag "check.svg", size:"25" %></div>
+	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""><%= image_tag "check.svg", size:"25" %></a>
 </div>
 
 <script type="text/javascript">
@@ -26,11 +38,12 @@ $(document).ready(function() {
 		$(".task").removeClass('task-shadow')
 		$(this).addClass('task-shadow')
 		chosen_task = $(this).val()
-		$(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
+		$(".next").replaceWith($(".next-active"))
+		$(".next-active").removeClass('hidden')
 		if (chosen_task == "new_task") {
-			$(".next").attr('href', '/tasks/new?&house_id=' + house);
+			$(".next-active").attr('href', '/tasks/new?&house_id=' + house);
 		}else {
-			$(".next").attr('href', '/assign_task?task=' + chosen_task + "&house=" + house);
+			$(".next-active").attr('href', '/assign_task?task=' + chosen_task + "&house=" + house);
 		}
 	});
 });

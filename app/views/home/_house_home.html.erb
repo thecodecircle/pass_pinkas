@@ -5,12 +5,12 @@
 		<div class="flex flex-wrap justify-between w-full self-end brand h-12 mt-2">
 			<!-- <%= @house.name %> -->
 			<div class="mx-2  flex flex-col justify-center">
-				<%= image_tag "star.svg", size:"35" %>
-				<span class=" text-whitebg-shmutz-bluepx-2rounded-lg text-center"><%= @house.score %></span>
+				<span class="star-normal w-16 h-16 flex items-center justify-center"><%= @house.score %></span>
+				<!-- <span class=" text-center"></span> -->
 			</div>
 			<div class="mx-2">
 				<button class="open-menu flex items-center px-3 py-2 aborder rounded text-grey sborder-gray-500 hover:text-gray-600 ahover:border-gray-600">
-					<i class="gg-more-vertical-alt"></i>
+					<%= image_tag "user-circle.svg", size:"25" %>
 				</button>
 			</div>
 		</div>
@@ -18,10 +18,16 @@
 			<span>שלום <%= current_user.name %>!</span>
 			<span class="text-xl"><%= @house.name %></span>
 		</div>
-		<div class="menu hidden float-left absolute top-0 left-0 mt-8 pl-2 bg-white rounded-lg rounded-t-none">
+		<div class="menu hidden float-left absolute top-0 left-0 mt-10 px-5 pt-5 pb-5 bg-white rounded-lg rounded-t-none z-50">
 			<ol>
-				<% House.all.each do |house| %>
-				<li><%= link_to house.name, root_path(house: house.id)  %></li>
+				<span class="text-lg">החלפת בית</span>
+				<% current_user.houses.each do |house| %>
+					<li class="mx-1 border-cta rounded-full px-2 my-2"><%= link_to house.name, root_path(house: house.id)  %></li>
+				<% end %>
+				<hr>
+				<%= link_to destroy_user_session_path, method: :delete, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do%>
+				<%= image_tag "sign-out.svg", size:"25" %>
+				<span class="ml-5">יציאה</span>
 				<% end %>
 			</ol>
 		</div>
@@ -32,7 +38,7 @@
 	<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5 mt-10">
 		<h1 class="text-xl text-shmutz-blue brand flex justify-between items-center">
 			<div class="open-our-tasks flex ">
-				<span class="chevron flex items-center"><i class="gg-push-chevron-down"></i></i> </span>
+				<span class="chevron-our flex items-center"><i class="gg-push-chevron-down"></i></i> </span>
 				<span>המשימות שלנו</span>
 			</div>
 
@@ -42,51 +48,59 @@
 			<%= render "task", { task: task, status: "in_progress", kid: current_user.id, house: @house.id } %>
 			<% end %>
 		</div>
-		<h1 class="text-xl text-shmutz-blue brand">משימות שסיימנו</h1>
-		<% @house.done_tasks.each do |task| %>
-		<%= render "task", { task: task, status: "done", kid: current_user.id, house: @house.id } %>
-		<% end %>
+		<h1 class="text-xl text-shmutz-blue brand flex justify-between items-center">
+			<div class="open-done-tasks flex ">
+				<span class="chevron-done flex items-center"><i class="gg-push-chevron-down"></i></i> </span>
+				<span>המשימות שסיימנו</span>
+			</div>
+		</h1>
+		<div class="done-tasks flex flex-wrap justify-center">
+			<% @house.done_tasks.each do |task| %>
+			<%= render "task", { task: task, status: "done", kid: current_user.id, house: @house.id } %>
+			<% end %>
 
-		<div class="sign-ups-div mt-3">
-			<div class="open-house-sign-ups flex justify-between bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white px-4 border border-blue-500 hover:border-transparent rounded">
-				<button class="" type="button" name="button">להזמין בני בית</button>
-				<button class="" type="button" name="button"><i class="gg-push-chevron-down"></i> </button>
-			</div>
-			<div class="house-sign-ups hidden">
-				<button  class="text-md new_user_to_house bg-shmutz-blue text-white my-1 px-1 rounded-lg" value="<%= @house.id %>" type="button" name="button">הרשמת בני בית ל<%= @house.name %></button> <br>
-				<button  class="text-md existing_user_to_house text-right bg-shmutz-blue text-white my-1 px-1 rounded-lg"   value="<%= @house.id %>" type="button" name="button">הרשמת בני בית רשומים במערכת ל<%= @house.name %></button>
-			</div>
 		</div>
+
+
 	</div>
 
 
+
+<footer class="w-full h-24">
+
+	<%= link_to '/choose_house' do  %>
+	<div	 class="fixed bottom-0 left-0 bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+		<%= image_tag "plus.svg", size: "35" %>
+	</div>
+	<% end %>
+	<button class="open-modal invite-users fixed bottom-0 right-0 bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+		<%= image_tag "user-plus.svg", size: "35" %>
+	</button>
+</footer>
+
 <div class="modal-bg hidden w-screen fixed top-0 left-0 bg-black-opacity-50  z-40 h-screen close-modal">
 	<div class="w-full h-full flex items-center close-modal justify-center">
-		<div class="modal-body rounded-lg overflow-scroll overflow-y-scroll h-3/4 bg-white ltr ">
-			<div class=" bg-gray-100 modal-header h-full">
+		<div class="modal-body rounded-lg  h-3/4 bg-white w-full mx-3	">
+			<div class=" bg-gray-100 modal-header h-full  rounded-lg">
 				<div class="flex justify-between">
-					<h1 class="text-2xl m-3">הוספת משימה</h1>
+					<h1 class="text-2xl m-3">להזמין קרובי משפחה</h1>
 					<i class="gg-close-o m-3 close-modal"></i>
 				</div>
+				<hr>
 				<div class="modal-content ">
-					<button id="new-task" class=" bg-shmutz-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"></button>
-					<button id="task-index" class=" bg-shmutz-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"></button>
+						<div class="house-sign-ups">
+
+							<button  class="text-lg new_user_to_house flex justify-between w-full items-center px-3 text-right py-3" value="<%= @house.id %>" type="button" name="button">הזמנת בני בית חדשים מ<%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
+							<button  class="text-lg existing_user_to_house flex justify-between w-full items-center px-3 text-right py-3"   value="<%= @house.id %>" type="button" name="button">הזמנת בני בית רשומים במערכת ל<%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
+							<button  class="text-lg new_house_to_family flex justify-between w-full items-center px-3 text-right py-3" value="<%= @family.id %>" type="button" name="button">הזמנת בתים אחרים מ<%= @family.name %> <%= image_tag "copy.svg", size:"25" %></button>
+							<button  class="text-lg new-family flex justify-between w-full items-center px-3 text-right py-3"   value="new-family" type="button" name="button">לשתף את קשר לפסח עם משפחה אחרת  <%= image_tag "copy.svg", size:"25" %></button>
+						</div>
 				</div>
 			</div>
 		</div>
 
 	</div>
 </div>
-<footer class="w-full h-24">
-	<%= render 'layouts/footer' unless controller_name == "registrations" || controller_name == "sessions" %>
-	<%= link_to '/choose_house' do  %>
-	<div	 class="fixed bottom-0 left-0 bg-shmutz-blue w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "plus.png", size: "35" %>
-	</div>
-	<% end %>
-
-</footer>
-
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -111,17 +125,7 @@ $(document).ready(function() {
 
 
 	$(".open-modal").click(function(event) {
-		if ($(this).attr("name") == "house_id") {
-			console.log($(this).attr("name"));
-			house_id = $(this).val()
-			$("#new-task").html("<a href='/tasks/new?house_id=" + house_id + "'>משימה חדשה</a>")
-			$("#task-index").html("<a href='/tasks?house_id=" + house_id + "'>ממאגר המשימות</a>")
-		}else {
-			console.log($(this).attr("name"));
-			family_id = $(this).val()
-			$("#new-task").html("<a href='/tasks/new?family_id=" + family_id + "'>משימה חדשה</a>")
-			$("#task-index").html("<a href='/tasks?family_id=" + family_id + "'>ממאגר המשימות</a>")
-		}
+
 		$(".modal-bg").show("slow")
 	});
 	$(".close-modal").click(function(event) {
@@ -132,6 +136,7 @@ $(document).ready(function() {
 	$(".close-task-description").click(function(event) {
 		if (event.target == this){
 			$(".description").hide("fast")
+			$(this).parents("div").children('.open-task-description').removeClass('task-shadow')
 		}
 	});
 	$(".open_users_tasks").click(function(event) {
@@ -147,7 +152,11 @@ $(document).ready(function() {
 
 	$(".open-our-tasks").click(function(event) {
 		$(".our-tasks").toggle("fast");
-		$(".chevron").toggleClass('rotate-chev');
+		$(".chevron-our").toggleClass('rotate-chev');
+	});
+	$(".open-done-tasks").click(function(event) {
+		$(".done-tasks").toggle("fast");
+		$(".chevron-done").toggleClass('rotate-chev');
 	});
 	// new user in existing house
 	$(".new_user_to_house").click(function(event) {
@@ -170,6 +179,11 @@ $(document).ready(function() {
 		var url = "<%= root_url %>add_user_to_house?h=" + $(this).val()
 		share_sign_up(url)
 	});
+	$(".new-family").click(function(event) {
+		var url = "<%= root_url %>users/sign_up"
+		share_sign_up(url)
+	});
+
 
 	function share_sign_up(url) {
 		/* Get the text field */
@@ -210,18 +224,10 @@ $(document).ready(function() {
 					$(".description").hide()
 					$(".open-task-description").removeClass('task-shadow')
 					$(this).toggleClass('task-shadow')
-					console.log($(this).offset().left)
-					var half_window = $(window).width()/2
-					var element_left = $(this).offset().left
-					console.log($(window).width());
-					if (element_left > half_window) {
-						$(this).parents(".task").children('.description').addClass('transform-left')
-					}
-					else {
-						$(this).parents(".task").children('.description').addClass('left-0 transform-left')
 
-					}
-					$(this).parents(".task").children('.description').toggle("fast");
+					$(this).parents(".task").children('.description').toggle();
+					$(this).parents(".task").children('.description').children('.description-body').hide();
+					$(this).parents(".task").children('.description').children('.description-body').show("slow");
 
 				}
 			});

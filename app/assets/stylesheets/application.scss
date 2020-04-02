@@ -18,11 +18,22 @@
 	line-height: 0.7;
 }
 
-.bg-shmutz-blue{
-	background: #1c14cb !important;
+.bg-cta{
+	background: #e4a3d4 !important;
+}
+.border-cta{
+	border: #e4a3d4 solid;
+}
+
+.bg-header{
+	background: #ffffdd  !important;
+
 }
 .text-shmutz-blue{
 	color: #1c14cb !important;
+}
+.text-cta{
+	color: #ff00c0 !important;
 }
 .border-shmutz-blue{
 	border-color: #1c14cb !important;
@@ -49,7 +60,7 @@
 	 @apply font-bold py-2 px-4 rounded;
  }
  .btn-blue {
-	 @apply bg-shmutz-blue text-white;
+	 @apply bg-cta text-white;
  }
  .btn-blue:hover {
 	 @apply bg-blue-700;
@@ -72,6 +83,28 @@
 	background-size: 100%;
 	background-position: center;
 	transform: translate(20%, 20%);
+}
+.star-normal{
+	background-image: asset_url('star.svg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+}
+.bg-house{
+	background-image: asset_url('home-solid.svg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+}
+.square-10rem{
+	width: 10rem;
+	height: 10rem;
+}
+.bg-task-green{
+	background: #a0ffe6
+}
+.shadow-up{
+	box-shadow: 0px -5px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 .task-shadow{
 	-webkit-box-shadow: -6px 7px 17px -1px rgba(0,0,0,0.75);

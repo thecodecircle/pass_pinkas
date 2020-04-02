@@ -1,14 +1,26 @@
-<% @houses.each do |house| %>
-<button value="<%= house.id %>" class="house outline-none h-24 w-24  bg-green-400 m-6 rounded-full flex flex-col relative open-task-description">
-	<div class="flex justify-center items-center h-full text-center">
-		<span class="mx-3 text-lg "><%= house.name %></span>
+<div class="fixed top-0 left-0 w-full h-16 bg-header shadow-lg z-50">
+	<div class="w-full flex justify-around h-full items-center text-xl atext-white">
+		<b class="text-2xl">בחירת בית</b>
+		<span>בחירת אתגר</span>
 	</div>
-</button>
-<% end %>
+</div>
+<div class="my-24 flex flex-wrap justify-center">
+	<% @houses.each do |house| %>
+	<button value="<%= house.id %>" class="house outline-none square-10rem text-whitea m-1 rounded-full flex flex-col justify-center items-center elative open-task-description">
+		<div class="flex justify-center items-center h-full text-center square-10rem bg-house">
+			<span class="mx-3 text-lg w-32 p-3"><%= house.name %></span>
+		</div>
+	</button>
+	<% end %>
 
-<div class="actions flex fixed bottom-0 w-full rounded-lg brand h-16">
-	<%= link_to "<", root_path, class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" %>
-	<a class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl" href="">>></a>
+</div>
+
+<div class="actions flex fixed bottom-0 w-full rounded-lg brand h-16 shadow-up">
+	<%= link_to root_path, class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" do  %>
+		<%= image_tag "back.svg", size:"25" %>
+	<% end %>
+	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl"><%= image_tag "forward.svg", size:"25" %></div>
+	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""><%= image_tag "forward.svg", size:"25" %></a>
 </div>
 
 <script type="text/javascript">
@@ -18,8 +30,10 @@ $(document).ready(function() {
 		$(".house").removeClass('task-shadow')
 		$(this).addClass('task-shadow')
 		chosen_house = $(this).val()
-		$(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
-		$(".next").attr('href', '/choose_task?house_id=' + chosen_house);
+		$(".next").replaceWith($(".next-active"))
+		$(".next-active").removeClass('hidden')
+		// $(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
+		$(".next-active").attr('href', '/choose_task?house_id=' + chosen_house);
 	});
 });
 </script>
