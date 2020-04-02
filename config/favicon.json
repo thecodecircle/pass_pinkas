@@ -1,10 +1,9 @@
+
 {
-    "master_picture": "app/assets/images/blue.png",
+    "master_picture": "app/assets/images/logo.png",
     "favicon_design": {
         "ios": {
-            "picture_aspect": "background_and_margin",
-            "background_color": "#ffffff",
-            "margin": "14%",
+            "picture_aspect": "no_change",
             "assets": {
                 "ios6_and_prior_icons": false,
                 "ios7_and_later_icons": false,
@@ -17,7 +16,7 @@
         },
         "windows": {
             "picture_aspect": "no_change",
-            "background_color": "#ffffff",
+            "background_color": "#da532c",
             "on_conflict": "override",
             "assets": {
                 "windows_80_ie_10_tile": false,
@@ -49,7 +48,7 @@
         }
     },
     "settings": {
-        "compression": 5,
+        "compression": 2,
         "scaling_algorithm": "Mitchell",
         "error_on_image_too_small": false,
         "readme_file": false,
