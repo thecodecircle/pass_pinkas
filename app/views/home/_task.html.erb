@@ -1,4 +1,15 @@
+<% difficulties = {
+		easy: "קל - 10",
+		medium: "בינוני - 50",
+		hard: "קשה - 100",
+		impossible: "כמעט בלתי אפשרי - 300"
 
+	<% ages = {
+		toddler: "קטנטנים",
+		small: "ילדים קטנים",
+		big: "ילדים גדולים",
+		grownup: "מבוגרים"
+		} %>
 
 	<% case status %>
 	<% when "in_progress" %>
@@ -14,13 +25,13 @@
 					<div class="flex flex-col justify-between w-full rounded-lg h-full p-3" >
 						<div class="flex  justify-between w-full h-10">
 							<span class=" "><%= task.name %></span>
-							<span class=" "><%= task.difficulty %></span>
+							<span class=" "><%= difficulties[task.difficulty.to_sym] %></span>
 						</div>
 						<div class="flex w-full h-10 text-xl items-center">
 							<span><%= task.description %></span>
 						</div>
 						<div class="flex w-full h-10 justify-between items-end">
-							<span><%= task.age %></span>
+							<span><%= ages[task.age.to_sym] %></span>
 							<span class="  flex justify-center">
 								<%= link_to change_progress_path(task_id: task.id, remove: "remove", house: house), class: "ml-2" ,data: {confirm: "להסיר את המשימה?"} do %>
 								<span class=""><i class="gg-close text-red-500" ></i></span>
