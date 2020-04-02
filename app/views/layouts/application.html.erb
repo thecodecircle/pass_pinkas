@@ -21,28 +21,9 @@
 
  <body class="bg-gray-200">
 
-  <!-- <% flash.each do |type, message| %>
-    <% if type == "alert" %>
-      <div class="bg-red-500">
-        <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans"><%= message %></div>
-      </div>
-    <% end %>
-    <% if type == "notice" %>
-      <div class="bg-green-500">
-        <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans"><%= message %></div>
-      </div>
-    <% end %>
-  <% end %> -->
-
-    <!-- <header class="aapb-4 bg-gray-200"> -->
-      <%# render 'layouts/navbar' unless controller_name == "registrations" || controller_name == "sessions" %>
-    <!-- </header> -->
 
     <main class="lg:px-10 px-2a bg-gray-200">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
-		<!-- <footer class="w-full h-24"> -->
-			<%# render 'layouts/footer' unless controller_name == "registrations" || controller_name == "sessions" %>
-		<!-- </footer> -->
   </body>
 </html>

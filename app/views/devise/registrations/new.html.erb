@@ -1,3 +1,7 @@
+<div class="flex w-full justify-center">
+	<%= image_tag "side-logo.png", size:"300" %>
+</div>
+
 
 <% content_for :devise_form do %>
   <h2 class="heading text-4xl font-bold pt-4 mb-8">הרשמה</h2>
@@ -6,7 +10,7 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="mb-6">
-      <%= f.label :username, class:"label" %>
+      <%= f.label :username, class:"label text-lg" %>
       <%= f.text_field :username, autofocus: true, class: "input", required: true %>
     </div>
 
@@ -15,13 +19,13 @@
     </div>
 
     <div class="mb-6">
-      <%= f.label :name, class: "label" %>
+      <%= f.label :name, class: "label text-lg" %>
       <%= f.text_field :name, class: "input", required: true %>
     </div>
 
     <div class="mb-6">
       <div class="flex">
-        <%= f.label :password, class: "label" %>
+        <%= f.label :password, class: "label text-lg" %>
         <% if @minimum_password_length %>
         <span class="text-xs pl-1 text-grey-dark"><em>(<%= @minimum_password_length %> characters minimum)</em></span>
         <% end %>
@@ -30,13 +34,13 @@
     </div>
 
     <div class="mb-6">
-      <%= f.label :password_confirmation, class: "label" %>
+      <%= f.label :password_confirmation, class: "label text-lg" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", required: true %>
     </div>
 
     <% unless params[:t].present? %>
       <div class="mb-6">
-        <%= f.label :family, class:"label" do %>
+        <%= f.label :family, class:"label text-lg" do %>
           <%= I18n.t("user.new.family") %>
         <% end %>
         <%= text_field_tag(:family, nil, class:"input", required: true, placeholder: "למשל: משפחת כהן") %>
@@ -45,7 +49,7 @@
 
     <% if !params[:t].present? || params[:t] == "h" %>
       <div class="mb-6">
-        <%= f.label :house, class:"label" do %>
+        <%= f.label :house, class:"label text-lg" do %>
           <%= I18n.t("user.new.house") %>
         <% end %>
         <%= text_field_tag(:house, nil, class: "input", required: true, placeholder: "למשל: הבית של דודה שושי") %>
@@ -60,7 +64,7 @@
     <%= hidden_field_tag(:new, params[:n]) if params[:n].present? %>
 
     <div class="mb-6">
-      <%= f.submit "הרשמה", class: "btn btn-default" %>
+      <%= f.submit "הרשמה", class: "py-3 rounded-lg font-bold text-3xl w-full	sign-up-buttons text-black mb-5" %>
     </div>
 
     <hr class="border mt-6" />
