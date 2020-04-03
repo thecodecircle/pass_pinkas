@@ -6,22 +6,22 @@
 
 </div>
 <div class="flex mt-24 justify-center items-center">
-	<button value="new_task" class="task outline-none h-32 w-32 bg-task-green rounded-full flex flex-col relative open-task-description">
-		<div class="flex justify-center items-center h-full text-center">
-			<span class="mx-3 text-lg ">משימה חדשה!</span>
+	<button  class="task-new outline-none h-32 w-32 bg-task-green rounded-full flex flex-col relative">
+		<div class="flex justify-center items-center h-full text-center w-32">
+			<span class="mx-3 text-lg ">אתגר חדש!</span>
 		</div>
 	</button>
 
 </div>
 <div class="mb-24 flex flex-wrap justify-center">
-
 	<% @tasks.each do |task| %>
-	<button value="<%= task.id %>" class="task outline-none h-32 w-32 bg-task-green m-6 rounded-full flex flex-col relative open-task-description">
+		<%= render "task", { task: task, status: "general", kid: current_user.id, house: @house } %>
+	<!-- <button value="<%= task.id %>" class="task outline-none h-32 w-32 bg-task-green m-6 rounded-full flex flex-col relative open-task-description">
 		<div class="flex justify-center items-center h-full text-center w-32">
 			<span class="mx-3 text-lg text-center w-full"><%= task.name %></span>
 			<span class="star w-16 h-16 star-transform absolute bottom-0 right-0 justify-center flex items-center"><%= task.score %></span>
 		</div>
-	</button>
+	</button> -->
 	<% end %>
 </div>
 
@@ -29,25 +29,58 @@
 	<%= link_to "/choose_house", class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" do  %>
 		<%= image_tag "back.svg", size:"25" %>
 	<% end %>
-	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl" ><%= image_tag "check.svg", size:"32" %></div>
-	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""><%= image_tag "check.svg", size:"32" %></a>
+	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl" ><%= image_tag "forward.svg", size:"32" %></div>
+	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""></a>
 </div>
 
 <script type="text/javascript">
 $(document).ready(function() {
+	$(".description").hide()
+	$(".close-task-description").click(function(event) {
+		if (event.target == this){
+			$(".description").hide("fast")
+			// $(this).parents("div").children('.open-task-description').removeClass('task-shadow')
+		}
+	});
+	$(".open-task-description").click(function(event) {
+				if ($(this).parents(".task").children('.description').is(":visible")) {
+					$(this).parents(".task").children('.description').hide("fast")
+					$(this).toggleClass('task-shadow')
+				}
+				else {
+					$(".description").hide()
+					$(".open-task-description").removeClass('task-shadow')
+					$(this).toggleClass('task-shadow')
+
+					$(this).parents(".task").children('.description').toggle();
+					$(this).parents(".task").children('.description').children('.description-body').hide();
+					$(this).parents(".task").children('.description').children('.description-body').show("slow");
+
+				}
+			});
+
+
+
 	var chosen_task
 	var house = '<%= params[:house_id] %>'
-	$(".task").click(function(event) {
-		$(".task").removeClass('task-shadow')
-		$(this).addClass('task-shadow')
+	$(".task-general").click(function(event) {
+		// $(".task").removeClass('task-shadow')
+		// $(this).addClass('task-shadow')
 		chosen_task = $(this).val()
+
 		$(".next").replaceWith($(".next-active"))
 		$(".next-active").removeClass('hidden')
-		if (chosen_task == "new_task") {
-			$(".next-active").attr('href', '/tasks/new?&house_id=' + house);
-		}else {
-			$(".next-active").attr('href', '/assign_task?task=' + chosen_task + "&house=" + house);
-		}
+
+			$(".next-active").attr('href', '/assign_task?task=' + chosen_task + "&house=" + house)
+			$(".next-active").html("<img src='/assets/check.svg' width='32' height='32'>")
+
+	});
+	$(".task-new").click(function(event) {
+		$(".next").replaceWith($(".next-active"))
+		$(".next-active").removeClass('hidden')
+		$(".next-active").attr('href', '/tasks/new?&house_id=' + house);
+		$(".next-active").html("<img src='/assets/forward.svg' width='32' height='32'>")
+
 	});
 });
 </script>

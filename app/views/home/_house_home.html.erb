@@ -39,7 +39,7 @@
 		<h1 class="text-xl text-shmutz-blue brand flex justify-between items-center">
 			<div class="open-our-tasks flex ">
 				<span class="chevron-our rotate-chev flex items-center"><i class="gg-push-chevron-down"></i></i> </span>
-				<span>המשימות שלנו</span>
+				<span>האתגרים שלנו</span>
 			</div>
 
 		</h1>
@@ -51,7 +51,7 @@
 		<h1 class="text-xl text-shmutz-blue brand flex justify-between items-center">
 			<div class="open-done-tasks flex ">
 				<span class="chevron-done flex items-center rotate-chev"><i class="gg-push-chevron-down"></i></i> </span>
-				<span>המשימות שסיימנו</span>
+				<span>האתגרים שסיימנו</span>
 			</div>
 		</h1>
 		<div class="done-tasks flex flex-wrap justify-center">
@@ -80,7 +80,7 @@
 
 <div class="modal-bg hidden w-screen fixed top-0 left-0 bg-black-opacity-50  z-40 h-screen close-modal">
 	<div class="w-full h-full flex items-center close-modal justify-center">
-		<div class="modal-body rounded-lg  h-3/4 bg-white w-full mx-3	">
+		<div class="modal-body rounded-lg  h-3/4 bg-white w-full mx-3	hidden">
 			<div class=" bg-gray-100 modal-header h-full  rounded-lg">
 				<div class="flex justify-between">
 					<h1 class="text-2xl m-3">להזמין קרובי משפחה</h1>
@@ -89,7 +89,6 @@
 				<hr>
 				<div class="modal-content ">
 						<div class="house-sign-ups">
-
 							<button  class="text-lg new_user_to_house flex justify-between w-full items-center px-3 text-right py-3" value="<%= @house.id %>" type="button" name="button">הזמנת בני בית חדשים מ<%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
 							<button  class="text-lg existing_user_to_house flex justify-between w-full items-center px-3 text-right py-3"   value="<%= @house.id %>" type="button" name="button">הזמנת בני בית רשומים במערכת ל<%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
 							<button  class="text-lg new_house_to_family flex justify-between w-full items-center px-3 text-right py-3" value="<%= @family.id %>" type="button" name="button">הזמנת בתים אחרים מ<%= @family.name %> <%= image_tag "copy.svg", size:"25" %></button>
@@ -126,13 +125,18 @@ $(document).ready(function() {
 
 	$(".open-modal").click(function(event) {
 
-		$(".modal-bg").show("slow")
+		$(".modal-bg").show()
+		$(".modal-body").show("slow")
 	});
 	$(".close-modal").click(function(event) {
 		if (event.target == this){
-			$(".modal-bg").hide("slow")
+			$(".modal-body").hide('slow', function() {
+				$(".modal-bg").hide()
+
+			});
 		}
 	});
+
 	$(".close-task-description").click(function(event) {
 		if (event.target == this){
 			$(".description").hide("fast")
