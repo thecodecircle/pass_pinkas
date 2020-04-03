@@ -47,6 +47,9 @@
 	background: #cce4ff;
 }
 
+.new-task-submit{
+	background: asset_url("check.svg");
+}
 
 .chevron{
 
@@ -55,7 +58,13 @@
     transition: all 0.5s linear;
 }
 
-.chevron.rotate-chev{
+.chevron-our.rotate-chev{
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.chevron-done.rotate-chev{
     -ms-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);

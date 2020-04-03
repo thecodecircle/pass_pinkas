@@ -21,14 +21,14 @@
       grownup: "מבוגרים"
       } %>
 
-  <div class="form-inputs">
-    <%= f.input :name, label: "שם המשימה", input_html: { class: "border block m-2"} %>
+  <div class="form-inputs mb-16">
+    <%= f.input :name, label: "שם המשימה", input_html: { class: "border block "}, label_html: {class: "text-xl"}, placeholder: 'להתקשר לסבתא' %>
     <%# f.input :score %>
-    <%= f.input :description,	label: "תיאור", input_html: {class: "border block m-2"} %>
+    <%= f.input :description,	label: "תיאור", input_html: {class: "border block  w-full h-64"}, label_html: {class: "text-xl"}, placeholder: 'להתקשר לסבתא ולהגיד לה כמה שאני אוהב אותה' %>
     <%= f.input :difficulty, 	label: "רמת קושי", as: :radio_buttons,
-                collection: difficulties, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
+                collection: difficulties, label_method: :second, value_method: :first, input_html: {class: ""}, label_html: {class: "text-xl block"}, required: true%>
     <%= f.input :age, 	label: "גילאים", as: :radio_buttons,
-                collection: ages, label_method: :second, value_method: :first, input_html: {class: "m-2"}%>
+                collection: ages, label_method: :second, value_method: :first, input_html: {class: "m-2"}, label_html: {class: "text-xl block"} , required: true%>
     <% if  params[:house_id].present? || params[:family_id].present? %>
       <%= f.input :publicity, 	label: "האם המשימה היא פרטית לקבוצה או ציבורית עבור כולםן?", collection: Task.publicities.keys,
       selected: "personal", wrapper_html: {class: "hidden"} %>
@@ -43,8 +43,14 @@
   <%= hidden_field_tag(:family_id, params[:family_id]) if params[:family_id] %>
   <%= hidden_field_tag(:suggested_id, current_user.id) %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-actions fixed bottom-0 w-full h-16 flex">
+		<%= link_to "/choose_task?house_id=#{params[:house_id]}", class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" do  %>
+			<%= image_tag "back.svg", size:"25" %>
+		<% end %>
+	<!-- <a class="" href=""><%= image_tag "check.svg", size:"25" %></a> -->
+		<button class=" justify-center flex items-center w-2/3 bg-cta text-black next-active text-xl ">
+			<%= f.button :submit, type: :image, src: asset_url("check.svg"), class:"w-16" %>
+		</button>
   </div>
 <% end %>
 
@@ -56,5 +62,33 @@ $(document).ready(function() {
   else {
     $('.task_publicity').append("<br><span class='font-normal text-sm'>משימה ציבורית עוברת לאישור, וניתנת לשימוש בהמשך. משימה פרטית ניתנת לשימוש מיידי ומשויכת לקבוצה, אך שווה עד 50 נקודות</span>")
   }
+	$(":radio").parent().addClass('mt-6 block p-1 rounded-lg text-center')
+	$(":radio").parents("span").addClass('')
+	$(":radio").addClass('m-2 h-6 w-6')
+	$("label").each(function(index, el) {
+		console.log("tru");
+		switch ($(this).attr('for')) {
+			case "task_difficulty_easy":
+				$(this).addClass('bg-green-400 font-bold')
+				break;
+			case "task_difficulty_medium":
+				$(this).addClass('bg-yellow-400 font-bold')
+				break;
+			case "task_difficulty_hard":
+				$(this).addClass('bg-red-400 font-bold')
+				break;
+			case "task_difficulty_impossible":
+				$(this).addClass('bg-red-600 text-white  font-bold')
+				break;
+
+		}
+		if ($(this).children('input').attr('name') == "task[age]") {
+			$(this).addClass('bg-gray-400  font-bold')
+
+		}
+
+
+	});
+	;
 });
 </script>
