@@ -1,3 +1,6 @@
+<%= link_to "he", new_user_session_path(locale: "he") %>
+<%= link_to "en", new_user_session_path(locale: "en") %>
+<%= link_to "ru", new_user_session_path(locale: "ru") %>
 <div class="flex w-full justify-center mt-10">
 	<%= image_tag "logo-type.png", size:"300" %>
 </div>
@@ -22,15 +25,14 @@
   </div>
 
   <div class="">
-    <%= f.submit "כניסה", class: "py-3 rounded-lg font-bold text-3xl w-full sign-up-buttons text-black mb-5" %>
+    <%= f.submit I18n.t("user.sign_in"), class: "py-3 rounded-lg font-bold text-3xl w-full sign-up-buttons text-black mb-5" %>
 
-		<%= link_to  new_registration_path(resource_name), class: "" do %>
+		<%= link_to new_registration_path(resource_name, locale: params[:locale]), class: "" do %>
 		<button class="py-2 rounded-lg font-bold text-2xl w-full	sign-up-buttons-border text-black border-4">
-			משפחה חדשה
+			<%= I18n.t("user.new_family") %>
 		</button>
 		<% end %>
   </div>
-
 <% end %>
 
 <% end %>
