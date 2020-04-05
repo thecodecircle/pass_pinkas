@@ -1,3 +1,5 @@
+<div class="lg:px-10">
+
 <div class="fixed top-0 left-0 w-full h-16  bg-header shadow-lg z-50">
 	<div class="w-full flex justify-around h-full items-center text-xl atext-white">
 		<span><%= I18n.t("home.choose_home") %></span>
@@ -23,6 +25,7 @@
 		</div>
 	</button> -->
 	<% end %>
+</div>
 </div>
 
 <div class="actions flex fixed bottom-0 w-full rounded-lg brand h-16 shadow-up">
@@ -63,25 +66,30 @@ $(document).ready(function() {
 
 	var chosen_task
 	var house = '<%= params[:house_id] %>'
-	$(".task-general").click(function(event) {
-		// $(".task").removeClass('task-shadow')
-		// $(this).addClass('task-shadow')
-		chosen_task = $(this).val()
+	var family = '<%= params[:family_id] %>'
 
+	$(".task-general").click(function(event) {
+		chosen_task = $(this).val()
 		$(".next").replaceWith($(".next-active"))
 		$(".next-active").removeClass('hidden')
-
+		$(".next-active").html("<img src='/assets/check.svg' width='32' height='32'>")
+		if (family == "") {
 			$(".next-active").attr('href', '/assign_task?task=' + chosen_task + "&house=" + house)
-			$(".next-active").html("<img src='/assets/check.svg' width='32' height='32'>")
-
+		}else {
+			$(".next-active").attr('href', '/assign_task?task=' + chosen_task + "&family=" + family)
+		}
 	});
 	$(".task-new").click(function(event) {
 		$(".next").replaceWith($(".next-active"))
 		$(".next-active").removeClass('hidden')
-		$(".next-active").attr('href', '/tasks/new?&house_id=' + house);
 		$(".next-active").html("<img src='/assets/forward.svg' width='32' height='32' class='rotate-if-not-he'>")
 		if ("<%= current_user.locale %>" != "he") {
 			$(".rotate-if-not-he").addClass('rotate-180')
+		}
+		if (family == "") {
+			$(".next-active").attr('href', '/tasks/new?&house_id=' + house);
+		}else {
+			$(".next-active").attr('href', '/tasks/new?&family_id=' + family);
 		}
 
 	});

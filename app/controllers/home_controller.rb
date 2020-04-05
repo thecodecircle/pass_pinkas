@@ -23,7 +23,9 @@ class HomeController < ApplicationController
 		if current_user.admin?
 			@families = Family.all
 			@houses = House.all
+			@house = House.first
 		else
+			@house = House.find(cookies[:house])
 			@families = current_user.families
 			# @houses = @families.map { |f| f.houses }.flatten.uniq.sort_by(&:score).reverse
 		end
@@ -31,7 +33,8 @@ class HomeController < ApplicationController
 
 
 	def choose_house
-	  @houses = current_user.families.map { |f| f.houses }.flatten
+		@families = current_user.families.uniq
+	  @houses = @families.map { |f| f.houses }.flatten
 	end
 	def choose_task
 	  @tasks = Task.where(publicity: 1, lang: current_user.locale)

@@ -1,12 +1,24 @@
+<div class="lg:px-10">
+
 <div class="fixed top-0 left-0 w-full h-16 bg-header shadow-lg z-50">
 	<div class="w-full flex justify-around h-full items-center text-xl atext-white">
 		<b class="text-2xl"><%= I18n.t("home.choose_home") %></b>
 		<span><%= I18n.t("home.choose_challenge") %></span>
 	</div>
 </div>
-<div class="my-24 flex flex-wrap justify-center">
+<div class="mt-24 flex flex-wrap justify-center">
+	<% @families.each do |family| %>
+	<button value="<%= family.id %>" class="family outline-none square-10rem m-1 rounded-full flex flex-col justify-center items-center open-task-description">
+		<div class="flex justify-center items-center h-full text-center square-10rem bg-family">
+			<span class="mx-3 text-lg w-32 p-3"><%= family.name %></span>
+		</div>
+	</button>
+	<% end %>
+
+</div>
+<div class="mb-24 flex flex-wrap justify-center">
 	<% @houses.each do |house| %>
-	<button value="<%= house.id %>" class="house outline-none square-10rem text-whitea m-1 rounded-full flex flex-col justify-center items-center elative open-task-description">
+	<button value="<%= house.id %>" class="house outline-none square-10rem text-whitea m-1 rounded-full flex flex-col justify-center items-center open-task-description">
 		<div class="flex justify-center items-center h-full text-center square-10rem bg-house">
 			<span class="mx-3 text-lg w-32 p-3"><%= house.name %></span>
 		</div>
@@ -15,6 +27,7 @@
 
 </div>
 
+</div>
 <div class="actions flex fixed bottom-0 w-full rounded-lg brand h-16 shadow-up">
 	<%= link_to root_path, class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" do  %>
 		<%= image_tag "back.svg", size:"25", class:"rotate-if-not-he" %>
@@ -34,6 +47,15 @@ $(document).ready(function() {
 		$(".next-active").removeClass('hidden')
 		// $(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
 		$(".next-active").attr('href', '/choose_task?house_id=' + chosen_house);
+	});
+	$(".family").click(function(event) {
+		$(".family").removeClass('task-shadow')
+		$(this).addClass('task-shadow')
+		chosen_family = $(this).val()
+		$(".next").replaceWith($(".next-active"))
+		$(".next-active").removeClass('hidden')
+		// $(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
+		$(".next-active").attr('href', '/choose_task?family_id=' + chosen_family);
 	});
 	if ("<%= current_user.locale %>" != "he") {
 		$(".rotate-if-not-he").addClass('rotate-180')

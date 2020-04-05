@@ -1,6 +1,6 @@
 
 
-<div class="px-2">
+<div class="px-2 lg:px-10 mb-24">
 	<nav class="flex flex-col justify-center">
 
 		<div class="flex flex-wrap justify-between w-full self-end brand h-12 mt-2">
@@ -93,24 +93,6 @@
 	</div>
 
 
-
-<footer class="w-full h-24 flex justify-between fixed bottom-0">
-
-	<%= link_to '/choose_house' do  %>
-	<div	 class=" bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "plus.svg", size: "35" %>
-	</div>
-	<% end %>
-	<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "user-plus.svg", size: "35" %>
-	</button>
-		<%= link_to '/leaders' do  %>
-	<button class="leaders bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "trophy.svg", size: "35" %>
-	</button>
-	<% end %>
-</footer>
-
 <div class="modal-bg hidden w-screen fixed top-0 left-0 bg-black-opacity-50  z-40 h-screen close-modal">
 	<div class="w-full h-full flex items-center close-modal justify-center">
 		<div class="modal-body rounded-lg  h-3/4 bg-white w-full mx-3	hidden">
@@ -134,6 +116,24 @@
 	</div>
 </div>
 </div>
+
+
+<footer class="w-full h-24 flex justify-between items-end fixed bottom-0">
+	<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+		<%= image_tag "user-plus.svg", size: "35" %>
+	</button>
+	<%= link_to '/choose_house' do  %>
+	<div	 class=" bg-cta w-20 h-20 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+		<%= image_tag "plus.svg", size: "45" %>
+	</div>
+	<% end %>
+		<%= link_to '/leaders' do  %>
+	<button class="leaders bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+		<%= image_tag "trophy.svg", size: "35" %>
+	</button>
+	<% end %>
+</footer>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	$(".open-menu").click(function(event) {

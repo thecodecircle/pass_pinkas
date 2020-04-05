@@ -1,11 +1,96 @@
 
 
+<nav class="flex flex-col justify-center">
+
+	<div class="flex flex-wrap justify-between w-full self-end brand h-12 mt-2">
+
+		<div class="mx-2  flex flex-col justify-center">
+			<span class="star-normal w-16 h-16 flex items-center justify-center"><%= @house.score %></span>
+
+		</div>
+		<div class="mx-2 flex">
+			<div class="absolute top-0 mt-16 items-center justify-center ">
+				<div class="lang hidden py-5 px-1  bg-gray-300 rounded-lg z-50">
+					<div class="flex">
+						<span class=" mx-1"><%= link_to set_locale_path(locale: "he") do %>
+							<%= image_tag "israel.png", size:"25" %>
+							<% end %>
+						</span>
+						<span class=" mx-1"><%= link_to set_locale_path(locale: "en") do %>
+							<%= image_tag "usa.webp", size:"25" %>
+							<% end %>
+						</span>
+						<span class=" mx-1"><%= link_to set_locale_path(locale: "ru") do %>
+							<%= image_tag "russia.webp", size:"25" %>
+							<% end %>
+						</span>
+					</div>
+
+				</div>
+			</div>
+			<div class="flex w-24 z-50">
+				<div class="absolute top-0 items-center justify-center ">
+					<div class="menu hidden   mt-12 px-5 pt-5 pb-5 bg-white rounded-lg rounded-t-none z-50">
+						<ol>
+							<span class="text-lg"><%= I18n.t("home.change_home") %></span>
+							<% current_user.houses.each do |house| %>
+							<li class="mx-1 border-cta rounded-full px-2 my-2"><%= link_to house.name, root_path(house: house.id)  %></li>
+							<% end %>
+							<hr>
+							<%= link_to destroy_user_session_path, method: :delete, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do%>
+							<%= image_tag "sign-out.svg", size:"25" %>
+							<span class="ml-5"><%= I18n.t("home.exit") %></span>
+							<% end %>
+						</ol>
+					</div>
+
+				</div>
+
+			</div>
+				<button class="open-lang" type="button" name="button"> <%= image_tag "globe.svg", size: "25" %></button>
+			<button class="open-menu flex items-center px-3 py-2 aborder rounded text-grey sborder-gray-500 hover:text-gray-600 ahover:border-gray-600">
+				<%= image_tag "user-circle.svg", size:"25" %>
+			</button>
+		</div>
+	</div>
+	<div class="text-shmutz-blue text-3xl w-full flex justify-center items-center flex-col font-bold">
+		<span> <%= I18n.t("home.hello") %> <%= current_user.name %>!</span>
+	</div>
+
+
+</nav>
+
 
 <% @families.each do |family| %>
-<%# family.houses.each do |house| %>
-<h1 class="text-3xl w-full text-center">בתים</h1>
+<h1 class="text-3xl w-full text-center mt-5"><%= family.name %></h1>
+
 <div class="rounded-lg bg-gray-100 shadow px-4 py-4 mb-3">
 	<%= render "houseable_scores", {houseables: family.houses} unless family.houses.nil? %>
 </div>
-<%# end %>
+
 <% end %>
+
+<footer class="w-full h-24 flex justify-end items-end fixed bottom-0">
+	<%= link_to root_path do %>
+	<button class="  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+		<%= image_tag "user-plus.svg", size: "35" %>
+	</button>
+	<% end %>
+</footer>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".open-menu").click(function(event) {
+		$(".menu").toggle("fast")
+		event.stopPropagation(); // This is the preferred method.
+		return false;        // This should not be used unless you do not want
+	});
+	$(document).click(function() {
+		$(".menu").hide("fast")
+	})
+
+	$(".open-lang").click(function(event) {
+		$(".lang").toggle("fast")
+	});
+
+});
+</script>
