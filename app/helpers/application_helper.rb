@@ -18,4 +18,42 @@ module ApplicationHelper
 		html.html_safe
 	end
 
+	def difficulties
+	  case params[:locale]
+	  when "he"
+			difficulties = {
+					easy: "קל",
+					medium: "בינוני",
+					hard: "קשה",
+					impossible: "כמעט בלתי אפשרי"
+				}
+		when "en"
+			difficulties = {
+					easy: "Easy",
+					medium: "Medium",
+					hard: "Hard",
+					impossible: "Impossible"
+				}
+	  end
+	end
+
+	def ages
+		case params[:locale]
+	  when "he"
+			difficulties = {
+				toddler: "קטנטנים",
+				small: "ילדים קטנים",
+				big: "ילדים גדולים",
+				grownup: "מבוגרים"
+				}
+		when "en"
+			difficulties = {
+				toddler: "Toddlers",
+				small: "Small Children",
+				big: "Big Kids",
+				grownup: "Grown Ups"
+				}
+	  end
+	end
+
 end

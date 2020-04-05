@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     if %w(sessions registrations).include?(controller_name)
       locale = params[:locale] || I18n.default_locale
     else
-      locale = current_user.try(:lang) || I18n.default_locale
+      locale = current_user.try(:locale) || I18n.default_locale
     end
     I18n.with_locale(locale, &action)
   end
@@ -21,11 +21,11 @@ class ApplicationController < ActionController::Base
     puts "****************************************"
     case params[:locale]
     when "he"
-      current_user.update(lang: "he")
+      current_user.update(locale: "he")
     when "en"
-      current_user.update(lang: "en")
+      current_user.update(locale: "en")
     when "ru"
-      current_user.update(lang: "ru")
+      current_user.update(locale: "ru")
     end
     redirect_to root_path
   end

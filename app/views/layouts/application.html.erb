@@ -26,7 +26,7 @@
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
   </body>
-<% if user_signed_in? && current_user.locale == "he"  %>
+<% if user_signed_in? && (current_user.locale.nil? || current_user.locale == "he")  %>
 	<script type="text/javascript">
 		$("*").addClass('rtl')
 		// $("*").addClass('ltr')
