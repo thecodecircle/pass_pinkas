@@ -80,13 +80,13 @@ $(document).ready(function() {
 		$(".next-active").removeClass('hidden')
 		$(".next-active").attr('href', '/tasks/new?&house_id=' + house);
 		$(".next-active").html("<img src='/assets/forward.svg' width='32' height='32' class='rotate-if-not-he'>")
-		if ("<%= current_user.lang %>" != "he") {
+		if ("<%= current_user.locale %>" != "he") {
 			$(".rotate-if-not-he").addClass('rotate-180')
 		}
 
 	});
 
-	if ("<%= current_user.lang %>" != "he") {
+	if ("<%= current_user.locale %>" != "he") {
 		$(".rotate-if-not-he").addClass('rotate-180')
 	}
 });

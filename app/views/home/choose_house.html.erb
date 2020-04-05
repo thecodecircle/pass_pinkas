@@ -35,7 +35,7 @@ $(document).ready(function() {
 		// $(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
 		$(".next-active").attr('href', '/choose_task?house_id=' + chosen_house);
 	});
-	if ("<%= current_user.lang %>" != "he") {
+	if ("<%= current_user.locale %>" != "he") {
 		$(".rotate-if-not-he").addClass('rotate-180')
 	}
 });

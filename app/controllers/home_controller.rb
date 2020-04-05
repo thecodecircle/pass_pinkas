@@ -29,14 +29,12 @@ class HomeController < ApplicationController
 		end
 	end
 
-	def pinkasi
-	end
 
 	def choose_house
 	  @houses = current_user.families.map { |f| f.houses }.flatten
 	end
 	def choose_task
-	  @tasks = Task.where(publicity: 1)
+	  @tasks = Task.where(publicity: 1, lang: current_user.locale)
 	end
 
   def add_user_to_house

@@ -94,16 +94,21 @@
 
 
 
-<footer class="w-full h-24">
+<footer class="w-full h-24 flex justify-between fixed bottom-0">
 
 	<%= link_to '/choose_house' do  %>
-	<div	 class="fixed bottom-0 left-0 bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+	<div	 class=" bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
 		<%= image_tag "plus.svg", size: "35" %>
 	</div>
 	<% end %>
-	<button class="open-modal invite-users fixed bottom-0 right-0 bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+	<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
 		<%= image_tag "user-plus.svg", size: "35" %>
 	</button>
+		<%= link_to '/leaders' do  %>
+	<button class="leaders bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+		<%= image_tag "trophy.svg", size: "35" %>
+	</button>
+	<% end %>
 </footer>
 
 <div class="modal-bg hidden w-screen fixed top-0 left-0 bg-black-opacity-50  z-40 h-screen close-modal">
