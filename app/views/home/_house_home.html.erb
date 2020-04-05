@@ -15,19 +15,19 @@
 			</div>
 		</div>
 		<div class="text-shmutz-blue text-3xl w-full flex justify-center items-center flex-col font-bold">
-			<span>שלום <%= current_user.name %>!</span>
+			<span> <%= I18n.t("home.hello") %> <%= current_user.name %>!</span>
 			<span class="text-xl"><%= @house.name %></span>
 		</div>
 		<div class="menu hidden float-left absolute top-0 left-0 mt-10 px-5 pt-5 pb-5 bg-white rounded-lg rounded-t-none z-50">
 			<ol>
-				<span class="text-lg">החלפת בית</span>
+				<span class="text-lg"><%= I18n.t("home.change_home") %></span>
 				<% current_user.houses.each do |house| %>
 					<li class="mx-1 border-cta rounded-full px-2 my-2"><%= link_to house.name, root_path(house: house.id)  %></li>
 				<% end %>
 				<hr>
 				<%= link_to destroy_user_session_path, method: :delete, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do%>
 				<%= image_tag "sign-out.svg", size:"25" %>
-				<span class="ml-5">יציאה</span>
+				<span class="ml-5"><%= I18n.t("home.exit") %></span>
 				<% end %>
 			</ol>
 		</div>
@@ -39,7 +39,7 @@
 		<h1 class="text-xl text-shmutz-blue brand flex justify-between items-center">
 			<div class="open-our-tasks flex ">
 				<span class="chevron-our rotate-chev flex items-center"><i class="gg-push-chevron-down"></i></i> </span>
-				<span>האתגרים שלנו</span>
+				<span><%= I18n.t("home.our_challenges") %></span>
 			</div>
 
 		</h1>
@@ -51,7 +51,7 @@
 		<h1 class="text-xl text-shmutz-blue brand flex justify-between items-center">
 			<div class="open-done-tasks flex ">
 				<span class="chevron-done flex items-center rotate-chev"><i class="gg-push-chevron-down"></i></i> </span>
-				<span>האתגרים שסיימנו</span>
+				<span><%= I18n.t("home.finished_challenges") %></span>
 			</div>
 		</h1>
 		<div class="done-tasks flex flex-wrap justify-center">
@@ -83,7 +83,7 @@
 		<div class="modal-body rounded-lg  h-3/4 bg-white w-full mx-3	hidden">
 			<div class=" bg-gray-100 modal-header h-full  rounded-lg">
 				<div class="flex justify-between">
-					<h1 class="text-2xl m-3">להזמין קרובי משפחה</h1>
+					<h1 class="text-2xl m-3"><%= I18n.t("home.invite") %></h1>
 					<i class="gg-close-o m-3 close-modal"></i>
 				</div>
 				<hr>

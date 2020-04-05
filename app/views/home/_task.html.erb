@@ -6,12 +6,31 @@
 	}
 		%>
 
+		<% if params[:locale] == "en" %>
+		<% difficulties = {
+				easy: "Easy",
+				medium: "Medium",
+				hard: "Hard",
+				impossible: "Impossible"
+			}
+				%>
+		<% end %>
+
 	<% ages = {
 		toddler: "קטנטנים",
 		small: "ילדים קטנים",
 		big: "ילדים גדולים",
 		grownup: "מבוגרים"
 		} %>
+
+		<% if params[:locale] == "en" %>
+			<% ages = {
+					toddler: "Toddlers",
+					small: "Small Children",
+					big: "Big Kids",
+					grownup: "Grown Ups"
+				} %>
+		<% end %>
 
 	<% case status %>
 	<% when "in_progress" %>

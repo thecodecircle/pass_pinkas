@@ -5,6 +5,17 @@ he:
     new:
       family: "שם המשפחה"
       house: "שם הבית"
+  home:
+    hello: "שלום"
+    change_home: "החלפת בית"
+    exit: "יציאה"
+    our_challenges: "האתגרים שלנו"
+    finished_challenges: "האתגרים שסיימנו"
+    invite: "להזמין קרובי משפחה"
+    choose_home: "בחירת בית"
+    choose_challenge: "בחירת אתגר"
+    new_challenge: "אתגר חדש!"
+    sign_up_links: "קישורים להרשמה"
   helpers:
     select:
       prompt: נא לבחור
