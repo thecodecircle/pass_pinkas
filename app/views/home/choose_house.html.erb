@@ -17,10 +17,10 @@
 
 <div class="actions flex fixed bottom-0 w-full rounded-lg brand h-16 shadow-up">
 	<%= link_to root_path, class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" do  %>
-		<%= image_tag "back.svg", size:"25" %>
+		<%= image_tag "back.svg", size:"25", class:"rotate-if-not-he" %>
 	<% end %>
-	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl"><%= image_tag "forward.svg", size:"32" %></div>
-	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""><%= image_tag "forward.svg", size:"32" %></a>
+	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl"><%= image_tag "forward.svg", size:"32", class:"rotate-if-not-he" %></div>
+	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""><%= image_tag "forward.svg", size:"32", class:"rotate-if-not-he" %></a>
 </div>
 
 <script type="text/javascript">
@@ -35,5 +35,8 @@ $(document).ready(function() {
 		// $(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
 		$(".next-active").attr('href', '/choose_task?house_id=' + chosen_house);
 	});
+	if ("<%= current_user.lang %>" != "he") {
+		$(".rotate-if-not-he").addClass('rotate-180')
+	}
 });
 </script>

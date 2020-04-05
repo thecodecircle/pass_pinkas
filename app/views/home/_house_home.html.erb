@@ -10,12 +10,8 @@
 				<!-- <span class=" text-center"></span> -->
 			</div>
 			<div class="mx-2 flex">
-				<button class="open-menu flex items-center px-3 py-2 aborder rounded text-grey sborder-gray-500 hover:text-gray-600 ahover:border-gray-600">
-					<%= image_tag "user-circle.svg", size:"25" %>
-				</button>
-				<div class="flex items-center justify-center">
-					<button class="open-lang" type="button" name="button"> <%= image_tag "globe.svg", size: "25" %></button>
-					<div class="lang hidden absolute top-0 left-0 mt-12 px-1 pt-5 pb-5 bg-gray-300 rounded-lg z-50">
+				<div class="absolute top-0 mt-16 items-center justify-center ">
+					<div class="lang hidden py-5 px-1  bg-gray-300 rounded-lg z-50">
 						<div class="flex">
 							<span class=" mx-1"><%= link_to set_locale_path(locale: "he") do %>
 								<%= image_tag "israel.png", size:"25" %>
@@ -33,25 +29,36 @@
 
 					</div>
 				</div>
+				<div class="flex w-24 z-50">
+					<div class="absolute top-0 items-center justify-center ">
+						<div class="menu hidden   mt-12 px-5 pt-5 pb-5 bg-white rounded-lg rounded-t-none z-50">
+							<ol>
+								<span class="text-lg"><%= I18n.t("home.change_home") %></span>
+								<% current_user.houses.each do |house| %>
+								<li class="mx-1 border-cta rounded-full px-2 my-2"><%= link_to house.name, root_path(house: house.id)  %></li>
+								<% end %>
+								<hr>
+								<%= link_to destroy_user_session_path, method: :delete, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do%>
+								<%= image_tag "sign-out.svg", size:"25" %>
+								<span class="ml-5"><%= I18n.t("home.exit") %></span>
+								<% end %>
+							</ol>
+						</div>
+
+					</div>
+
+				</div>
+					<button class="open-lang" type="button" name="button"> <%= image_tag "globe.svg", size: "25" %></button>
+				<button class="open-menu flex items-center px-3 py-2 aborder rounded text-grey sborder-gray-500 hover:text-gray-600 ahover:border-gray-600">
+					<%= image_tag "user-circle.svg", size:"25" %>
+				</button>
 			</div>
 		</div>
 		<div class="text-shmutz-blue text-3xl w-full flex justify-center items-center flex-col font-bold">
 			<span> <%= I18n.t("home.hello") %> <%= current_user.name %>!</span>
 			<span class="text-xl"><%= @house.name %></span>
 		</div>
-		<div class="menu hidden float-left absolute top-0 left-0 mt-12 px-5 pt-5 pb-5 bg-white rounded-lg rounded-t-none z-50">
-			<ol>
-				<span class="text-lg"><%= I18n.t("home.change_home") %></span>
-				<% current_user.houses.each do |house| %>
-					<li class="mx-1 border-cta rounded-full px-2 my-2"><%= link_to house.name, root_path(house: house.id)  %></li>
-				<% end %>
-				<hr>
-				<%= link_to destroy_user_session_path, method: :delete, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do%>
-				<%= image_tag "sign-out.svg", size:"25" %>
-				<span class="ml-5"><%= I18n.t("home.exit") %></span>
-				<% end %>
-			</ol>
-		</div>
+
 
 	</nav>
 

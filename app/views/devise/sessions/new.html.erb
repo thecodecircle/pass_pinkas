@@ -1,12 +1,29 @@
-<%= link_to "he", new_user_session_path(locale: "he") %>
-<%= link_to "en", new_user_session_path(locale: "en") %>
-<%= link_to "ru", new_user_session_path(locale: "ru") %>
+
 <div class="flex w-full justify-center mt-10">
 	<%= image_tag "logo-type.png", size:"300" %>
 </div>
 <% content_for :devise_form do %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	<div class="flex items-center justify-end">
+		<div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50">
+			<div class="flex">
+				<span class=" mx-1"><%= link_to new_user_session_path(locale: "he") do %>
+					<%= image_tag "israel.png", size:"25" %>
+					<% end %>
+				</span>
+				<span class=" mx-1"><%= link_to new_user_session_path(locale: "en") do %>
+					<%= image_tag "usa.webp", size:"25" %>
+					<% end %>
+				</span>
+				<span class=" mx-1"><%= link_to new_user_session_path(locale: "ru") do %>
+					<%= image_tag "russia.webp", size:"25" %>
+					<% end %>
+				</span>
+			</div>
 
+		</div>
+		<button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25" %></button>
+	</div>
   <div class="mb-6">
     <%= f.label :login, class:"label text-lg" %>
     <%= f.text_field :login, autofocus: true, class: "input" %>
@@ -38,3 +55,13 @@
 <% end %>
 
 <%= render "devise/shared/form_wrap" %>
+<script type="text/javascript">
+	$(".open-lang").click(function(event) {
+		$(".lang").toggle("fast")
+	});
+	if ("<%= params[:locale] %>" == "he") {
+		$("*").addClass('rtl')
+	}else {
+		$("*").addClass('ltr')
+	}
+</script>

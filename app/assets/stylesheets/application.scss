@@ -10,10 +10,15 @@
 }
 
 *{
-	direction: rtl;
 	font-family: 'Abraham', sans-serif;
 }
 
+.ltr{
+	direction: ltr;
+}
+.rtl{
+	direction: rtl;
+}
 .line-05{
 	line-height: 0.7;
 }
@@ -57,7 +62,12 @@
     -webkit-transition: all 0.5s linear;
     transition: all 0.5s linear;
 }
-
+.rotate-180{
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
 .chevron-our.rotate-chev{
     -ms-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -150,9 +160,7 @@
   outline: 1px solid slategrey;
 	border-radius: 0.5rem;
 }
-.ltr{
-	direction: ltr;
-}
+
 $green: #68d391;
 $yellow: #ffda00;
 $gray: #4a5568;

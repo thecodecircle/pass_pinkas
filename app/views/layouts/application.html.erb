@@ -26,4 +26,15 @@
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
   </body>
+<% if user_signed_in? && current_user.lang == "he"  %>
+	<script type="text/javascript">
+		$("*").addClass('rtl')
+		// $("*").addClass('ltr')
+  </script>
+<% else %>
+	<script type="text/javascript">
+		$("*").addClass('ltr')
+		// $("*").addClass('ltr')
+  </script>
+<% end %>
 </html>
