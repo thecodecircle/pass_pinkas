@@ -13,11 +13,11 @@ class HomeController < ApplicationController
 			else
 				cookies[:house] = { value: @houses.first.id, expires: Time.now + 36000000} unless cookies[:house].present?
 			end
+      cookies[:house] = { value: @houses.first.id, expires: Time.now + 36000000} if cookies[:house].present? && @houses.exclude?(House.find(cookies[:house]))
 			@house = House.find(cookies[:house])
 			@family = @house.family
     end
 	end
-
 
 	def leaders
 		if current_user.admin?
