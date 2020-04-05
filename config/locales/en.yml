@@ -30,4 +30,28 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+
+  user:
+    new:
+      family: "Family name"
+      house: "Home name"
+  home:
+    hello: "Hello"
+    change_home: "Switch home"
+    exit: "Exit"
+    our_challenges: "Our challenges"
+    finished_challenges: "Finished challenges"
+    invite: "Invite relatives"
+    choose_home: "Choose home"
+    choose_challenge: "Choose challenge"
+    new_challenge: "New challenge!"
+  helpers:
+    label:
+      user:
+        username: "Username"
+        login: "Username"
+        name: "Full name"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        sign up: "Sign up"
+        remember_me: "Remember me"

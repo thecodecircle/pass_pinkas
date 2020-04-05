@@ -1,14 +1,14 @@
 <div class="fixed top-0 left-0 w-full h-16  bg-header shadow-lg z-50">
 	<div class="w-full flex justify-around h-full items-center text-xl atext-white">
-		<span>בחירת בית</span>
-		<b class="text-2xl">בחירת אתגר</b>
+		<span><%= I18n.t("home.choose_home") %></span>
+		<b class="text-2xl"><%= I18n.t("home.choose_challenge") %></b>
 	</div>
 
 </div>
 <div class="flex mt-24 justify-center items-center">
 	<button  class="task-new outline-none h-32 w-32 bg-task-green rounded-full flex flex-col relative">
 		<div class="flex justify-center items-center h-full text-center w-32">
-			<span class="mx-3 text-lg ">אתגר חדש!</span>
+			<span class="mx-3 text-lg "><%= I18n.t("home.new_challenge") %></span>
 		</div>
 	</button>
 
