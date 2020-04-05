@@ -16,6 +16,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts "username: #{@user.username}"
     puts "family_id: #{params[:family_id]}" if params[:family_id].present?
     puts "house_id: #{params[:house_id]}" if params[:house_id].present?
+    puts "locale: #{params[:locale]}" if params[:locale].present?
+    current_user.update(locale: params[:locale]) if params[:locale].present?
 
     if !params[:family_id].present? && !params[:house_id].present?
       f = Family.create(name: params[:family], score: 0)

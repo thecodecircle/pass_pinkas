@@ -83,6 +83,7 @@
     <% end %>
 
     <%= hidden_field_tag(:new, params[:n]) if params[:n].present? %>
+    <%= hidden_field_tag(:locale, params[:locale]) if params[:locale].present? %>
 
     <div class="mb-6">
       <%= f.submit I18n.t("user.sign_up"), class: "py-3 rounded-lg font-bold text-3xl w-full	sign-up-buttons text-black mb-5" %>
