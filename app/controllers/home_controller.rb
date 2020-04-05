@@ -34,7 +34,7 @@ class HomeController < ApplicationController
 	  @houses = current_user.families.map { |f| f.houses }.flatten
 	end
 	def choose_task
-	  @tasks = Task.where(publicity: 1, lang: current_user.locale)
+	  @tasks = Task.where(publicity: 1, lang: current_user.locale || "he")
 	end
 
   def add_user_to_house

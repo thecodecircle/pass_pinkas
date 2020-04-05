@@ -18,7 +18,11 @@ module ApplicationHelper
 		html.html_safe
 	end
 
-	def difficulties
+	def hello
+	  "Hello"
+	end
+
+	def difficulties_hash
 	  case params[:locale]
 	  when "he"
 			difficulties = {
@@ -37,17 +41,17 @@ module ApplicationHelper
 	  end
 	end
 
-	def ages
+	def ages_hash
 		case params[:locale]
 	  when "he"
-			difficulties = {
+			ages = {
 				toddler: "קטנטנים",
 				small: "ילדים קטנים",
 				big: "ילדים גדולים",
 				grownup: "מבוגרים"
 				}
 		when "en"
-			difficulties = {
+			ages = {
 				toddler: "Toddlers",
 				small: "Small Children",
 				big: "Big Kids",

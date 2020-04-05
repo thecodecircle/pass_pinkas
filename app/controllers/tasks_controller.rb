@@ -105,17 +105,20 @@ class TasksController < ApplicationController
     puts "****************************************"
     puts "Change Progress"
 			house = House.find(params[:house])
+      puts "House: #{house.name}"
+      puts "task_id: #{params[:task_id]}"
 			my_task = house.my_tasks.find_by(task_id: params[:task_id])
+      puts "my_task: #{my_task.id}"
 			if params[:remove].present?
-				my_task.delete
+				my_task.destroy
+        redirect_to root_path
 			else
 				house.update(score: house.score + my_task.task.score)
 				puts "task: #{my_task.task.name} from #{my_task.progress}"
-				my_task.progress = "done"
+				my_task.done!
+        puts "to #{my_task.progress}"
+        redirect_to root_path
 			end
-    my_task.save unless params[:remove].present?
-    puts "to #{my_task.progress}"
-    redirect_to root_path
   end
 
 
