@@ -7,8 +7,23 @@ class ApplicationController < ActionController::Base
   around_action :switch_locale
 
   def switch_locale(&action)
-    locale = params[:locale] || I18n.default_locale
+    locale = current_user.try(:lang) || I18n.default_locale
     I18n.with_locale(locale, &action)
+  end
+
+  def set_locale
+    puts "****************************************"
+    puts "locale: #{params[:locale]}"
+    puts "****************************************"
+    case params[:locale]
+    when "he"
+      current_user.update(lang: "he")
+    when "en"
+      current_user.update(lang: "en")
+    when "ru"
+      current_user.update(lang: "ru")
+    end
+    redirect_to root_path
   end
 
   protected
