@@ -5,6 +5,9 @@ he:
     new:
       family: "שם המשפחה"
       house: "שם הבית"
+    sign_in: "כניסה"
+    new_family: "משפחה חדשה"
+    sign_up: "הרשמה"
   home:
     hello: "שלום"
     change_home: "החלפת בית"

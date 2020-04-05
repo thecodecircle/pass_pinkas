@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
   around_action :switch_locale
 
   def switch_locale(&action)
-    locale = current_user.try(:lang) || I18n.default_locale
+    if %w(sessions registrations).include?(controller_name)
+      locale = params[:locale] || I18n.default_locale
+    else
+      locale = current_user.try(:lang) || I18n.default_locale
+    end
     I18n.with_locale(locale, &action)
   end
 
