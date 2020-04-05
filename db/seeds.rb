@@ -14,6 +14,7 @@ if File.file?(Rails.root.join('lib/task_seeds.csv'))
         difficulty: row[2],
         age: row[3],
         publicity: 1,
+        lang: row[4]
       })
       counter += 1
     end
