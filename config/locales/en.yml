@@ -45,6 +45,10 @@ en:
     choose_home: "Choose home"
     choose_challenge: "Choose challenge"
     new_challenge: "New challenge!"
+    new_users_to_my_home: "Invite new household members from"
+    old_users_to_my_home: "Invite registered household members to"
+    new_house_to_my_family: "Invite other homes from"
+    share: "Share Kashlapp with another family"
   helpers:
     label:
       user:

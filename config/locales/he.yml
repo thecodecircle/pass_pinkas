@@ -15,7 +15,10 @@ he:
     choose_home: "בחירת בית"
     choose_challenge: "בחירת אתגר"
     new_challenge: "אתגר חדש!"
-    sign_up_links: "קישורים להרשמה"
+    new_users_to_my_home: "הזמנת בני בית חדשים מ"
+    old_users_to_my_home: "הזמנת בני בית רשומים במערכת ל"
+    new_house_to_my_family: "הזמנת בתים אחרים מ"
+    share: "לשתף את קשר לפסח עם משפחה אחרת"
   helpers:
     select:
       prompt: נא לבחור

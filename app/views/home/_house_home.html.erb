@@ -1,6 +1,7 @@
 <%# render "sign_up_links" %>
 <%= link_to "he", set_locale_path(locale: "he") %>
 <%= link_to "en", set_locale_path(locale: "en") %>
+<%= link_to "ru", set_locale_path(locale: "ru") %>
 <div class="px-2">
 	<nav class="flex flex-col justify-center">
 
@@ -91,10 +92,10 @@
 				<hr>
 				<div class="modal-content ">
 						<div class="house-sign-ups">
-							<button  class="text-lg new_user_to_house flex justify-between w-full items-center px-3 text-right py-3" value="<%= @house.id %>" type="button" name="button">הזמנת בני בית חדשים מ<%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
-							<button  class="text-lg existing_user_to_house flex justify-between w-full items-center px-3 text-right py-3"   value="<%= @house.id %>" type="button" name="button">הזמנת בני בית רשומים במערכת ל<%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
-							<button  class="text-lg new_house_to_family flex justify-between w-full items-center px-3 text-right py-3" value="<%= @family.id %>" type="button" name="button">הזמנת בתים אחרים מ<%= @family.name %> <%= image_tag "copy.svg", size:"25" %></button>
-							<button  class="text-lg new-family flex justify-between w-full items-center px-3 text-right py-3"   value="new-family" type="button" name="button">לשתף את קשר לפסח עם משפחה אחרת  <%= image_tag "copy.svg", size:"25" %></button>
+							<button  class="text-lg new_user_to_house flex justify-between w-full items-center px-3 text-right py-3" value="<%= @house.id %>" type="button" name="button"><%= I18n.t("home.new_users_to_my_home") %><%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
+							<button  class="text-lg existing_user_to_house flex justify-between w-full items-center px-3 text-right py-3"   value="<%= @house.id %>" type="button" name="button"><%= I18n.t("home.old_users_to_my_home") %><%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
+							<button  class="text-lg new_house_to_family flex justify-between w-full items-center px-3 text-right py-3" value="<%= @family.id %>" type="button" name="button"><%= I18n.t("home.new_house_to_my_family") %><%= @family.name %> <%= image_tag "copy.svg", size:"25" %></button>
+							<button  class="text-lg new-family flex justify-between w-full items-center px-3 text-right py-3"   value="new-family" type="button" name="button"><%= I18n.t("home.share") %><%= image_tag "copy.svg", size:"25" %></button>
 						</div>
 				</div>
 			</div>
