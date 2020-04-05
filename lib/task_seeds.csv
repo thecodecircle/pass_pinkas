@@ -1,4 +1,4 @@
-שם,פירוט,דרגת קושי (easy medium hard impossible),גילאים (toddler small big grownup),שפה
+שם,פירוט,דרגת קושי (easy medium hard impossible),גילאים (toddler small big grownup),שפה (en he ru)
 תמונות ילדות,עליכם לשלוח בקבוצה של המשפחה תמונת ילדות של כל אחד מכם שגר בבית,easy,big,he
 סרטון יציאת מצרים,"עליכן להכין סרטון שמציג את יציאת מצרים. זה יכול להיות קצר ומצחיק, או ארוך ומדויק לסיפור. הבחירה שלכן!",hard,big,he
 לעזור לשכן במצוקה,"עליכם לעזור לשכן, זה יכול להיות בקניית מצרכים, תרופות, או כל דבר שהוא יצטרך",hard,big,he
@@ -14,3 +14,18 @@
 ליפסינק,צלמו את עצמכן עושות ליפסינק (עושות כאילו אתן שרות. עדיף עם תחפושות!) לשיר פסח אהוב,medium,small,he
 אופנת חג,ציירו קולקציה של לפחות שתי תלבושות מיוחדות שהייתם רוצים ללבוש בחג,impossible,big,he
 קרבקורונה,התחפשו ללוחמים ולוחמות וצלמו סרטון מצחיק שלכם נלחמים בקורונה בעזרת כלי הנשק שיש בבית,medium,small,he
+Childhood Pictures,Send childhood pictures of everyone living in your home to your family's group,easy,big,en
+"Exodus, The Movie","Make a video about the exodus. It can be short and funny, or long and accurate. Your choice!",hard,big,en
+Help thy neighbor,"Help your neighbor, it can be buying groceries, medicine, or anything they need",hard,big,en
+Porch Party,Bring out the speakers and throw a party all your neighbors can dance to from their homes,medium,grownup,en
+Family Song,"Take an existing song, change the lyrics, and create a new family song",medium,small,en
+Dedicate A Drawing,"Make a nice drawing for passover, and dedicate it to someone from the family who needs it. It must include at least one of the following: A pyramid, a dessert, or frogs",medium,small,en
+Holiday Card,Write a holiday card and send it to someone from the family to brighten their day,easy,small,en
+Hide The Afikoman,"Draw the perfect hiding spot for the Afikoman, so that no one will find it (Except for you ;)",medium,small,en
+Super Matza,"Make a matza that says ""Passover 2020"" with the holes on it",hard,big,en
+Holiday Love Story,"Write a short love story that takes place in passover, during the coronavirus pandemic",impossible,grownup,en
+Emoji Riddles,Make at least 5 Emoji riddles about the holiday or your family,hard,big,en
+Dirty Dance,Make a video of yourselves dancing (Preferably with costumes!) to your favorite passover song,medium,small,en
+Lipsync,Make a video of yourselves lipsyncing to your favorite passover song ,medium,small,en
+Holiday Fashion,Draw a collection of at least two special outfits you'd want to wear this holiday,impossible,big,en
+Corona Battle,Dress up as warriors and make a funny video of you fighting the coronavirus with things you have in the house,medium,small,en
