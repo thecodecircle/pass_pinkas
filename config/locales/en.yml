@@ -54,6 +54,8 @@ Good luck!"
     old_users_to_my_home: "Invite registered household members to"
     new_house_to_my_family: "Invite other homes from"
     share: "Share Kashlapp with another family"
+    report_error: "Report a bug in Kashlapp"
+    report_btn: "Report an error"
   helpers:
     label:
       user:
