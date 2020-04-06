@@ -4,8 +4,29 @@
 <div class="flex w-full justify-center mt-10">
 	<%= image_tag "logo-type.png", size:"300" %>
 </div>
-<div class="text-center text-xl bg-white">
-	<%= I18n.t("user.explanation") %>
+<div class="text-center text-2xl font-bold  py-5 my-10 text-blue bg-white rounded-lg ">
+	<div class="  rounded-lg py-2 px-2 mb-5">
+		<%= I18n.t("user.explanation-1") %>
+		<div class="">
+			...
+		</div>
+	</div>
+	<div class="hidden explanation">
+		<div class="  rounded-lg py-2 px-2 mb-5">
+			<%= I18n.t("user.explanation-2") %>
+		</div>
+		<div class="  rounded-lg py-2 px-2 mb-5">
+			<%= I18n.t("user.explanation-3") %>
+
+		</div>
+		<div class="  rounded-lg py-2 px-2 mb-5">
+			<%= I18n.t("user.good-luck") %>
+		</div>
+	</div>
+	<div class=" flex justify-center">
+		<i class="gg-push-chevron-down exp-chev  big"></i>
+		<i class="gg-chevron-up exp-chev big hidden"></i>
+	</div>
 </div>
 <% content_for :devise_form do %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -20,10 +41,10 @@
 					<%= image_tag "usa.webp", size:"25" %>
 					<% end %>
 				</span>
-				<span class=" mx-1"><%= link_to new_user_session_path(locale: "ru") do %>
-					<%= image_tag "russia.webp", size:"25" %>
-					<% end %>
-				</span>
+				<!-- <span class=" mx-1"><%# link_to new_user_session_path(locale: "ru") do %>
+					<%# image_tag "russia.webp", size:"25" %>
+					<%# end %>
+				</span> -->
 			</div>
 
 		</div>
@@ -63,6 +84,7 @@
 
 </div>
 <script type="text/javascript">
+$(document).ready(function() {
 	$(".open-lang").click(function(event) {
 		$(".lang").toggle("fast")
 	});
@@ -72,4 +94,12 @@
 	}else {
 		$("*").addClass('rtl')
 	}
+
+	$(".exp-chev").click(function(event) {
+		$(".explanation").toggle("slow")
+		$(".exp-chev").toggle()
+
+	});
+
+});
 </script>

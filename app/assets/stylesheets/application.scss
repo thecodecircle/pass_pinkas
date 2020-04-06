@@ -12,7 +12,19 @@
 *{
 	font-family: 'Abraham', sans-serif;
 }
+.bg-blue{
+		background: #0E3087
+}
+.bg-yellow{
+	background: #F2BA30
+}
+.text-yellow{
+	color: #F2BA30
 
+}
+.text-blue{
+	color: #0E3087
+}
 .ltr{
 	direction: ltr;
 }
@@ -80,7 +92,6 @@
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
-
 
 
 .star{
@@ -283,6 +294,9 @@ $gray: #4a5568;
     top: 3px
 }
 
+.exp-chev.big{
+	    transform: scale(var(--ggs,2)) !important;
+}
 .move-down {
 -moz-transform: translate(0px, 50%);
 -webkit-transform: translate(0px, 50%);
