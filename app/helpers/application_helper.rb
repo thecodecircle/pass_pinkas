@@ -23,8 +23,8 @@ module ApplicationHelper
 	end
 
 	def difficulties_hash
-	  case params[:locale]
-	  when "he"
+	  case current_user.locale
+	  when "he", nil
 			difficulties = {
 					easy: "קל",
 					medium: "בינוני",
@@ -42,8 +42,8 @@ module ApplicationHelper
 	end
 
 	def ages_hash
-		case params[:locale]
-	  when "he"
+		case current_user.locale
+	  when "he", nil
 			ages = {
 				toddler: "קטנטנים",
 				small: "ילדים קטנים",
