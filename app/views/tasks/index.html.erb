@@ -26,13 +26,10 @@
       <th>רמת קושי</th>
       <th>גילאים</th>
       <th>פירוט</th>
-      <% if current_user.admin? %>
+
         <th>פרטיות</th>
-				<th>להוסיף</th>
-				<th></th>
-				<% else %>
-				<th>להוסיף</th>
-      <% end %>
+				<th colspan="3"> sa</th>
+
     </tr>
   </thead>
 
@@ -43,19 +40,15 @@
         <td><%= difficulties[task.difficulty.to_sym] %></td>
         <td><%= ages[task.age.to_sym] %></td>
         <td><%= task.description %></td>
-        <% if current_user.admin? %>
+
           <td><%= publicities[task.publicity.to_sym] %></td>
-          <td>
-						<%= link_to "<i class='gg-push-chevron-down-o m-auto'></i>".html_safe, assign_task_path(house: current_user.houses.last, task: task.id) , data: { confirm: 'מוכנים לעוד משימה?' }%>
-					</td>
 					<td>
-						<%= link_to "<i class='gg-pen move-pen-edit m-auto lg:ml-24 ml-16 text-gray-700'></i>".html_safe, edit_task_path(task)%>
-						<%= link_to "<i class='gg-trash m-auto text-red-700'></i>".html_safe, task, method: :delete, data: { confirm: 'למחוק?' } %>
+						<%= link_to  edit_task_path(task) do %>
+						<%= image_tag "edit.svg", size:"25" %>
+						<% end %>
+						<%= link_to "#{image_tag "trash.svg", size:'25'}".html_safe, task, method: :delete, data: { confirm: 'למחוק?' } %>
 					</td>
-				<% else %>
-					<td><%= link_to "<i><img src='/assets/add-task.svg' width='35' height='35'></i>".html_safe, assign_task_path(house: @house, task: task.id) ,class: "mb-10", data: { confirm: 'מוכנים לעוד משימה?' } if params[:house_id].present? %>
-						<%= link_to "<i><img src='/assets/add-task.svg' width='35' height='35'></i>".html_safe, assign_task_path(family: @family, task: task.id) ,class: "mb-10", data: { confirm: 'מוכנים לעוד משימה?' } if params[:family_id].present? %></td>
-        <% end %>
+
       </tr>
     <% end %>
   </tbody>
@@ -63,7 +56,7 @@
 
 <br>
 
-<%= link_to 'משימה חדשה', new_task_path if current_user.role == "Admin" %>
+<%= link_to 'משימה חדשה', new_task_path if current_user.admin? %>
 
 <script type="text/javascript">
 	$(document).ready( function () {

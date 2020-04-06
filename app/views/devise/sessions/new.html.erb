@@ -1,8 +1,10 @@
+<div class="px-2">
+
 
 <div class="flex w-full justify-center mt-10">
 	<%= image_tag "logo-type.png", size:"300" %>
 </div>
-<div class="text-center text-xl">
+<div class="text-center text-xl bg-white">
 	<%= I18n.t("user.explanation") %>
 </div>
 <% content_for :devise_form do %>
@@ -58,6 +60,8 @@
 <% end %>
 
 <%= render "devise/shared/form_wrap" %>
+
+</div>
 <script type="text/javascript">
 	$(".open-lang").click(function(event) {
 		$(".lang").toggle("fast")
