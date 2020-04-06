@@ -2,14 +2,16 @@
 
 
 <div class="flex w-full justify-center mt-10">
-	<%= image_tag "logo-type.png", size:"300" %>
+	<% if params[:locale].nil? || params[:locale] == "he" %>
+		<%= image_tag "logo-type.png", size:"300" %>
+		<% else %>
+		<%= image_tag "en-logo.png", size:"300" %>
+	<% end %>
 </div>
+<% content_for :devise_form do %>
 <div class="text-center text-2xl font-bold  py-5 my-10 text-blue bg-white rounded-lg ">
 	<div class="  rounded-lg py-2 px-2 mb-5">
 		<%= I18n.t("user.explanation-1") %>
-		<div class="">
-			...
-		</div>
 	</div>
 	<div class="hidden explanation">
 		<div class="  rounded-lg py-2 px-2 mb-5">
@@ -23,12 +25,14 @@
 			<%= I18n.t("user.good-luck") %>
 		</div>
 	</div>
+	<div class="explanation text-lg my-3">
+		<%= I18n.t("user.instructions") %>
+	</div>
 	<div class=" flex justify-center">
 		<i class="gg-push-chevron-down exp-chev  big"></i>
 		<i class="gg-chevron-up exp-chev big hidden"></i>
 	</div>
 </div>
-<% content_for :devise_form do %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 	<div class="flex items-center justify-end">
 		<div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50">

@@ -1,6 +1,6 @@
 
 
-<div class="px-2 lg:px-10 mb-24">
+<div class="px-2 lg:px-10 mb-24 lg:flex lg:flex-col">
 	<nav class="flex flex-col justify-center">
 
 		<div class="flex flex-wrap justify-between w-full self-end font-bold h-12 mt-2">
@@ -64,7 +64,7 @@
 	</nav>
 
 
-	<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5 mt-10">
+	<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5 mt-10 lg:w-1/2 lg:self-center">
 		<h1 class="text-xl text-shmutz-blue font-bold flex justify-between items-center">
 			<div class="open-our-tasks flex ">
 				<span class="chevron-our rotate-chev flex items-center"><i class="gg-push-chevron-down"></i></i> </span>
@@ -94,9 +94,9 @@
 	</div>
 
 
-<div class="modal-bg hidden w-screen fixed top-0 left-0 bg-black-opacity-50  z-40 h-screen close-modal">
+<div class="modal-bg hidden w-screen  fixed top-0 left-0 bg-black-opacity-50  z-40 h-screen close-modal">
 	<div class="w-full h-full flex items-center close-modal justify-center">
-		<div class="modal-body rounded-lg  h-3/4 bg-white w-full mx-3	hidden">
+		<div class="modal-body rounded-lg  h-3/4 bg-white w-full mx-3	hidden lg:w-1/2">
 			<div class=" bg-gray-100 modal-header h-full  rounded-lg">
 				<div class="flex justify-between">
 					<h1 class="text-2xl m-3"><%= I18n.t("home.invite") %></h1>
@@ -116,10 +116,7 @@
 
 	</div>
 </div>
-</div>
-
-
-<footer class="w-full h-24 flex justify-between items-end fixed bottom-0">
+<footer class="w-full h-24 flex justify-between items-end fixed bottom-0 lg:w-1/2 lg:self-center">
 	<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
 		<%= image_tag "user-plus.svg", size: "35" %>
 	</button>
@@ -128,12 +125,15 @@
 		<%= image_tag "plus.svg", size: "45" %>
 	</div>
 	<% end %>
-		<%= link_to '/leaders' do  %>
+	<%= link_to '/leaders' do  %>
 	<button class="leaders bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
 		<%= image_tag "trophy.svg", size: "35" %>
 	</button>
 	<% end %>
 </footer>
+</div>
+
+
 
 <script type="text/javascript">
 $(document).ready(function() {

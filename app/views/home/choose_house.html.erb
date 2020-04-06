@@ -8,21 +8,21 @@
 </div>
 <div class="mt-24 flex flex-wrap justify-center">
 	<% @families.each do |family| %>
-	<button value="<%= family.id %>" class="family outline-none square-10rem m-1 rounded-full flex flex-col justify-center items-center open-task-description">
+	<div value="<%= family.id %>" class="family outline-none square-10rem m-1 rounded-full flex flex-col justify-center items-center open-task-description">
 		<div class="flex justify-center items-center h-full text-center square-10rem bg-family">
 			<span class="mx-3 text-lg w-32 p-3"><%= family.name %></span>
 		</div>
-	</button>
+	</div>
 	<% end %>
 
 </div>
 <div class="mb-24 flex flex-wrap justify-center">
 	<% @houses.each do |house| %>
-	<button value="<%= house.id %>" class="house outline-none square-10rem text-whitea m-1 rounded-full flex flex-col justify-center items-center open-task-description">
+	<div value="<%= house.id %>" class="house outline-none square-10rem text-whitea m-1 rounded-full flex flex-col justify-center items-center open-task-description">
 		<div class="flex justify-center items-center h-full text-center square-10rem bg-house">
 			<span class="mx-3 text-lg w-32 p-3"><%= house.name %></span>
 		</div>
-	</button>
+	</div>
 	<% end %>
 
 </div>
