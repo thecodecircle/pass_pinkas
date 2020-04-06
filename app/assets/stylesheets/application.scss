@@ -120,13 +120,19 @@
 	background-size: 100%;
 	background-position: center;
 }
-.bg-forward{
-	background-image: asset_url('forward.svg');
+.img-span{
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position: center;
 	width: 32px;
 	height: 32px;
+
+}
+.img-span.forward-span{
+	background-image: asset_url('forward.svg');
+}
+.img-span.check-span{
+	background-image: asset_url('forward.svg');
 }
 .bg-family{
 	background-image: asset_url('family.svg');

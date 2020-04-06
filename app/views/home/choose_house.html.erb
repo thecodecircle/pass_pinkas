@@ -41,6 +41,7 @@ $(document).ready(function() {
 	var chosen_house
 	$(".house").click(function(event) {
 		$(".house").removeClass('task-shadow')
+		$(".family").removeClass('task-shadow')
 		$(this).addClass('task-shadow')
 		chosen_house = $(this).val()
 		$(".next").replaceWith($(".next-active"))
@@ -50,6 +51,7 @@ $(document).ready(function() {
 	});
 	$(".family").click(function(event) {
 		$(".family").removeClass('task-shadow')
+		$(".house").removeClass('task-shadow')
 		$(this).addClass('task-shadow')
 		chosen_family = $(this).val()
 		$(".next").replaceWith($(".next-active"))
