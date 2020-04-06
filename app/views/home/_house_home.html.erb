@@ -3,7 +3,7 @@
 <div class="px-2 lg:px-10 mb-24">
 	<nav class="flex flex-col justify-center">
 
-		<div class="flex flex-wrap justify-between w-full self-end brand h-12 mt-2">
+		<div class="flex flex-wrap justify-between w-full self-end font-bold h-12 mt-2">
 			<!-- <%= @house.name %> -->
 			<div class="mx-2  flex flex-col justify-center">
 				<span class="star-normal w-16 h-16 flex items-center justify-center"><%= @house.score %></span>
@@ -65,7 +65,7 @@
 
 
 	<div class="rounded-lg bg-gray-100 shadow px-4 py-4 pb-5 mt-10">
-		<h1 class="text-xl text-shmutz-blue brand flex justify-between items-center">
+		<h1 class="text-xl text-shmutz-blue font-bold flex justify-between items-center">
 			<div class="open-our-tasks flex ">
 				<span class="chevron-our rotate-chev flex items-center"><i class="gg-push-chevron-down"></i></i> </span>
 				<span><%= I18n.t("home.our_challenges") %></span>
@@ -77,7 +77,7 @@
 			<%= render "task", { task: task, status: "in_progress", kid: current_user.id, house: @house.id } %>
 			<% end %>
 		</div>
-		<h1 class="text-xl text-shmutz-blue brand flex justify-between items-center">
+		<h1 class="text-xl text-shmutz-blue font-bold flex justify-between items-center">
 			<div class="open-done-tasks flex ">
 				<span class="chevron-done flex items-center rotate-chev"><i class="gg-push-chevron-down"></i></i> </span>
 				<span><%= I18n.t("home.finished_challenges") %></span>
