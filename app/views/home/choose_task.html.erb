@@ -33,7 +33,7 @@
 		<%= image_tag "back.svg", size:"25"	, class:"rotate-if-not-he" %>
 	<% end %>
 	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl" ><%= image_tag "forward.svg", size:"32"	, class:"rotate-if-not-he" %></div>
-	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""></a>
+	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""><%= image_tag "forward.svg", size:"32", class:"rotate-if-not-he" %></a>
 </div>
 
 <script type="text/javascript">
@@ -82,7 +82,8 @@ $(document).ready(function() {
 	$(".task-new").click(function(event) {
 		$(".next").replaceWith($(".next-active"))
 		$(".next-active").removeClass('hidden')
-		$(".next-active").html("<img src='/assets/forward.svg' width='32' height='32' class='rotate-if-not-he'>")
+		$(".next-active").html(" <span id='img-span' class='rotate-if-not-he'></span>")
+		$("#img-span").addClass('bg-forward')
 		if ("<%= current_user.locale %>" != "he") {
 			$(".rotate-if-not-he").addClass('rotate-180')
 		}
@@ -93,8 +94,7 @@ $(document).ready(function() {
 		}
 
 	});
-
-	if ("<%= current_user.locale %>" != "he") {
+	if ("<%= current_user.locale %>" != "he" && "<%= current_user.locale %>" != "") {
 		$(".rotate-if-not-he").addClass('rotate-180')
 	}
 });

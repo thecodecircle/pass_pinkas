@@ -45,7 +45,7 @@ $(document).ready(function() {
 		chosen_house = $(this).val()
 		$(".next").replaceWith($(".next-active"))
 		$(".next-active").removeClass('hidden')
-		// $(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
+
 		$(".next-active").attr('href', '/choose_task?house_id=' + chosen_house);
 	});
 	$(".family").click(function(event) {
@@ -54,10 +54,10 @@ $(document).ready(function() {
 		chosen_family = $(this).val()
 		$(".next").replaceWith($(".next-active"))
 		$(".next-active").removeClass('hidden')
-		// $(".next").removeClass('bg-gray-400 text-gray-700').addClass('bg-green-400 text-black')
+
 		$(".next-active").attr('href', '/choose_task?family_id=' + chosen_family);
 	});
-	if ("<%= current_user.locale %>" != "he") {
+	if ("<%= current_user.locale %>" != "he" && "<%= current_user.locale %>" != "") {
 		$(".rotate-if-not-he").addClass('rotate-180')
 	}
 });

@@ -120,6 +120,14 @@
 	background-size: 100%;
 	background-position: center;
 }
+.bg-forward{
+	background-image: asset_url('forward.svg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+	width: 32px;
+	height: 32px;
+}
 .bg-family{
 	background-image: asset_url('family.svg');
 	background-repeat: no-repeat;
