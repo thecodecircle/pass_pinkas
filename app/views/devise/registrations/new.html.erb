@@ -98,9 +98,10 @@
 	$(".open-lang").click(function(event) {
 		$(".lang").toggle("fast")
 	});
-	if ("<%= params[:locale] %>" == "he") {
-		$("*").addClass('rtl')
-	}else {
-		$("*").addClass('ltr')
-	}
+
+		if ("<%= params[:locale].present? %>" == "true" && "<%= params[:locale] %>" != "he") {
+			$("*").addClass('ltr')
+		}else {
+			$("*").addClass('rtl')
+		}
 </script>
