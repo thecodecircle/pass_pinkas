@@ -8,13 +8,13 @@
 			<span class="star w-16 h-16 star-transform absolute bottom-0 right-0 justify-center flex items-center"><%= task.score %></span>
 		</div>
 		<div style="display: flex" class="description w-screen h-screen fixed top-0 left-0 abg-black-opacity-50 z-50 flex items-start justify-center pt-10 close-task-description">
-				<div class="description-body w-64  h-64  bg-white rounded-lg  shadow-lg sticky ">
-					<div class="flex flex-col justify-between w-full rounded-lg h-full p-3" >
+				<div class="description-body w-64  min-h-64  bg-white rounded-lg  shadow-lg sticky ">
+					<div class="flex flex-col justify-between w-full rounded-lg min-h-64 p-3 " >
 						<div class="flex  justify-between w-full h-10">
 							<span class=" "><%= task.name %></span>
 							<span class=" "><%= difficulties_hash[task.difficulty.to_sym] %></span>
 						</div>
-						<div class="flex w-full h-10 text-xl items-center">
+						<div class="flex w-full min-h-10  overflow-y-auto max-h-75vh text-xl items-center">
 							<span><%= task.description %></span>
 						</div>
 						<div class="flex w-full h-10 justify-between items-end">
@@ -45,13 +45,13 @@
 			<span class="star w-16 h-16 star-transform absolute bottom-0 right-0 justify-center flex items-center"><%= task.score %></span>
 		</button>
 		<div style="display: flex" class="description w-screen h-screen fixed top-0 left-0 abg-black-opacity-50 z-50 flex items-start justify-center pt-10 close-task-description">
-				<div class="description-body w-64  h-64  bg-white rounded-lg  shadow-lg sticky ">
-					<div class="flex flex-col justify-between w-full rounded-lg h-full p-3" >
+				<div class="description-body w-64  min-h-64  bg-white rounded-lg  shadow-lg sticky ">
+					<div class="flex flex-col justify-between w-full rounded-lg min-h-64 p-3" >
 						<div class="flex  justify-between w-full h-10">
 							<span class=" "><%= task.name %></span>
 							<span class=" "><%= difficulties_hash[task.difficulty.to_sym] %></span>
 						</div>
-						<div class="flex w-full h-10 text-xl items-center">
+						<div class="flex w-full  min-h-10 overflow-y-auto max-h-75vh text-xl items-center">
 							<span><%= task.description %></span>
 						</div>
 						<div class="flex w-full h-10 justify-between items-end">

@@ -128,6 +128,15 @@
 	height: 32px;
 
 }
+.min-h-64{
+	min-height: 16rem;
+}
+.min-h-10{
+	min-height: 2.5rem;
+}
+.max-h-75vh{
+	max-height: 75vh;
+}
 .img-span.forward-span{
 	background-image: asset_url('forward.svg');
 }
