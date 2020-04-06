@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action do
-    unless %w(new create).include?(action_name)
+    unless %w(new create assign_task change_progress).include?(action_name)
       redirect_to new_user_session_path unless current_user && current_user.admin?
     end
   end
