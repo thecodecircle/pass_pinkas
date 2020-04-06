@@ -9,25 +9,7 @@
 
 		</div>
 		<div class="mx-2 flex">
-			<div class="absolute top-0 mt-16 items-center justify-center ">
-				<div class="lang hidden py-5 px-1  bg-gray-300 rounded-lg z-50">
-					<div class="flex">
-						<span class=" mx-1"><%= link_to set_locale_path(locale: "he") do %>
-							<%= image_tag "israel.png", size:"25" %>
-							<% end %>
-						</span>
-						<span class=" mx-1"><%= link_to set_locale_path(locale: "en") do %>
-							<%= image_tag "usa.webp", size:"25" %>
-							<% end %>
-						</span>
-						<!-- <span class=" mx-1"><%# link_to set_locale_path(locale: "ru") do %> -->
-							<%# image_tag "russia.webp", size:"25" %>
-							<%# end %>
-						<!-- </span> -->
-					</div>
-
-				</div>
-			</div>
+	
 			<div class="flex w-24 z-50">
 				<div class="absolute top-0 items-center justify-center ">
 					<div class="menu hidden   mt-12 px-5 pt-5 pb-5 bg-white rounded-lg rounded-t-none z-50">
@@ -48,10 +30,25 @@
 				</div>
 
 			</div>
-				<button class="open-lang" type="button" name="button"> <%= image_tag "globe.svg", size: "25" %></button>
-			<button class="open-menu flex items-center px-3 py-2 aborder rounded text-grey sborder-gray-500 hover:text-gray-600 ahover:border-gray-600">
-				<%= image_tag "user-circle.svg", size:"25" %>
-			</button>
+
+			<div class="flex py-2 items-center">
+				<span class=" mx-1"><%= link_to set_locale_path(locale: "he") do %>
+					<%= image_tag "israel.png", size:"25" %>
+					<% end %>
+				</span>
+				<span class=" mx-1"><%= link_to set_locale_path(locale: "en") do %>
+					<%= image_tag "usa.webp", size:"25" %>
+					<% end %>
+				</span>
+				<!-- <span class=" mx-1"><%# link_to set_locale_path(locale: "ru") do %>
+				<%# image_tag "russia.webp", size:"25" %>
+				<%# end %>
+			</span> -->
+		</div>
+		<button class="open-menu flex items-center py-2 aborder rounded text-grey sborder-gray-500 hover:text-gray-600 ahover:border-gray-600">
+			<%= image_tag "user-circle.svg", size:"25" %>
+		</button>
+
 		</div>
 	</div>
 	<div class="text-shmutz-blue text-3xl w-full flex justify-center items-center flex-col font-bold">

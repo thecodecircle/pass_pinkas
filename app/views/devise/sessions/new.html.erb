@@ -35,7 +35,7 @@
 </div>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 	<div class="flex items-center justify-end">
-		<div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50">
+		<!-- <div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50"> -->
 			<div class="flex">
 				<span class=" mx-1"><%= link_to new_user_session_path(locale: "he") do %>
 					<%= image_tag "israel.png", size:"25" %>
@@ -51,8 +51,8 @@
 				</span> -->
 			</div>
 
-		</div>
-		<button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25" %></button>
+		<!-- </div> -->
+		<!-- <button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25" %></button> -->
 	</div>
   <div class="mb-6">
     <%= f.label :login, class:"label text-lg" %>
