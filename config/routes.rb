@@ -14,4 +14,10 @@ Rails.application.routes.draw do
   get "/approve_task", to: "tasks#approve_task"
   get "/add_user_to_house", to: "home#add_user_to_house"
   get "/set_locale", to: "home#set_locale"
+
+  # Service Worker Routes
+  get '/service-worker.js' => "service_worker#service_worker"
+  get '/manifest.json' => "service_worker#manifest"
+  # get 'service_worker/service_worker'
+  # get 'service_worker/manifest'
 end
