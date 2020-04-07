@@ -1,6 +1,8 @@
 
 
-<div class="px-2 lg:px-10 mb-24 lg:flex lg:flex-col">
+<div class="px-2 lg:px-10 mb-16 lg:flex lg:flex-col">
+
+
 	<nav class="flex flex-col justify-center">
 
 		<div class="flex flex-wrap justify-between w-full self-end font-bold h-12 mt-2">
@@ -54,6 +56,7 @@
 		<div class="text-shmutz-blue text-3xl w-full flex justify-center items-center flex-col font-bold">
 			<span> <%= I18n.t("home.hello") %> <%= current_user.name %>!</span>
 			<span class="text-xl"><%= @house.name %></span>
+
 		</div>
 
 
@@ -112,13 +115,23 @@
 
 	</div>
 </div>
-<div class="label">
+
+</div>
+<div class="text-black text-2xl bg-new-task shadow-lg fixed bottom-0  flex flex-col justify-center mb-24 text-center px-2 rounded-lg">
 	<% finish_str = "15 Apr 2020" %>
 	<% finish_date = finish_str.to_date %>
 	<% days = finish_date.day - Date.current.day %>
-	<%= I18n.t("home.countdown", days: days) %>
+	<span class="font-bold text-3xl">
+		<%= I18n.t("home.countdown", days: days) %>
+	</span>
+	<span class="m-0 leading-none">
+		<%= I18n.t("home.days") %>
+	</span>
+	<span class="m-0 leading-none">
+		<%= I18n.t("home.left") %>
+	</span>
 </div>
-<footer class="w-full h-24 flex justify-between items-end fixed bottom-0 lg:w-1/2 lg:self-center">
+<footer class="w-full h-24 flex justify-between items-end fixed bottom-0 lg:w-1/2 lg:self-center ">
 	<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
 		<%= image_tag "user-plus.svg", size: "35", alt: "Invite users" %>
 	</button>
@@ -133,7 +146,6 @@
 	</button>
 	<% end %>
 </footer>
-</div>
 
 
 

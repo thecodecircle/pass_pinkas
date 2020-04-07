@@ -5,26 +5,55 @@
 
 
 <% content_for :devise_form do %>
-<div class="flex items-center justify-end">
-	<div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50">
-		<div class="flex">
-			<span class=" mx-1"><%= link_to new_user_registration_path(locale: "he") do %>
-				<%= image_tag "israel.png", size:"25", alt: "Hebrew" %>
-				<% end %>
-			</span>
-			<span class=" mx-1"><%= link_to new_user_registration_path(locale: "en") do %>
-				<%= image_tag "usa.webp", size:"25", alt: "English" %>
-				<% end %>
-			</span>
-			<!-- <span class=" mx-1"><%= link_to new_user_registration_path(locale: "ru") do %>
-				<%# image_tag "russia.webp", size:"25", alt: "Russian" %>
-				<% end %>
-			</span> -->
+<div class="text-center text-2xl font-bold   mb-10 text-blue bg-white rounded-lg ">
+	<div class="flex items-center justify-end">
+		<!-- <div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50"> -->
+			<div class="flex">
+				<span class=" mx-1"><%= link_to new_user_session_path(locale: "he") do %>
+					<%= image_tag "israel.png", size:"25", alt: "Hebrew" %>
+					<% end %>
+				</span>
+				<span class=" mx-1"><%= link_to new_user_session_path(locale: "en") do %>
+					<%= image_tag "usa.webp", size:"25", alt: "English" %>
+					<% end %>
+				</span>
+				<!-- <span class=" mx-1"><%# link_to new_user_session_path(locale: "ru") do %>
+					<%# image_tag "russia.webp", size:"25", alt: "Russian" %>
+					<%# end %>
+				</span> -->
+			</div>
+
+		<!-- </div> -->
+		<!-- <button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25", alt: "Choose language" %></button> -->
+	</div>
+	<div id="intro" class="">
+		<div class="  rounded-lg py-2 px-2 mb-5">
+			<%= I18n.t("user.explanation-1") %>
+		</div>
+		<div class="hidden explanation">
+			<div class="  rounded-lg py-2 px-2 mb-5">
+				<%= I18n.t("user.explanation-2") %>
+			</div>
+			<div class="  rounded-lg py-2 px-2 mb-5">
+				<%= I18n.t("user.explanation-3") %>
+
+			</div>
+			<div class="  rounded-lg py-2 px-2 mb-5">
+				<%= I18n.t("user.good-luck") %>
+			</div>
+		</div>
+		<div class="explanation text-lg my-3">
+			<%= I18n.t("user.instructions") %>
+		</div>
+		<div class=" flex justify-center">
+			<i class="gg-push-chevron-down exp-chev  big"></i>
+			<i class="gg-chevron-up exp-chev big hidden"></i>
 		</div>
 
 	</div>
-	<button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25", alt: "Choose language" %></button>
-</div>
+
+	</div>
+
   <h2 class="heading text-4xl font-bold pt-4 mb-8"><%= I18n.t("user.sign_up") %></h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -101,13 +130,22 @@
 <% end %>
 <%= render "devise/shared/form_wrap" %>
 <script type="text/javascript">
+$(document).ready(function() {
 	$(".open-lang").click(function(event) {
 		$(".lang").toggle("fast")
 	});
 
-		if ("<%= params[:locale].present? %>" == "true" && "<%= params[:locale] %>" != "he") {
-			$("*").addClass('ltr')
-		}else {
-			$("*").addClass('rtl')
-		}
+	if ("<%= params[:locale].present? %>" == "true" && "<%= params[:locale] %>" != "he") {
+		$("*").addClass('ltr')
+	}else {
+		$("*").addClass('rtl')
+	}
+
+	$(".exp-chev").click(function(event) {
+		$(".explanation").toggle("slow")
+		$(".exp-chev").toggle()
+
+	});
+
+});
 </script>

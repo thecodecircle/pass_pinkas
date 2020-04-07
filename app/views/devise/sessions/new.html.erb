@@ -9,31 +9,7 @@
 	<% end %>
 </div>
 <% content_for :devise_form do %>
-<div class="text-center text-2xl font-bold  py-5 my-10 text-blue bg-white rounded-lg ">
-	<div class="  rounded-lg py-2 px-2 mb-5">
-		<%= I18n.t("user.explanation-1") %>
-	</div>
-	<div class="hidden explanation">
-		<div class="  rounded-lg py-2 px-2 mb-5">
-			<%= I18n.t("user.explanation-2") %>
-		</div>
-		<div class="  rounded-lg py-2 px-2 mb-5">
-			<%= I18n.t("user.explanation-3") %>
-
-		</div>
-		<div class="  rounded-lg py-2 px-2 mb-5">
-			<%= I18n.t("user.good-luck") %>
-		</div>
-	</div>
-	<div class="explanation text-lg my-3">
-		<%= I18n.t("user.instructions") %>
-	</div>
-	<div class=" flex justify-center">
-		<i class="gg-push-chevron-down exp-chev  big"></i>
-		<i class="gg-chevron-up exp-chev big hidden"></i>
-	</div>
-</div>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="text-center text-2xl font-bold   mb-10 text-blue bg-white rounded-lg ">
 	<div class="flex items-center justify-end">
 		<!-- <div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50"> -->
 			<div class="flex">
@@ -54,37 +30,76 @@
 		<!-- </div> -->
 		<!-- <button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25", alt: "Choose language" %></button> -->
 	</div>
-  <div class="mb-6">
-    <%= f.label :login, class:"label text-lg" %>
-    <%= f.text_field :login, autofocus: true, class: "input" %>
-  </div>
+	<div id="intro" class="">
+		<div class="  rounded-lg py-2 px-2 mb-5">
+			<%= I18n.t("user.explanation-1") %>
+		</div>
+		<div class="hidden explanation">
+			<div class="  rounded-lg py-2 px-2 mb-5">
+				<%= I18n.t("user.explanation-2") %>
+			</div>
+			<div class="  rounded-lg py-2 px-2 mb-5">
+				<%= I18n.t("user.explanation-3") %>
 
-  <div class="mb-6">
-    <%= f.label :password, class:"label text-lg" %>
-    <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
-  </div>
-
-  <div class="mb-6 flex">
-    <% if devise_mapping.rememberable? -%>
-      <%= f.check_box :remember_me, class:"mr-2 leading-tight" %>
-      <%= f.label :remember_me, class:"block text-grey-darker" %>
-    <% end -%>
-  </div>
-
-  <div class="">
-    <%= f.submit I18n.t("user.sign_in"), class: "py-3 rounded-lg font-bold text-3xl w-full sign-up-buttons text-black mb-5" %>
-
+			</div>
+			<div class="  rounded-lg py-2 px-2 mb-5">
+				<%= I18n.t("user.good-luck") %>
+			</div>
+		</div>
+		<div class="explanation text-lg my-3">
+			<%= I18n.t("user.instructions") %>
+		</div>
+		<div class=" flex justify-center">
+			<i class="gg-push-chevron-down exp-chev  big"></i>
+			<i class="gg-chevron-up exp-chev big hidden"></i>
+		</div>
 		<%= link_to new_registration_path(resource_name, locale: params[:locale]), class: "" do %>
+		<button id="first-new-fam" class="py-3 rounded-lg font-bold text-2xl w-full sign-up-buttons text-black mt-5 mb-3">
+			<%= I18n.t("user.new_family") %>
+		</button>
+		<% end %>
+		<button class="open-sign-in py-2 rounded-lg font-bold text-2xl w-full sign-up-buttons-border text-black border-4 my-2">
+			<%= I18n.t("user.sign_in") %>
+		</button>
+	</div>
+
+	</div>
+<div id="sign-in" class="hidden">
+	<%= form_for(resource, as: resource_name, url: session_path(resource_name), class:"") do |f| %>
+
+	<div class="mb-6">
+		<%= f.label :login, class:"label text-lg" %>
+		<%= f.text_field :login, autofocus: true, class: "input" %>
+	</div>
+
+	<div class="mb-6">
+		<%= f.label :password, class:"label text-lg" %>
+		<%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+	</div>
+
+	<div class="mb-6 flex">
+		<% if devise_mapping.rememberable? -%>
+		<%= f.check_box :remember_me, class:"mr-2 leading-tight" %>
+		<%= f.label :remember_me, class:"block text-grey-darker" %>
+		<% end -%>
+	</div>
+
+	<div class="">
+		<%= f.submit I18n.t("user.sign_in"), class: "py-3 rounded-lg font-bold text-3xl w-full sign-up-buttons text-black mb-5" %>
+
+		<%= link_to new_registration_path(resource_name, locale: params[:locale]) do %>
 		<button class="py-2 rounded-lg font-bold text-2xl w-full sign-up-buttons-border text-black border-4">
 			<%= I18n.t("user.new_family") %>
 		</button>
 		<% end %>
-  </div>
-<% end %>
+	</div>
+	<% end %>
 
-<% end %>
+	<% end %>
 
-<%= render "devise/shared/form_wrap" %>
+	<%= render "devise/shared/form_wrap" %>
+
+</div>
 
 </div>
 <script type="text/javascript">
@@ -104,6 +119,9 @@ $(document).ready(function() {
 		$(".exp-chev").toggle()
 
 	});
-
+	$(".open-sign-in").click(function(event) {
+		$("#sign-in").toggle("fast")
+		$("#intro").toggle("fast")
+	});
 });
 </script>

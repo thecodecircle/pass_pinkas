@@ -40,7 +40,7 @@ en:
       house-explanation: "You're creating a new home. It will belong to your family, it will have its score, and you will be competing againt the family's other homes."
       house-placeholder: "e.g. Aunt Shoshana's place"
     sign_in: "Sign in"
-    new_family: "Sign up & New family"
+    new_family: "Sign up a new family"
     sign_up: "Sign up"
     explanation-1: "This passover we'll take advantage of the distance"
     explanation-2: "the family's different homes will be competing for eternal glory and family bragging rights."
@@ -63,7 +63,9 @@ en:
     share: "Share Kashlapp with another family"
     report_error: "Report a bug in Kashlapp"
     report_btn: "Report an error"
-    countdown: "Only %{days} days left until the end of the competition!"
+    countdown: "%{days}"
+    days: "days"
+    left: "left"
   helpers:
     label:
       user:
