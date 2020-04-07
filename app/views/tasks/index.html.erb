@@ -58,18 +58,18 @@
 
 <%= link_to 'משימה חדשה', new_task_path if current_user.admin? %>
 
-<script type="text/javascript">
-	$(document).ready( function () {
-
-	  $('#tasks_table').DataTable({
-	    responsive: true,
-			 "order": [[ 1, "asc" ]],
-			 "paging": false,
-	    language: {
-	      url: "/he_he.lang",
-	      searchPlaceholder: "חיפוש חופשי",
-	      },
-	    },
-	  );
-	} );
-</script>
+<!-- <script type="text/javascript">
+	// $(document).ready( function () {
+  //
+	//   $('#tasks_table').DataTable({
+	//     responsive: true,
+	// 		 "order": [[ 1, "asc" ]],
+	// 		 "paging": false,
+	//     language: {
+	//       url: "/he_he.lang",
+	//       searchPlaceholder: "חיפוש חופשי",
+	//       },
+	//     },
+	//   );
+	// } );
+</script> -->

@@ -11,7 +11,7 @@ require("jquery")
 
 // require( 'datatables.net-dt' );
 // require( 'datatables.net-fixedheader-dt' );
-require( 'datatables.net-responsive-dt' );
+// require( 'datatables.net-responsive-dt' );
 // require( 'datatables.net-searchpanes-dt' );
 
 
