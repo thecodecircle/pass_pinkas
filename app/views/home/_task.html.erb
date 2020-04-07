@@ -38,12 +38,12 @@
 
 	<% when "general" %>
 	<div class="task relative m-3 ">
-		<div value="<%= task.id %>" class="task-general h-32 w-32  bg-task-green  rounded-full flex flex-col relative open-task-description">
+		<button value="<%= task.id %>" class="task-general h-32 w-32  bg-task-green  rounded-full flex flex-col relative open-task-description">
 			<div class="flex justify-center items-center h-full text-center w-32">
 				<span class="mx-3 text-lg text-center"><%= task.name %></span>
 			</div>
 			<span class="star w-16 h-16 star-transform absolute bottom-0 right-0 justify-center flex items-center"><%= task.score %></span>
-		</div>
+		</button>
 		<div style="display: flex" class="description w-screen h-screen fixed top-0 left-0 abg-black-opacity-50 z-50 flex items-start justify-center pt-10 close-task-description">
 				<div class="description-body w-64  min-h-64  bg-white rounded-lg  shadow-lg sticky ">
 					<div class="flex flex-col justify-between w-full rounded-lg min-h-64 p-3" >

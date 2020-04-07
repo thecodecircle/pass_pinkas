@@ -131,21 +131,24 @@
 		<%= I18n.t("home.left") %>
 	</span>
 </div>
-<footer class="w-full h-24 flex justify-between items-end fixed bottom-0 lg:w-1/2 lg:self-center ">
-	<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "user-plus.svg", size: "35", alt: "Invite users" %>
-	</button>
-	<%= link_to '/choose_house' do  %>
-	<div	 class=" bg-cta w-20 h-20 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "plus.svg", size: "45", alt: "Add challenge" %>
-	</div>
-	<% end %>
-	<%= link_to '/leaders' do  %>
-	<button class="leaders bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "trophy.svg", size: "35", alt: "Leaderboard" %>
-	</button>
-	<% end %>
-</footer>
+<div class="w-screen flex justify-center">
+	<footer class="w-full h-24 flex justify-between items-end fixed bottom-0 lg:w-1/2 lg:self-center">
+		<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+			<%= image_tag "user-plus.svg", size: "35", alt: "Invite users" %>
+		</button>
+		<%= link_to '/choose_house' do  %>
+		<div	 class=" bg-cta w-20 h-20 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+			<%= image_tag "plus.svg", size: "45", alt: "Add challenge" %>
+		</div>
+		<% end %>
+		<%= link_to '/leaders' do  %>
+		<button class="leaders bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
+			<%= image_tag "trophy.svg", size: "35", alt: "Leaderboard" %>
+		</button>
+		<% end %>
+	</footer>
+
+</div>
 
 
 
