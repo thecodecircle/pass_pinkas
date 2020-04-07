@@ -33,7 +33,7 @@ he:
     share: "לשתף את קשר לפסח עם משפחה אחרת"
     report_error: "דיווח על תקלה בקשל\"פ"
     report_btn: "דיווח על תקלה"
-    countdown: "נשארו %{days} ימים לסיום התחרות!"
+    countdown: "נשארו רק %{days} ימים לסיום התחרות!"
   helpers:
     select:
       prompt: נא לבחור

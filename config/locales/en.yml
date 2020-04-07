@@ -63,7 +63,7 @@ en:
     share: "Share Kashlapp with another family"
     report_error: "Report a bug in Kashlapp"
     report_btn: "Report an error"
-    countdown: "There are only %{days} days left until the end of the competition!"
+    countdown: "Only %{days} days left until the end of the competition!"
   helpers:
     label:
       user:
