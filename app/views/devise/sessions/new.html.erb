@@ -3,9 +3,9 @@
 
 <div class="flex w-full justify-center mt-10">
 	<% if params[:locale].nil? || params[:locale] == "he" %>
-		<%= image_tag "logo-type.png", size:"300" %>
+		<%= image_tag "logo-type.png", size:"300", alt: "Logo" %>
 		<% else %>
-		<%= image_tag "en-logo.png", size:"300" %>
+		<%= image_tag "en-logo.png", size:"300", alt: "Logo" %>
 	<% end %>
 </div>
 <% content_for :devise_form do %>
@@ -38,21 +38,21 @@
 		<!-- <div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50"> -->
 			<div class="flex">
 				<span class=" mx-1"><%= link_to new_user_session_path(locale: "he") do %>
-					<%= image_tag "israel.png", size:"25" %>
+					<%= image_tag "israel.png", size:"25", alt: "Hebrew" %>
 					<% end %>
 				</span>
 				<span class=" mx-1"><%= link_to new_user_session_path(locale: "en") do %>
-					<%= image_tag "usa.webp", size:"25" %>
+					<%= image_tag "usa.webp", size:"25", alt: "English" %>
 					<% end %>
 				</span>
 				<!-- <span class=" mx-1"><%# link_to new_user_session_path(locale: "ru") do %>
-					<%# image_tag "russia.webp", size:"25" %>
+					<%# image_tag "russia.webp", size:"25", alt: "Russian" %>
 					<%# end %>
 				</span> -->
 			</div>
 
 		<!-- </div> -->
-		<!-- <button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25" %></button> -->
+		<!-- <button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25", alt: "Choose language" %></button> -->
 	</div>
   <div class="mb-6">
     <%= f.label :login, class:"label text-lg" %>

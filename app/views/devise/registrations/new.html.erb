@@ -1,6 +1,6 @@
 
 <div class="flex w-full justify-center mt-10">
-	<%= image_tag "logo-type.png", size:"300" %>
+	<%= image_tag "logo-type.png", size:"300", alt: "Logo" %>
 </div>
 
 
@@ -9,21 +9,21 @@
 	<div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50">
 		<div class="flex">
 			<span class=" mx-1"><%= link_to new_user_registration_path(locale: "he") do %>
-				<%= image_tag "israel.png", size:"25" %>
+				<%= image_tag "israel.png", size:"25", alt: "Hebrew" %>
 				<% end %>
 			</span>
 			<span class=" mx-1"><%= link_to new_user_registration_path(locale: "en") do %>
-				<%= image_tag "usa.webp", size:"25" %>
+				<%= image_tag "usa.webp", size:"25", alt: "English" %>
 				<% end %>
 			</span>
-			<span class=" mx-1"><%= link_to new_user_registration_path(locale: "ru") do %>
-				<%= image_tag "russia.webp", size:"25" %>
+			<!-- <span class=" mx-1"><%= link_to new_user_registration_path(locale: "ru") do %>
+				<%# image_tag "russia.webp", size:"25", alt: "Russian" %>
 				<% end %>
-			</span>
+			</span> -->
 		</div>
 
 	</div>
-	<button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25" %></button>
+	<button class="open-lang py-2" type="button" name="button"> <%= image_tag "globe.svg", size: "25", alt: "Choose language" %></button>
 </div>
   <h2 class="heading text-4xl font-bold pt-4 mb-8"><%= I18n.t("user.sign_up") %></h2>
 

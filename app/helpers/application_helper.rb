@@ -9,7 +9,7 @@ module ApplicationHelper
 	end
 
 	def error_btn
-			html = mail_to 'yarden11111@gmail.com', "#{image_tag "bug.svg", size:"15"} #{I18n.t("home.report_btn")}".html_safe,class:'btn btn-default mt-2 block bg-yellow-500 text-black font-normal border-none py-2 h-6  w-full flex items-center', subject: "#{I18n.t("home.report_error")}"
+			html = mail_to 'yarden11111@gmail.com', "#{image_tag "bug.svg", size:"15", alt: "report bug"} #{I18n.t("home.report_btn")}".html_safe,class:'btn btn-default mt-2 block bg-yellow-500 text-black font-normal border-none py-2 h-6  w-full flex items-center', subject: "#{I18n.t("home.report_error")}"
 		html.html_safe
 	end
 
