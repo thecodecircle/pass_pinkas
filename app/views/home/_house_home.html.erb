@@ -112,6 +112,12 @@
 
 	</div>
 </div>
+<div class="label">
+	<% finish_str = "15 Apr 2020" %>
+	<% finish_date = finish_str.to_date %>
+	<% days = finish_date.day - Date.current.day %>
+	<%= I18n.t("home.countdown", days: days) %>
+</div>
 <footer class="w-full h-24 flex justify-between items-end fixed bottom-0 lg:w-1/2 lg:self-center">
 	<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
 		<%= image_tag "user-plus.svg", size: "35" %>

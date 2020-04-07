@@ -64,7 +64,10 @@
         <%= f.label :family, class:"label text-lg" do %>
           <%= I18n.t("user.new.family") %>
         <% end %>
-        <%= text_field_tag(:family, nil, class:"input", required: true, placeholder: "למשל: משפחת כהן") %>
+				<div class="label">
+					<%= I18n.t("user.new.family-explanation") %>
+				</div>
+        <%= text_field_tag(:family, nil, class:"input", required: true, placeholder: I18n.t("user.new.family-placeholder")) %>
       </div>
     <% end %>
 
@@ -73,7 +76,10 @@
         <%= f.label :house, class:"label text-lg" do %>
           <%= I18n.t("user.new.house") %>
         <% end %>
-        <%= text_field_tag(:house, nil, class: "input", required: true, placeholder: "למשל: הבית של דודה שושי") %>
+				<div class="label">
+					<%= I18n.t("user.new.house-explanation") %>
+				</div>
+        <%= text_field_tag(:house, nil, class: "input", required: true, placeholder: I18n.t("user.new.house-placeholder")) %>
       </div>
       <%= hidden_field_tag(:family_id, params[:f]) if params[:f].present? %>
     <% end %>

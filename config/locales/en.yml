@@ -34,15 +34,19 @@ en:
   user:
     new:
       family: "Family name"
+      family-explanation: "You're creating a new family - all homes belong to a family. If your family has already started playing, don't create a new one here. Ask them for a link to join the existing family."
+      family-placeholder: "e.g. Cohen family"
       house: "Home name"
+      house-explanation: "You're creating a new home. It will belong to your family, it will have its score, and you will be competing againt the family's other homes."
+      house-placeholder: "e.g. Aunt Shoshana's place"
     sign_in: "Sign in"
-    new_family: "New Family"
+    new_family: "Sign up & New family"
     sign_up: "Sign up"
     explanation-1: "This passover we'll take advantage of the distance"
     explanation-2: "the family's different homes will be competing for eternal glory and family bragging rights."
     explanation-3: "Every home challenges other homes in the family with creative challenges, and at the end of the holiday, the home page will turn into a score board showing the winning home."
     good-luck: "Good luck!"
-    instructions: "instructions"
+    instructions: "Instructions:"
   home:
     hello: "Hello"
     change_home: "Switch home"
@@ -53,12 +57,13 @@ en:
     choose_home: "Choose home"
     choose_challenge: "Choose challenge"
     new_challenge: "Invent a new challenge!"
-    new_users_to_my_home: "Invite new household members from"
-    old_users_to_my_home: "Invite registered household members to"
-    new_house_to_my_family: "Invite other homes from"
+    new_users_to_my_home: "Invite new household members from "
+    old_users_to_my_home: "Invite registered household members to "
+    new_house_to_my_family: "Invite other homes from "
     share: "Share Kashlapp with another family"
     report_error: "Report a bug in Kashlapp"
     report_btn: "Report an error"
+    countdown: "There are only %{days} days left until the end of the competition!"
   helpers:
     label:
       user:
