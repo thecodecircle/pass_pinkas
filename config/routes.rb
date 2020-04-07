@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :houses
   resources :families
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
   }
   root to: 'home#index'
   get "/leaders" => "home#leaders"

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_action :no_service_worker
 
   around_action :switch_locale
 
@@ -28,6 +29,10 @@ class ApplicationController < ActionController::Base
       current_user.update(locale: "ru")
     end
     redirect_to root_path
+  end
+
+  def no_service_worker
+    redirect_to root_path if action_name == "service_worker"
   end
 
   protected
