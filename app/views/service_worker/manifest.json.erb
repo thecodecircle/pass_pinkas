@@ -1,21 +1,40 @@
 {
-  "short_name": "Kashlapp",
+    "name": "Kashlapp",
+    "short_name": "Kashlapp",
+    "icons": [
+        {
+            "src": "<%= asset_path 'favicon/android-chrome-192x192.png' %>",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "<%= asset_path 'favicon/android-chrome-512x512.png' %>",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}
+<% if false %>
+{
   "name": "Kashlapp",
-  "icons": [
-    {
+  "short_name": "Kashlapp",
+  "start_url": "/",
+  <!-- "icons": [{
       "src": "<%= asset_path('favicon/android-chrome-192x192.png') %>",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
+    },{
       "src": "<%= asset_path('favicon/android-chrome-512x512.png') %>",
       "type": "image/png",
       "sizes": "512x512"
-    }
-  ],
-  "start_url": "<%= root_path %>",
+    }], -->
   "background_color": "#fff",
   "display": "standalone",
-  "scope": "<%= root_path %>",
+  "scope": "/",
   "theme_color": "#000"
 }
+<% end %>
