@@ -182,6 +182,8 @@ he:
       too_long: ארוך מדי (יותר מ- %{count} תווים)
       too_short: קצר מדי (פחות מ- %{count} תווים)
       wrong_length: לא באורך הנכון (חייב להיות %{count} תווים)
+      not_saved: "לא נשמר"
+      
   #   template:
   #     body: 'אנא בדוק את השדות הבאים:'
   #     header:

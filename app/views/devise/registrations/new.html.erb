@@ -9,11 +9,11 @@
 	<div class="flex items-center justify-end">
 		<!-- <div class="lang hidden mx-1 px-1 py-2 bg-gray-300 rounded-lg z-50"> -->
 			<div class="flex">
-				<span class=" mx-1"><%= link_to new_user_session_path(locale: "he") do %>
+				<span class=" mx-1"><%= link_to new_user_registration_path(locale: "he", t: params[:t], f: params[:f], h: params[:h]) do %>
 					<%= image_tag "israel.png", size:"25", alt: "Hebrew" %>
 					<% end %>
 				</span>
-				<span class=" mx-1"><%= link_to new_user_session_path(locale: "en") do %>
+				<span class=" mx-1"><%= link_to new_user_registration_path(locale: "en", t: params[:t], f: params[:f], h: params[:h]) do %>
 					<%= image_tag "usa.webp", size:"25", alt: "English" %>
 					<% end %>
 				</span>
@@ -58,7 +58,17 @@
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-
+		<% flash.each do |key, value| %>
+		<% unless value.include?("unauthenticated")  %>
+			<div class="alert alert-<%= key %> text-lg text-red-500">
+				<ul>
+					<li>
+						<%= value %>
+					</li>
+				</ul>
+			</div>
+		<% end %>
+		<% end %>
     <div class="mb-6">
       <%= f.label :username, class:"label text-lg" %>
       <%= f.text_field :username, autofocus: true, class: "input", required: true %>

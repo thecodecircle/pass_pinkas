@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+	before_action :store_action
   before_action :configure_permitted_parameters, if: :devise_controller?
+	before_action :no_service_worker
   before_action :authenticate_user!
-  before_action :no_service_worker
 
   around_action :switch_locale
 
@@ -34,6 +34,16 @@ class ApplicationController < ActionController::Base
   def no_service_worker
     redirect_to root_path if action_name == "service_worker"
   end
+
+	def store_action
+	    return unless request.get?
+	    # if (request.path != "/users/sign_up" &&
+	        # !request.xhr?) # don't store ajax calls
+	      store_location_for(:user, request.fullpath)
+
+	    # end
+  end
+
 
   protected
 

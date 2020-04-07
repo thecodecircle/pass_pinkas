@@ -1,6 +1,6 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
-en:
+he:
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
@@ -46,10 +46,10 @@ en:
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
       user:
-        not_saved: "Not saved. Please review the errors"
-        password: "Password confirmation not identical to password"
-        too_short: "Password must be 6 characters or longer"
-        username: "Username not available"
+        not_saved: "לא נשמר. אנא בדקו את השגיאות"
+        password: "וידוא הסיסמה לא זהה"
+        too_short: "הסיסמה צריכה להיות 6 תווים ומעלה"
+        username: "שם המשתמש אינו זמין"
     sessions:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."

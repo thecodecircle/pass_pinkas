@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get "/set_locale", to: "home#set_locale"
 
   # Service Worker Routes
-  get '/service-worker.js' => "service_worker#service_worker"
+  # get '/service-worker.js' => "service_worker#service_worker"
   get '/manifest.json' => "service_worker#manifest"
   # get 'service_worker/service_worker'
   # get 'service_worker/manifest'

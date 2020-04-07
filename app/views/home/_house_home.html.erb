@@ -215,12 +215,12 @@ $(document).ready(function() {
 	});
 	// new user in existing house
 	$(".new_user_to_house").click(function(event) {
-		var url = "<%= root_url %>users/sign_up?t=u&h=" + $(this).val()
+		var url = "<%= root_url %>users/sign_up?t=u&h=" + $(this).val() + "&locale=" + "<%= current_user.locale %>"
 		share_sign_up(url)
 	});
 	// new house in existing family
 	$(".new_house_to_family").click(function(event) {
-		var url = "<%= root_url %>users/sign_up?t=h&f=" + $(this).val()
+		var url = "<%= root_url %>users/sign_up?t=h&f=" + $(this).val() + "&locale=" + "<%= current_user.locale %>"
 		share_sign_up(url)
 	});
 	// new
@@ -235,7 +235,7 @@ $(document).ready(function() {
 		share_sign_up(url)
 	});
 	$(".new-family").click(function(event) {
-		var url = "<%= root_url %>users/sign_up"
+		var url = "<%= root_url %>users/sign_up?locale=" + "<%= current_user.locale %>"
 		share_sign_up(url)
 	});
 
