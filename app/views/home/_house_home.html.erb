@@ -101,10 +101,10 @@
 				<hr>
 				<div class="modal-content ">
 						<div class="house-sign-ups">
-							<button  class="text-lg new_user_to_house flex justify-between w-full items-center px-3 text-right py-3" value="<%= @house.id %>" type="button" name="button"><%= I18n.t("home.new_users_to_my_home") %><%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
-							<button  class="text-lg existing_user_to_house flex justify-between w-full items-center px-3 text-right py-3"   value="<%= @house.id %>" type="button" name="button"><%= I18n.t("home.old_users_to_my_home") %><%= @house.name %> <%= image_tag "copy.svg", size:"25" %></button>
-							<button  class="text-lg new_house_to_family flex justify-between w-full items-center px-3 text-right py-3" value="<%= @family.id %>" type="button" name="button"><%= I18n.t("home.new_house_to_my_family") %><%= @family.name %> <%= image_tag "copy.svg", size:"25" %></button>
-							<button  class="text-lg new-family flex justify-between w-full items-center px-3 text-right py-3"   value="new-family" type="button" name="button"><%= I18n.t("home.share") %><%= image_tag "copy.svg", size:"25" %></button>
+							<button  class="text-lg new_user_to_house flex justify-between w-full items-center px-3 text-right py-3" value="<%= @house.id %>" type="button" name="button"><%= I18n.t("home.new_users_to_my_home") %><%= @house.name %> <%= image_tag "copy.svg", size:"25", alt: "copy" %></button>
+							<button  class="text-lg existing_user_to_house flex justify-between w-full items-center px-3 text-right py-3"   value="<%= @house.id %>" type="button" name="button"><%= I18n.t("home.old_users_to_my_home") %><%= @house.name %> <%= image_tag "copy.svg", size:"25", alt: "copy" %></button>
+							<button  class="text-lg new_house_to_family flex justify-between w-full items-center px-3 text-right py-3" value="<%= @family.id %>" type="button" name="button"><%= I18n.t("home.new_house_to_my_family") %><%= @family.name %> <%= image_tag "copy.svg", size:"25", alt: "copy" %></button>
+							<button  class="text-lg new-family flex justify-between w-full items-center px-3 text-right py-3"   value="new-family" type="button" name="button"><%= I18n.t("home.share") %><%= image_tag "copy.svg", size:"25", alt: "copy" %></button>
 						</div>
 				</div>
 			</div>
@@ -120,16 +120,16 @@
 </div>
 <footer class="w-full h-24 flex justify-between items-end fixed bottom-0 lg:w-1/2 lg:self-center">
 	<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "user-plus.svg", size: "35" %>
+		<%= image_tag "user-plus.svg", size: "35", alt: "Invite users" %>
 	</button>
 	<%= link_to '/choose_house' do  %>
 	<div	 class=" bg-cta w-20 h-20 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "plus.svg", size: "45" %>
+		<%= image_tag "plus.svg", size: "45", alt: "Add challenge" %>
 	</div>
 	<% end %>
 	<%= link_to '/leaders' do  %>
 	<button class="leaders bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "trophy.svg", size: "35" %>
+		<%= image_tag "trophy.svg", size: "35", alt: "Leaderboard" %>
 	</button>
 	<% end %>
 </footer>

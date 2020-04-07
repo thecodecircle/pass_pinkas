@@ -9,7 +9,7 @@
 
 		</div>
 		<div class="mx-2 flex">
-	
+
 			<div class="flex w-24 z-50">
 				<div class="absolute top-0 items-center justify-center ">
 					<div class="menu hidden   mt-12 px-5 pt-5 pb-5 bg-white rounded-lg rounded-t-none z-50">
@@ -20,7 +20,7 @@
 							<% end %>
 							<hr>
 							<%= link_to destroy_user_session_path, method: :delete, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do%>
-							<%= image_tag "sign-out.svg", size:"25" %>
+							<%= image_tag "sign-out.svg", size:"25", alt: "Sign out" %>
 							<span class="ml-5"><%= I18n.t("home.exit") %></span>
 							<% end %>
 							<%= error_btn %>
@@ -33,20 +33,20 @@
 
 			<div class="flex py-2 items-center">
 				<span class=" mx-1"><%= link_to set_locale_path(locale: "he") do %>
-					<%= image_tag "israel.png", size:"25" %>
+					<%= image_tag "israel.png", size:"25", alt: "Hebrew" %>
 					<% end %>
 				</span>
 				<span class=" mx-1"><%= link_to set_locale_path(locale: "en") do %>
-					<%= image_tag "usa.webp", size:"25" %>
+					<%= image_tag "usa.webp", size:"25", alt: "English" %>
 					<% end %>
 				</span>
 				<!-- <span class=" mx-1"><%# link_to set_locale_path(locale: "ru") do %>
-				<%# image_tag "russia.webp", size:"25" %>
+				<%# image_tag "russia.webp", size:"25", alt: "Russian" %>
 				<%# end %>
 			</span> -->
 		</div>
 		<button class="open-menu flex items-center py-2 aborder rounded text-grey sborder-gray-500 hover:text-gray-600 ahover:border-gray-600">
-			<%= image_tag "user-circle.svg", size:"25" %>
+			<%= image_tag "user-circle.svg", size:"25", alt: "User" %>
 		</button>
 
 		</div>
@@ -71,7 +71,7 @@
 <footer class="w-full h-24 flex justify-end items-end fixed bottom-0">
 	<%= link_to root_path do %>
 	<button class="  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
-		<%= image_tag "house-user-solid.svg", size: "35" %>
+		<%= image_tag "house-user-solid.svg", size: "35", alt: "User" %>
 	</button>
 	<% end %>
 </footer>

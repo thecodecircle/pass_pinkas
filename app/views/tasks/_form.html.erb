@@ -45,9 +45,9 @@
 
   <div class="form-actions fixed bottom-0 w-full h-16 flex">
 		<%= link_to "/choose_task?house_id=#{params[:house_id]}", class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" do  %>
-			<%= image_tag "back.svg", size:"25", class: "rotate-if-not-he" %>
+			<%= image_tag "back.svg", size:"25", alt: "Back", class: "rotate-if-not-he" %>
 		<% end %>
-	<!-- <a class="" href=""><%= image_tag "check.svg", size:"25" %></a> -->
+	<!-- <a class="" href=""><%# image_tag "check.svg", size:"25" %></a> -->
 		<button class=" justify-center flex items-center w-2/3 bg-cta text-black next-active text-xl ">
 			<%= f.button :submit, type: :image, src: asset_url("check.svg"), class:"w-16" %>
 		</button>
