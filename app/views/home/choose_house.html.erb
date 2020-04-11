@@ -32,8 +32,8 @@
 	<%= link_to root_path, class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" do  %>
 		<%= image_tag "back.svg", size:"25", alt: "Back", class:"rotate-if-not-he" %>
 	<% end %>
-	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl"><%= image_tag "forward.svg", size:"32", alt: "Forward", class:"rotate-if-not-he" %></div>
-	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""><%= image_tag "forward.svg", size:"32", alt: "Forward", class:"rotate-if-not-he" %></a>
+	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl"><%= I18n.t("home.next") %></div>
+	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""><%= I18n.t("home.next") %></a>
 </div>
 
 <script type="text/javascript">

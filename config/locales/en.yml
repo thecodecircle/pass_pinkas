@@ -66,6 +66,12 @@ en:
     countdown: "%{days}"
     days: "days"
     left: "left"
+    next: "next"
+    done: "done"
+    welcome: "Welcome to Kashlapp!"
+    show_tutorial: "Tutorial"
+    start_playing: "Start playing"
+    instructions: "Instructions"
   helpers:
     label:
       user:

@@ -1,6 +1,6 @@
 
 
-<div class="px-2 lg:px-10 mb-16 lg:flex lg:flex-col">
+<div class="px-2 lg:px-10 mb-16 lg:flex lg:flex-col game-content">
 
 
 	<nav class="flex flex-col justify-center">
@@ -20,6 +20,9 @@
 								<% current_user.houses.each do |house| %>
 								<li class="mx-1 border-cta rounded-full px-2 my-2"><%= link_to house.name, root_path(house: house.id)  %></li>
 								<% end %>
+								<li class="flex justify-center">
+									<button class="show-instructions bg-cta  rounded-full w-full p-2 my-2 mx-1 font-bold" type="button" name="button"><%= I18n.t("home.show_tutorial") %></button>
+								</li>
 								<hr>
 								<%= link_to destroy_user_session_path, method: :delete, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do%>
 								<%= image_tag "sign-out.svg", size:"25", alt: "Sign out" %>
@@ -117,7 +120,7 @@
 </div>
 
 </div>
-<div class="text-black text-2xl bg-new-task shadow-lg fixed bottom-0  flex flex-col justify-center mb-24 text-center px-2 rounded-lg">
+<div class="text-black text-2xl bg-new-task shadow-lg fixed bottom-0  flex flex-col justify-center mb-24 text-center px-2 rounded-lg game-content">
 	<% finish_str = "15 Apr 2020" %>
 	<% finish_date = finish_str.to_date %>
 	<% days = finish_date.day - Date.current.day %>
@@ -131,7 +134,7 @@
 		<%= I18n.t("home.left") %>
 	</span>
 </div>
-<div class="w-screen flex justify-center">
+<div class="w-screen flex justify-center game-content">
 	<footer class="w-full h-24 flex justify-between items-end fixed bottom-0 lg:w-1/2 lg:self-center">
 		<button class="open-modal invite-users  bg-cta w-16 h-16 text-white rounded-full flex justify-center items-center m-3 shadow-lg">
 			<%= image_tag "user-plus.svg", size: "35", alt: "Invite users" %>
@@ -151,9 +154,108 @@
 </div>
 
 
+  <!-- true -->
+	<div id="instructions" class="modal-bg w-screen absolute top-0 left-0 bg-white  z-40 ah-screen pb-16">
+		<div class="w-full h-full flex items-center justify-center">
+			<div class="modal-body rounded-lga  h-full bg-white w-full	hiddena lg:w-1/2">
 
+				<div class="modal-content flex flex-col items-center h-full justify-between">
+					<% if current_user.locale == "he" || current_user.locale == nil %>
+						<%= image_tag "logo-type.png", size:"300", class:"mt-10" %>
+					<% else %>
+					<%= image_tag "en-logo.png", size:"300", class:"mt-10" %>
+
+					<% end %>
+					<div class="mt-10">
+
+											<div class="flex py-2 items-center">
+												<span class=" mx-1"><%= link_to set_locale_path(locale: "he") do %>
+													<%= image_tag "israel.png", size:"25", alt: "Hebrew" %>
+													<% end %>
+												</span>
+												<span class=" mx-1"><%= link_to set_locale_path(locale: "en") do %>
+													<%= image_tag "usa.webp", size:"25", alt: "English" %>
+													<% end %>
+												</span>
+												<!-- <span class=" mx-1"><%# link_to set_locale_path(locale: "ru") do %>
+												<%# image_tag "russia.webp", size:"25", alt: "Russian" %>
+												<%# end %>
+											</span> -->
+										</div>
+						<div class="text-center text-2xl font-bold   mb-10 text-blue bg-white rounded-lg ">
+
+							<div class="  rounded-lg py-2 px-2 mb-5">
+								<%= I18n.t("user.explanation-1") %>
+							</div>
+							<div class="explanation">
+								<div class="  rounded-lg py-2 px-2 mb-5">
+									<%= I18n.t("user.explanation-2") %>
+								</div>
+								<div class="  rounded-lg py-2 px-2 mb-5">
+									<%= I18n.t("user.explanation-3") %>
+
+								</div>
+								<div class="  rounded-lg py-2 px-2 mb-5">
+									<%= I18n.t("user.good-luck") %>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex flex-col w-full justify-center items-center">
+						<button id="show_tutorial" class="bg-cta h-20 my-2 w-11/12 rounded-lg text-2xl font-bold" type="button" name="button"><%= I18n.t("home.show_tutorial") %></button>
+						<button class="start-playing border-cta h-20 my-2 w-11/12 rounded-lg text-2xl " type="button" name="button"><%= I18n.t("home.start_playing") %></button>
+					</div>
+				</div>
+				<div id="tutorial" class="h-full w-full hidden bg-white ">
+					<div class="flex h-full w-full items-center justify-center flex-col mb-3 mt-3">
+						<% if current_user.locale == "he" || current_user.locale == nil %>
+							<%= image_tag "tutorial-he.svg"%>
+						<% else %>
+							<%= image_tag "tutorial.svg"	%>
+						<% end %>
+					</div>
+					<div class="flex  items-center justify-center">
+						<button class="start-playing bg-cta h-20 my-2 w-11/12 rounded-lg text-2xl font-bold" type="button" name="button"><%= I18n.t("home.start_playing") %></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="fixed bottom-0 w-full h-10 flex justify-center ">
+			<div class="scroll-down bg-cta rounded-full h-10 w-10  flex justify-center items-center">
+				<i class="gg-push-chevron-down exp-chev big"></i>
+
+			</div>
+		</div> -->
+	</div>
+
+
+<%# if @house.tasks.blank? %>
+<%# end %>
 <script type="text/javascript">
 $(document).ready(function() {
+	if ("<%= @house.tasks.present? %>" == "true") {
+		$("#instructions").hide()
+		$(".game-content").show()
+
+	}else {
+		$("#instructions").show()
+		$(".game-content").hide()
+	}
+	$(".show-instructions").click(function(event) {
+		$(".game-content").hide("fast")
+		$("#instructions").show("fast")
+		/* Act on the event */
+	});
+	$("#show_tutorial").click(function(event) {
+		$(".modal-content").hide("fast")
+		$("#tutorial").show("fast")
+		$(document).scrollTop(0)
+
+	});
+	$(".start-playing").click(function(event) {
+		$("#instructions").hide("fast")
+		$(".game-content").show("fast")
+	});
 	$(".open-menu").click(function(event) {
 		$(".menu").toggle("fast")
 		event.stopPropagation(); // This is the preferred method.

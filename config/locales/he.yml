@@ -36,6 +36,12 @@ he:
     countdown: "%{days}"
     days: "ימים"
     left: "נותרו"
+    next: "הבא"
+    done: "סיום"
+    welcome: "Welcome to Kashlapp!"
+    show_tutorial: "מדריך שימוש"
+    start_playing: "להתחיל לשחק"
+    instructions: "הוראות"
   helpers:
     select:
       prompt: נא לבחור
@@ -183,7 +189,7 @@ he:
       too_short: קצר מדי (פחות מ- %{count} תווים)
       wrong_length: לא באורך הנכון (חייב להיות %{count} תווים)
       not_saved: "לא נשמר"
-      
+
   #   template:
   #     body: 'אנא בדוק את השדות הבאים:'
   #     header:
