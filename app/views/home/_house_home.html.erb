@@ -24,9 +24,13 @@
 									<button class="show-instructions bg-cta  rounded-full w-full p-2 my-2 mx-1 font-bold" type="button" name="button"><%= I18n.t("home.show_tutorial") %></button>
 								</li>
 								<hr>
-								<%= link_to destroy_user_session_path, method: :delete, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do%>
-								<%= image_tag "sign-out.svg", size:"25", alt: "Sign out" %>
-								<span class="ml-5"><%= I18n.t("home.exit") %></span>
+								<%= link_to edit_user_registration_path, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do %>
+									<%= image_tag "sign-out.svg", size:"25", alt: "Edit User" %>
+									<span class="ml-5"><%= I18n.t("home.edit") %></span>
+								<% end %>
+								<%= link_to destroy_user_session_path, method: :delete, class:"bg-gray-400 flex mt-2 rounded-lg p-2 flex justify-between" do %>
+									<%= image_tag "sign-out.svg", size:"25", alt: "Sign out" %>
+									<span class="ml-5"><%= I18n.t("home.exit") %></span>
 								<% end %>
 								<%= error_btn %>
 							</ol>
