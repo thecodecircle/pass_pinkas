@@ -9,6 +9,14 @@ he:
       house: "שם הבית"
       house-explanation: "אתן עכשיו יוצרות בית חדש. הבית יהיה שייך למשפחה, יהיה לו ניקוד, ואתן תתחרו בבתים האחרים של המשפחה."
       house-placeholder: "למשל: הבית של דודה שושי"
+    edit:
+      cancel: "מחיקת החשבון"
+      current_pass_exp: "(אנחנו צריכים את הסיסמה הנוכחית כדי לאשר את השינויים)"
+      blank: "להשאיר ריק אם לא רוצים לשנות"
+      edit_user: "עריכת משתמש"
+      update: "עדכון"
+      min_length: "%{min} תווים לפחות"
+      are_you_sure: "את.ה בטוח.ה?"
     sign_in: "כניסה"
     new_family: "הרשמת משפחה חדשה"
     sign_up: "הרשמה"
@@ -56,6 +64,7 @@ he:
         name: "שם מלא"
         password: "סיסמה"
         password_confirmation: "אימות סיסמה"
+        current_password: "סיסמה נוכחית"
         sign up: "הרשמה"
         remember_me: "זכרו אותי"
   activerecord:

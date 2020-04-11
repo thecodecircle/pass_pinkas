@@ -32,7 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
               current_user.update(locale: params[:locale])
             else
               current_user.update(locale: "he")
-            end 
+            end
 
 
 						if !params[:family_id].present? && !params[:house_id].present?
@@ -95,9 +95,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    current_user.houses.each do |house|
+      house.update(name: params["#{house.id}house_name"]) if params["#{house.id}house_id".to_sym].present?
+    end
+    current_user.families.each do |family|
+      family.update(name: params["#{family.id}fam_name"]) if params["#{family.id}fam_id".to_sym].present?
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -143,7 +149,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  #   devise_parameter_sanitizer.permit(:account_update, houses_attributes: [:name, :id, :created_at, :updated_at, :_destroy], families_attributes: [:name, :id, :created_at, :updated_at, :_destroy], keys: [:attribute])
   # end
 
   # The path used after sign up.
