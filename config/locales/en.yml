@@ -83,6 +83,7 @@ en:
     instructions: "Instructions"
     families: "Families"
     houses: "Houses"
+    stop_tutorial: "Don't show me this again"
   helpers:
     label:
       user:

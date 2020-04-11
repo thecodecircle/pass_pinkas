@@ -53,6 +53,7 @@ he:
     instructions: "הוראות"
     families: "משפחות"
     houses: "בתים"
+    stop_tutorial: "אל תראו לי את זה יותר"
   helpers:
     select:
       prompt: נא לבחור

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/approve_task", to: "tasks#approve_task"
   get "/add_user_to_house", to: "home#add_user_to_house"
   get "/set_locale", to: "home#set_locale"
+  get "/no_tutorial", to: "home#no_tutorial"
 
   # Service Worker Routes
   # get '/service-worker.js' => "service_worker#service_worker"

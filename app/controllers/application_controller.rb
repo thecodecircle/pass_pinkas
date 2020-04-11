@@ -44,6 +44,11 @@ class ApplicationController < ActionController::Base
 	    # end
   end
 
+  def no_tutorial
+    current_user.seen_it!
+    redirect_to root_path
+  end
+
 
   protected
 
