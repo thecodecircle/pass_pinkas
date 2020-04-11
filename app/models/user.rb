@@ -6,7 +6,9 @@ class User < ApplicationRecord
 
   has_many              :house_users
   has_many              :houses, through: :house_users, dependent: :destroy
+  accepts_nested_attributes_for :houses
   has_many              :families, through: :houses
+  accepts_nested_attributes_for :families
 
 
   validates :username, presence: :true, uniqueness: { case_sensitive: false }

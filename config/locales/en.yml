@@ -39,6 +39,14 @@ en:
       house: "Home name"
       house-explanation: "You're creating a new home. It will belong to your family, it will have its score, and you will be competing againt the family's other homes."
       house-placeholder: "e.g. Aunt Shoshana's place"
+    edit:
+      cancel: "Delete the account"
+      current_pass_exp: (we need your current password to confirm your changes)
+      blank: "leave blank if you don't want to change it"
+      edit_user: "Edit User"
+      update: "Update"
+      min_length: "at least %{min} characters"
+      are_you_sure: "Are you sure?"
     sign_in: "Sign in"
     new_family: "Sign up a new family"
     sign_up: "Sign up"
