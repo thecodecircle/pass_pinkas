@@ -63,7 +63,7 @@ en:
     our_challenges: "Our challenges"
     finished_challenges: "Finished challenges"
     invite: "Invite relatives"
-    choose_home: "Choose home"
+    choose_home: "Who to challange?"
     choose_challenge: "Choose challenge"
     new_challenge: "Invent a new challenge!"
     new_users_to_my_home: "Invite new household members from "
@@ -81,6 +81,8 @@ en:
     show_tutorial: "Tutorial"
     start_playing: "Start playing"
     instructions: "Instructions"
+    families: "Families"
+    houses: "Houses"
   helpers:
     label:
       user:

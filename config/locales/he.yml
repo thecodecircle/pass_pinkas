@@ -33,7 +33,7 @@ he:
     our_challenges: "האתגרים שלנו"
     finished_challenges: "האתגרים שסיימנו"
     invite: "להזמין קרובי משפחה"
-    choose_home: "בחירת בית"
+    choose_home: "את מי לאתגר?"
     choose_challenge: "בחירת אתגר"
     new_challenge: "המצאת אתגר חדש!"
     new_users_to_my_home: "הזמנת בני בית חדשים מ"
@@ -51,6 +51,8 @@ he:
     show_tutorial: "מדריך שימוש"
     start_playing: "להתחיל לשחק"
     instructions: "הוראות"
+    families: "משפחות"
+    houses: "בתים"
   helpers:
     select:
       prompt: נא לבחור
