@@ -11,6 +11,8 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
+    puts "*******************set sw cookie*********************"
+    cookies[:sw] = { value: "service", expires: Time.now + 10}
   end
 
   # DELETE /resource/sign_out

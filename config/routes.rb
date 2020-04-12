@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   get "/no_tutorial", to: "home#no_tutorial"
 
   # Service Worker Routes
-  # get '/service-worker.js' => "service_worker#service_worker"
+  get '/service-worker.js' => "service_worker#service_worker"
   get '/manifest.json' => "service_worker#manifest"
+  get '/offline.html' => "service_worker#offline"
   # get 'service_worker/service_worker'
   # get 'service_worker/manifest'
 end

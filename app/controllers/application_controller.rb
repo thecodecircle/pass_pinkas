@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def no_service_worker
-    redirect_to root_path if action_name == "service_worker"
+    redirect_to root_path if action_name == "service_worker" && cookies[:sw].present?
   end
 
 	def store_action

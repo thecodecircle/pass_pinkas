@@ -13,7 +13,7 @@ class User < ApplicationRecord
   enum role: %i[user admin]
   validates  :role, inclusion: { in: User.roles.keys }
 
-  enum seen_tutorial: %i[not_seen seen_it]
+  enum seen_tutorial: %i[has_not_seen seen_it]
 
   def email_required?
     false

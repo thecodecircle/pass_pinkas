@@ -13,6 +13,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     # super
+    puts "*******************set sw cookie*********************"
+    cookies[:sw] = { value: "service", expires: Time.now + 10}
 
 		build_resource(sign_up_params)
 
