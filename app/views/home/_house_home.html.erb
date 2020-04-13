@@ -204,9 +204,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex flex-col w-full justify-center items-center">
-						<button id="show_tutorial" class="bg-cta h-20 my-2 w-11/12 rounded-lg text-2xl font-bold" type="button" name="button"><%= I18n.t("home.show_tutorial") %></button>
-						<button class="start-playing border-cta h-20 my-2 w-11/12 rounded-lg text-2xl " type="button" name="button"><%= I18n.t("home.start_playing") %></button>
+					<div class="flex flex-col w-full justify-center items-center px-3">
+						<button id="show_tutorial" class="bg-cta h-20 my-2 w-full  rounded-lg text-2xl font-bold" type="button" name="button"><%= I18n.t("home.show_tutorial") %></button>
+						<button class="start-playing border-cta h-20 my-2  w-full rounded-lg text-2xl " type="button" name="button"><%= I18n.t("home.start_playing") %></button>
 					</div>
 				</div>
 				<div id="tutorial" class="h-full w-full hidden bg-white ">
@@ -217,12 +217,18 @@
 							<%= image_tag "tutorial.svg"	%>
 						<% end %>
 					</div>
-					<div class="flex items-center justify-center">
-						<button class="start-playing bg-cta h-20 my-2 w-11/12 rounded-lg text-2xl font-bold" type="button" name="button"><%= I18n.t("home.start_playing") %></button>
+					<div class="flex flex-col items-center justify-center px-3">
+						<button class="start-playing bg-cta h-20 my-2 w-full rounded-lg text-2xl font-bold" type="button" name="button"><%= I18n.t("home.start_playing") %></button>
+						<% if current_user.has_not_seen? %>
+							<%= link_to no_tutorial_path,class:"w-full" do %>
+							<button class="start-playing bg-cta h-20 my-2 w-full rounded-lg text-2xl font-bold hidden" type="button" name="button"><%= I18n.t("home.start_playing") %></button>
+							<% end %>
+							<div class=" self-start w-full">
+								<input type="checkbox" name="no_tutorial" value="no_tutorial">
+								<label for="no_tutorial"><%= I18n.t("home.stop_tutorial") %></label>
+							</div>
+						<% end %>
 					</div>
-					<!-- <div class="flex items-center justify-center">
-						<%= link_to I18n.t("home.stop_tutorial"), no_tutorial_path, class: "bg-cta h-20 w-11/12 rounded-lg text-2xl font-bold text-center" %>
-					</div> -->
 				</div>
 			</div>
 		</div>
@@ -239,6 +245,9 @@
 <%# end %>
 <script type="text/javascript">
 $(document).ready(function() {
+	$("input[name=no_tutorial]").change(function(event) {
+		$(".start-playing").toggle()
+	});
 	if ("<%= @house.tasks.present? %>" == "true" || "<%= current_user.seen_it? %>" == "true") {
 		$("#instructions").hide()
 		$(".game-content").show()

@@ -123,10 +123,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-	def response_to_sign_up_failure(resource)
-    stored_location_for(resource)
-		# root_path, alert:"fail"
-	end
+	#
+	# def update_resource(resource, params)
+	# # Require current password if user is trying to change password.
+	# puts params[:update]
+	# return super if params[:update].present?
+	#
+	# # Allows user to update registration information without password.
+	# resource.update_without_password(params)
+	# end
+	#
+	# def response_to_sign_up_failure(resource)
+  #   stored_location_for(resource)
+	# 	# root_path, alert:"fail"
+	# end
 
 	# Its important that the location is NOT stored if:
 	 # - The request method is not GET (non idempotent)
@@ -151,7 +161,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, houses_attributes: [:name, :id, :created_at, :updated_at, :_destroy], families_attributes: [:name, :id, :created_at, :updated_at, :_destroy], keys: [:attribute])
+		# return super if params[:update]&.present?
+    # devise_parameter_sanitizer.permit(:account_update, houses_attributes: [:name, :id, :created_at, :updated_at, :_destroy], families_attributes: [:name, :id, :created_at, :updated_at, :_destroy], keys: [:attribute])
+    # devise_parameter_sanitizer.permit(:account_update)
   # end
 
   # The path used after sign up.
