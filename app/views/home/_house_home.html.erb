@@ -158,11 +158,10 @@
 
 
   <!-- true -->
-	<div id="instructions" class="modal-bg w-screen absolute top-0 left-0 bg-white  z-40 ah-screen pb-16">
+	<div id="instructions" class=" w-screen absolute top-0 left-0 bg-white  z-40 pb-16">
 		<div class="w-full h-full flex items-center justify-center">
-			<div class="modal-body rounded-lga  h-full bg-white w-full	hiddena lg:w-1/2">
-
-				<div class="modal-content flex flex-col items-center h-full justify-between">
+			<div class="modal-bodyss rounded-lga  h-full bg-white w-full	 lg:w-1/2">
+				<div id="instructions-content" class="modal-content flex flex-col items-center h-full justify-between">
 					<% if current_user.locale == "he" || current_user.locale == nil %>
 						<%= image_tag "logo-type.png", size:"300", class:"mt-10" %>
 					<% else %>
@@ -256,21 +255,28 @@ $(document).ready(function() {
 		$("#instructions").show()
 		$(".game-content").hide()
 	}
+
 	$(".show-instructions").click(function(event) {
 		$(".game-content").hide("fast")
+		$("#tutorial").hide()
+		$("#instructions-content").show()
 		$("#instructions").show("fast")
 		/* Act on the event */
 	});
+
 	$("#show_tutorial").click(function(event) {
 		$(".modal-content").hide("fast")
 		$("#tutorial").show("fast")
 		$(document).scrollTop(0)
 
 	});
+
 	$(".start-playing").click(function(event) {
 		$("#instructions").hide("fast")
 		$(".game-content").show("fast")
 	});
+
+
 	$(".open-menu").click(function(event) {
 		$(".menu").toggle("fast")
 		event.stopPropagation(); // This is the preferred method.
@@ -292,10 +298,10 @@ $(document).ready(function() {
 
 
 	$(".open-modal").click(function(event) {
-
 		$(".modal-bg").show()
 		$(".modal-body").show("slow")
 	});
+
 	$(".close-modal").click(function(event) {
 		if (event.target == this){
 			$(".modal-body").hide('slow', function() {
