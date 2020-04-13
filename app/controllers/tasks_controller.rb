@@ -96,12 +96,32 @@ class TasksController < ApplicationController
     @task = Task.find(params[:task])
 		if params[:house].present?
 			@house = House.find(params[:house])
-			@house.tasks << @task if @house.tasks.exclude?(@task)
+			if @house.tasks.exclude?(@task)
+        @house.tasks << @task
+        @house.users.each do |user|
+          NotificationChannel.broadcast_to(user, "#{current_user.name} איתגר אותך באתגר #{@task.name}")
+          puts "********************  Notification to #{user.name} ********************"
+        end
+      else
+        NotificationChannel.broadcast_to(current_user, "ל#{@house.name} כבר יש את המשימה הזאת")
+        puts "********************  Notification to #{current_user.name} ********************"
+      end
+      # ActionCable.server.broadcast('notification_channel', "The task #{@task.name} had been assigned to #{@house.name}")
+        # NotificationChannel.broadcast_to(user, { notification: 'Test message' })
+      # NotificationChannel.broadcast_to(@house.users.first, { notification: "The task #{@task.name} had been assigned to #{@house.name}" })
 		elsif params[:family].present?
 			@family = Family.find(params[:family])
 			@family.houses.each do |house|
-				house.tasks << @task if house.tasks.exclude?(@task)
+				if house.tasks.exclude?(@task)
+          house.tasks << @task
+          house.users.each do |user|
+            NotificationChannel.broadcast_to(user, "#{current_user.name} איתגר אותך באתגר #{@task.name}")
+            puts "********************  Notification to #{user.name} ********************"
+          end
+        end
 			end
+      # ActionCable.server.broadcast('notification_channel', "The task #{@task.name} had been assigned to #{@family.name}")
+      # NotificationChannel.broadcast_to(@family.users.first, { notification: "The task #{@task.name} had been assigned to #{@family.name}" })
 		end
     redirect_to root_path
   end
