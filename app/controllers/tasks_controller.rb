@@ -100,9 +100,11 @@ class TasksController < ApplicationController
         @house.tasks << @task
         @house.users.each do |user|
           NotificationChannel.broadcast_to(user, "#{current_user.name} איתגר אותך באתגר #{@task.name}")
+          puts "********************  Notification to #{user.name} ********************"
         end
       else
         NotificationChannel.broadcast_to(current_user, "ל#{@house.name} כבר יש את המשימה הזאת")
+        puts "********************  Notification to #{current_user.name} ********************"
       end
       # ActionCable.server.broadcast('notification_channel', "The task #{@task.name} had been assigned to #{@house.name}")
         # NotificationChannel.broadcast_to(user, { notification: 'Test message' })
@@ -114,6 +116,7 @@ class TasksController < ApplicationController
           house.tasks << @task
           house.users.each do |user|
             NotificationChannel.broadcast_to(user, "#{current_user.name} איתגר אותך באתגר #{@task.name}")
+            puts "********************  Notification to #{user.name} ********************"
           end
         end
 			end
