@@ -54,7 +54,9 @@ he:
     instructions: "הוראות"
     families: "משפחות"
     houses: "בתים"
+    link_copied: "הקישור הועתק ללוח!"
     stop_tutorial: "אל תראו לי את זה יותר"
+    ask_notifications: "רק עם התראות תוכל.י לדעת שאתגרו אותך. בבקשה הפעל.י התראות בדפדפן"
   helpers:
     select:
       prompt: נא לבחור

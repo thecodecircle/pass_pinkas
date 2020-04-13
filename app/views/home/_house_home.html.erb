@@ -169,21 +169,20 @@
 
 					<% end %>
 					<div class="mt-10">
-
-											<div class="flex py-2 items-center">
-												<span class=" mx-1"><%= link_to set_locale_path(locale: "he") do %>
-													<%= image_tag "israel.png", size:"25", alt: "Hebrew" %>
-													<% end %>
-												</span>
-												<span class=" mx-1"><%= link_to set_locale_path(locale: "en") do %>
-													<%= image_tag "usa.webp", size:"25", alt: "English" %>
-													<% end %>
-												</span>
-												<!-- <span class=" mx-1"><%# link_to set_locale_path(locale: "ru") do %>
-												<%# image_tag "russia.webp", size:"25", alt: "Russian" %>
-												<%# end %>
-											</span> -->
-										</div>
+						<div class="flex py-2 items-center">
+								<span class=" mx-1"><%= link_to set_locale_path(locale: "he") do %>
+									<%= image_tag "israel.png", size:"25", alt: "Hebrew" %>
+									<% end %>
+								</span>
+								<span class=" mx-1"><%= link_to set_locale_path(locale: "en") do %>
+									<%= image_tag "usa.webp", size:"25", alt: "English" %>
+									<% end %>
+								</span>
+								<!-- <span class=" mx-1"><%# link_to set_locale_path(locale: "ru") do %>
+								<%# image_tag "russia.webp", size:"25", alt: "Russian" %>
+								<%# end %>
+							</span> -->
+						</div>
 						<div class="text-center text-2xl font-bold   mb-10 text-blue bg-white rounded-lg ">
 
 							<div class="  rounded-lg py-2 px-2 mb-5">
@@ -238,10 +237,8 @@
 			</div>
 		</div> -->
 	</div>
+<!-- <button class="ask_notifications" type="button" name="button"><%= image_tag "bell-solid.svg", size:"25" %></button> -->
 
-
-<%# if @house.tasks.blank? %>
-<%# end %>
 <script type="text/javascript">
 $(document).ready(function() {
 	$("input[name=no_tutorial]").change(function(event) {
@@ -376,7 +373,7 @@ $(document).ready(function() {
 		document.execCommand("copy");
 
 		/* Alert the copied text */
-		alert("הקישור הועתק!");
+		alert("<%= I18n.t("home.link_copied") %>");
 		$("#temp").remove()
 	}
 
@@ -413,6 +410,72 @@ $(document).ready(function() {
 			$(".open-lang").click(function(event) {
 				$(".lang").toggle("fast")
 			});
+
+			if (checkCookie("show_notifications") || Notification.permission == "default") {
+
+				Notification.requestPermission().then(function (permission) {
+					if (permission === "denied") {
+						alert("<%= I18n.t("home.ask_notifications") %>")
+						setCookie("show_notifications", "false", 10000)
+					}
+				})
+			} else {
+
+			}
+
+
+			$(".ask_notifications").click(function(event) {
+				/* Act on the event */
+				if (!("Notification" in window)) {
+					alert("This browser does not support desktop notification");
+				}
+
+				// Let's check whether notification permissions have already been granted
+				else if (Notification.permission === "granted") {
+					// If it's okay let's create a notification
+					var notification = new Notification("Hi there!");
+				}
+
+				// Otherwise, we need to ask the user for permission
+				else if (Notification.permission !== "denied") {
+					Notification.requestPermission().then(function (permission) {
+						// If the user accepts, let's create a notification
+						if (permission === "granted") {
+							var notification = new Notification("Hi there!");
+						}
+					});
+			}
+  })
+	function setCookie(cname, cvalue, exdays) {
+	  var d = new Date();
+	  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	  var expires = "expires="+ d.toUTCString();
+	  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function getCookie(cname) {
+	  var name = cname + "=";
+	  var decodedCookie = decodeURIComponent(document.cookie);
+	  var ca = decodedCookie.split(';');
+	  for(var i = 0; i <ca.length; i++) {
+	    var c = ca[i];
+	    while (c.charAt(0) == ' ') {
+	      c = c.substring(1);
+	    }
+	    if (c.indexOf(name) == 0) {
+	      return c.substring(name.length, c.length);
+	    }
+	  }
+	  return "";
+	}
+	function checkCookie(cname) {
+  	var cname = getCookie(cname);
+	  if (cname != "") {
+	  return false
+	} else {
+		return true
+	}
+	}
 })
 
 </script>

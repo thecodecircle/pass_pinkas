@@ -84,7 +84,9 @@ en:
     instructions: "Instructions"
     families: "Families"
     houses: "Houses"
+    link_copied: "Link copied to clipboard!"
     stop_tutorial: "Don't show me this again"
+    ask_notifications: "Only with notifications you will be notified you were challenged. Please allow browser notifications"
   helpers:
     label:
       user:
