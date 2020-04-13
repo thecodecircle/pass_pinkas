@@ -36,7 +36,7 @@
 </div>
 <div class="actions flex fixed bottom-0 w-full rounded-lg font-bold h-16 shadow-up">
 	<%= link_to root_path, class:"w-1/3 bg-gray-300 justify-center flex items-center text-xl" do  %>
-		<%= image_tag "back.svg", size:"25", alt: "Back", class:"rotate-if-not-he" %>
+		<%= I18n.t("home.exit") %>
 	<% end %>
 	<div class="w-2/3 bg-gray-400 text-gray-700 next justify-center flex items-center text-xl"><%= I18n.t("home.next") %></div>
 	<a class="w-2/3 bg-cta text-black next-active justify-center flex items-center text-xl hidden" href=""><%= I18n.t("home.next") %></a>
