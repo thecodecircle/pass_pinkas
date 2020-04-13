@@ -17,6 +17,8 @@ if (navigator.serviceWorker) {
     });
 }
 
+Notification.requestPermission().then(function (result) {})
+
 // require( 'datatables.net-dt' );
 // require( 'datatables.net-fixedheader-dt' );
 // require( 'datatables.net-responsive-dt' );
