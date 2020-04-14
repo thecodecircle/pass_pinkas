@@ -19,6 +19,22 @@ if (navigator.serviceWorker) {
 
 Notification.requestPermission().then(function (result) {})
 
+// {
+//   "subject": "mailto:yarden11111@gmail.com",
+//   "publicKey": "BCwnKrGqduNJmswZUbQi4YvvfA4PJG9z7xmHtTSvxfru0ACdxlCZkmykt0wvXXeRoed-WrR7YJmwAAXhBlNPW3k",
+//   "privateKey": "SpswtsEMyMBo8weymdevJmN-jRsPoBhZC9m-YgU2V24"
+// }
+
+// window.vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64("BCwnKrGqduNJmswZUbQi4YvvfA4PJG9z7xmHtTSvxfru0ACdxlCZkmykt0wvXXeRoed-WrR7YJmwAAXhBlNPW3k").bytes %>);
+
+navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+  serviceWorkerRegistration.pushManager
+  .subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: "BCwnKrGqduNJmswZUbQi4YvvfA4PJG9z7xmHtTSvxfru0ACdxlCZkmykt0wvXXeRoed-WrR7YJmwAAXhBlNPW3k"
+  }).then(console.log("JS Subscribe"))
+});
+
 // require( 'datatables.net-dt' );
 // require( 'datatables.net-fixedheader-dt' );
 // require( 'datatables.net-responsive-dt' );
