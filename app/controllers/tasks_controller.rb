@@ -116,7 +116,7 @@ class TasksController < ApplicationController
         # }
         # response = fcm.send(registration_ids, options)
         @house.users.each do |user|
-          NotificationChannel.broadcast_to(user, ["#{current_user.name} איתגר אותך באתגר #{@task.name}", "#{view_context.image_url('logo.png')}", "#{view_context.image_url('badge-32.png')}", "#{view_context.asset_url('just')}"])
+          NotificationChannel.broadcast_to(user, ["#{current_user.name} איתגר אותך באתגר #{@task.name}", "#{view_context.image_url('logo.png')}", "#{view_context.image_url('badge-32.png')}", "#{view_context.asset_url('just-saying.mp3')}"])
           puts "********************  Notification to #{user.name} ********************"
         end
       else

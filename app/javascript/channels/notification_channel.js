@@ -19,7 +19,7 @@ consumer.subscriptions.create("NotificationChannel", {
           tag: 'Kashlapp',
           icon: data[1],
           badge: data[2],
-          sound: 
+          sound: data[3]
         });
       });
       // var title = 'Push Notification'
