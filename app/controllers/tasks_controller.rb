@@ -98,6 +98,23 @@ class TasksController < ApplicationController
 			@house = House.find(params[:house])
 			if @house.tasks.exclude?(@task)
         @house.tasks << @task
+        # require 'fcm'
+
+        # fcm = FCM.new("AAAAhx0k54s:APA91bFpfLtMkJr_Z69jhGr8cW7HTNJBgiHPNjykSxmL96uLUSIf47SjHchPKhP59ChqXZDy7peD52j-PfNF4qAEC2x45-IKSJXkCL88RC6UYSvggoe1b9YHqCIgKLBkvflGh9CJv4wg")
+        # you can set option parameters in here
+        #  - all options are pass to HTTParty method arguments
+        #  - ref: https://github.com/jnunemaker/httparty/blob/master/lib/httparty.rb#L29-L60
+        #  fcm = FCM.new("my_server_key", timeout: 3)
+
+        # registration_ids = ["dnJq1KM6pmHbaz7GxI6P7x:APA91bH0Ssg2_rY0avHUbbiEYGx87jKUMyLHXJogXfMmbTVZ64LhgO5OSJxD2nXM5CiGXQpunGsv-45c4rLyE2O1_FtRsM90BoIDL2KxQUWazzE4f-SPH9kjSO9tRORBsELPqp-2cf4N"] # an array of one or more client registration tokens
+        # puts "************** FCM **************************"
+        # See https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages for all available options.
+        # options = { "notification": {
+            # "title": "Portugal vs. Denmark",
+            # "body": "5 to 1"
+          # }
+        # }
+        # response = fcm.send(registration_ids, options)
         @house.users.each do |user|
           NotificationChannel.broadcast_to(user, "#{current_user.name} איתגר אותך באתגר #{@task.name}")
           puts "********************  Notification to #{user.name} ********************"
