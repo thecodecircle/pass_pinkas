@@ -10,12 +10,16 @@ consumer.subscriptions.create("NotificationChannel", {
   },
 
   received(data) {
+    console.log(data);
     if (Notification.permission === 'granted') {
       navigator.serviceWorker.ready.then(function(registration) {
         registration.showNotification('קשל"פ', {
-          body: data,
+          body: data[0],
           vibrate: [200, 100, 200, 100, 200, 100, 200],
-          tag: 'Kashlapp'
+          tag: 'Kashlapp',
+          icon: data[1],
+          badge: data[2],
+          sound: 
         });
       });
       // var title = 'Push Notification'
