@@ -216,7 +216,7 @@
 					</div>
 					<div class="flex flex-col items-center justify-center px-3">
 						<button class="start-playing bg-cta h-20 my-2 w-full rounded-lg text-2xl font-bold" type="button" name="button"><%= I18n.t("home.start_playing") %></button>
-						<% if current_user.has_not_seen? %>
+						<% if current_user.has_not_seen? || current_user.seen_tutorial == nil %>
 							<%= link_to no_tutorial_path,class:"w-full" do %>
 							<button class="start-playing bg-cta h-20 my-2 w-full rounded-lg text-2xl font-bold hidden" type="button" name="button"><%= I18n.t("home.start_playing") %></button>
 							<% end %>
