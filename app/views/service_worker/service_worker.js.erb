@@ -56,18 +56,7 @@ self.addEventListener('install', onInstall);
 self.addEventListener('activate', onActivate);
 self.addEventListener('fetch', onFetch);
 
-// function onPush(event) {
-//   try {
-//     var message = event.data.json();
-//   } catch(e) {
-//     var message = { title: 'test', body: 'test notification' };
-//   };
-//
-//   event.waitUntil(
-//     self.registration.showNotification(message.title, {
-//       body: message.body,
-//     })
-//   );
-// }
-//
-// self.addEventListener('push', onPush);
+self.addEventListener('notificationclick', function (event) {
+  event.notification.close();
+  clients.openWindow('<%= root_url %>');
+});
