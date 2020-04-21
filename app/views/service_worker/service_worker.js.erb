@@ -60,3 +60,31 @@ self.addEventListener('notificationclick', function (event) {
   event.notification.close();
   clients.openWindow('<%= root_url %>');
 });
+
+self.addEventListener('push', function(event) {
+  console.log('[Service Worker] Push Received.');
+  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+
+  const title = 'Push Codelab';
+  const options = {
+    body: 'Yay it works.'
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+// function onPush(event) {
+//   try {
+//     var message = event.data.json();
+//   } catch(e) {
+//     var message = { title: 'test', body: 'test notification' };
+//   };
+//
+//   event.waitUntil(
+//     self.registration.showNotification(message.title, {
+//       body: message.body,
+//     })
+//   );
+// }
+//
+// self.addEventListener('push', onPush);

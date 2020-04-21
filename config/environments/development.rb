@@ -8,7 +8,7 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Whitelist one hostname
-  config.hosts << "6df7f27b.ngrok.io"
+  config.hosts << "9f79946c.ngrok.io"
   config.web_console.whitelisted_ips = '79.178.15.179', '2001:4df7:0:1bd3:e991:32e:7f22:ea41'
 
   # config.action_cable.url = 'ws://6df7f27b.ngrok.io/cable'
