@@ -3,24 +3,28 @@ import consumer from "./consumer"
 consumer.subscriptions.create("NotificationChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
+    console.log("Connected to NotificationChannel");
   },
 
   disconnected() {
     // Called when the subscription has been terminated by the server
+    console.log("Disconnected from NotificationChannel");
   },
 
   received(data) {
     console.log(data);
     if (Notification.permission === 'granted') {
       navigator.serviceWorker.ready.then(function(registration) {
-        registration.showNotification('קשל"פ', {
-          body: data[0],
-          vibrate: [200, 100, 200, 100, 200, 100, 200],
-          tag: 'Kashlapp',
-          icon: data[1],
-          badge: data[2],
-          sound: data[3]
-        });
+        navigator.serviceWorker.controller.postMessage({'hello': 'world'})
+        // registration.showNotification('קשל"פ', {
+        //   body: data[0],
+        //   vibrate: [200, 100, 200, 100, 200, 100, 200],
+        //   tag: 'Kashlapp',
+        //   icon: data[1],
+        //   badge: data[2],
+        //   sound: data[3]
+        // });
+
       });
       // var title = 'Push Notification'
       // var body = data

@@ -61,17 +61,41 @@ self.addEventListener('notificationclick', function (event) {
   clients.openWindow('<%= root_url %>');
 });
 
-self.addEventListener('push', function(event) {
+self.addEventListener('message', function (evt) {
+  console.log('postMessage received', evt.data);
   console.log('[Service Worker] Push Received.');
-  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+  console.log(`[Service Worker] Push had this data: "${evt.data}"`);
 
-  const title = 'Push Codelab';
-  const options = {
-    body: 'Yay it works.'
-  };
+  self.registration.showNotification('קשל"פ', {
+    body: evt.data[0],
+    vibrate: [200, 100, 200],
+    tag: 'Kashlapp',
+    icon: "<%= view_context.image_url('logo.png')} %>",
+    badge: evt.data[2],
+    sound: evt.data[3]
+  });
+})
 
-  event.waitUntil(self.registration.showNotification(title, options));
-});
+// self.addEventListener('push', function(event) {
+// function onPush(data) {
+//   console.log('[Service Worker] Push Received.');
+//   console.log(`[Service Worker] Push had this data: "${data}"`);
+//
+//   self.registration.showNotification('קשל"פ', {
+//     body: data[0],
+//     vibrate: [200, 100, 200, 100, 200, 100, 200],
+//     tag: 'Kashlapp',
+//     icon: data[1],
+//     badge: data[2],
+//     sound: data[3]
+//   });
+  // const title = 'Push Codelab';
+  // const options = {
+  //   body: 'Yay it works.'
+  // };
+  //
+  // self.registration.showNotification(title, options);
+// });
 
 // function onPush(event) {
 //   try {
