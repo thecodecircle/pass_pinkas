@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	before_action :store_action
   before_action :configure_permitted_parameters, if: :devise_controller?
 	before_action :no_service_worker
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   around_action :switch_locale
 
